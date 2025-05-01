@@ -1,0 +1,2125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AZ Tech 2.0 - Plan Estratégico</title>
+    <style>
+        :root {
+            --primary: #003366;
+            --primary-light: #0047a9;
+            --secondary: #0066cc;
+            --accent: #ff9900;
+            --accent-light: #ffb84d;
+            --light: #f5f7fa;
+            --dark: #333333;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --gray: #6c757d;
+            --gray-light: #e9ecef;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 30px 0;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo span {
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .tab-container {
+            margin-bottom: 40px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            background-color: var(--gray-light);
+            border: 1px solid #ddd;
+            border-bottom: none;
+            margin-right: 5px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .tab:hover {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+        
+        .tab.active {
+            background-color: var(--primary);
+            border: 1px solid var(--primary);
+            color: var(--white);
+            font-weight: bold;
+            position: relative;
+            top: 1px;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            animation: fadeIn 0.5s;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-content h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+            font-size: 28px;
+        }
+        
+        .tab-content p {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        
+        .collapsible {
+            background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            cursor: pointer;
+            padding: 18px 24px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .collapsible:hover {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .collapsible:after {
+            content: '\002B';
+            color: white;
+            font-weight: bold;
+            float: right;
+            margin-left: 10px;
+            font-size: 22px;
+        }
+        
+        .active:after {
+            content: "\2212";
+        }
+        
+        .collapsible-content {
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: white;
+            border-radius: 0 0 6px 6px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .collapsible-content-inner {
+            padding: 20px 10px;
+        }
+        
+        .phase {
+            margin-bottom: 30px;
+            border-left: 5px solid var(--secondary);
+            padding: 5px 0 5px 20px;
+            background-color: rgba(0, 102, 204, 0.05);
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .phase h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .milestone {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .milestone h4 {
+            margin-bottom: 12px;
+            color: var(--dark);
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .milestone-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 14px;
+            color: var(--gray);
+            border-top: 1px solid var(--gray-light);
+            padding-top: 10px;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .team-member {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .team-photo {
+            height: 200px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 42px;
+            font-weight: bold;
+        }
+        
+        .team-info {
+            padding: 20px;
+        }
+        
+        .team-name {
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        
+        .team-role {
+            color: var(--secondary);
+            margin-bottom: 12px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .team-description {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .metric-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .metric-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-size: 18px;
+        }
+        
+        .metric-value {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .metric-description {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        .progress-bar {
+            background-color: var(--gray-light);
+            border-radius: 10px;
+            height: 10px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            border-radius: 10px;
+            background-color: var(--secondary);
+            transition: width 1s ease-in-out;
+        }
+        
+        .progress-success {
+            background: linear-gradient(90deg, var(--success) 0%, #5cb85c 100%);
+        }
+        
+        .progress-warning {
+            background: linear-gradient(90deg, var(--warning) 0%, #ffdb58 100%);
+        }
+        
+        .progress-danger {
+            background: linear-gradient(90deg, var(--danger) 0%, #ff6b6b 100%);
+        }
+        
+        .calendar {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-top: 30px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 0;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: linear-gradient(to bottom, var(--primary) 0%, var(--secondary) 100%);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            padding: 15px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            border: 5px solid var(--accent);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+            box-shadow: 0 0 10px rgba(255, 153, 0, 0.5);
+        }
+        
+        .timeline-left {
+            left: 0;
+        }
+        
+        .timeline-right {
+            left: 50%;
+        }
+        
+        .timeline-left::after {
+            right: -12px;
+        }
+        
+        .timeline-right::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .timeline-date {
+            color: var(--white);
+            font-weight: bold;
+            margin-bottom: 10px;
+            background-color: var(--secondary);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        
+        .timeline-content h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .kpi-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .kpi-table th, .kpi-table td {
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .kpi-table th {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .kpi-table tr:nth-child(even) {
+            background-color: rgba(0, 102, 204, 0.05);
+        }
+
+        .kpi-table tr:hover {
+            background-color: rgba(0, 102, 204, 0.1);
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: bold;
+            text-align: center;
+            min-width: 100px;
+        }
+        
+        .status-not-started {
+            background-color: var(--gray);
+            color: white;
+        }
+        
+        .status-in-progress {
+            background-color: var(--warning);
+            color: var(--dark);
+        }
+        
+        .status-completed {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .status-delayed {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 30px 0;
+            margin-top: 70px;
+            text-align: center;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .priority-high {
+            border-left: 5px solid var(--danger);
+        }
+        
+        .priority-medium {
+            border-left: 5px solid var(--warning);
+        }
+        
+        .priority-low {
+            border-left: 5px solid var(--success);
+        }
+
+        /* New styles to improve readability and hierarchy */
+        
+        h3, h4 {
+            margin-top: 20px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        h3 {
+            font-size: 22px;
+            font-weight: 700;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent-light);
+        }
+        
+        h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        ul, ol {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+        
+        ul li, ol li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .highlight-concept {
+            font-weight: 700;
+            color: var(--primary);
+            display: inline-block;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 2px;
+        }
+        
+        .sub-concept {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .section-divider {
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent) 0%, rgba(255, 153, 0, 0.3) 100%);
+            margin: 25px 0;
+            border-radius: 3px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tab {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+            
+            .team-grid, .metrics-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .timeline::after {
+                left: 40px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-right {
+                left: 0;
+            }
+            
+            .timeline-left::after, .timeline-right::after {
+                left: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">AZ <span>Tech 2.0</span></div>
+                <div class="subtitle">Plan Estratégico | Junio 2025 - Marzo 2026</div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="tab-container">
+            <div class="tabs">
+                <div class="tab active" onclick="openTab(event, 'vision')">Visión General</div>
+                <div class="tab" onclick="openTab(event, 'structure')">Estructura y Equipo</div>
+                <div class="tab" onclick="openTab(event, 'execution')">Ejecución y Procesos</div>
+                <div class="tab" onclick="openTab(event, 'commercial')">Estrategia Comercial</div>
+                <div class="tab" onclick="openTab(event, 'timeline')">Calendario e Hitos</div>
+                <div class="tab" onclick="openTab(event, 'kpis')">KPIs</div>
+            </div>
+            
+            <div id="vision" class="tab-content active">
+                <h2>Visión General del Plan Estratégico</h2>
+                <p>AZ Tech 2.0 representa nuestra visión para construir un equipo de alto rendimiento enfocado en el sector tecnológico, ofreciendo servicios de M&A de primer nivel adaptados específicamente a las necesidades de empresas tech en España.</p>
+                
+                <button class="collapsible">Fundamentos del Plan</button>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <p>El plan estratégico se estructura en seis bloques fundamentales:</p>
+                        <ol>
+                            <li><span class="highlight-concept">Estructura del Equipo y Desarrollo de Talento:</span> Construir un equipo con roles claramente definidos que aprovechen las fortalezas individuales, implementando un sistema de "tándem" que optimice las capacidades de originación y ejecución.</li>
+                            <li><span class="highlight-concept">Sistemas de Organización y Procesos:</span> Desarrollar herramientas y protocolos sistematizados para mejorar la eficiencia, incluyendo un "Tech Playbook", sistema de seguimiento de oportunidades y biblioteca de conocimiento.</li>
+                            <li><span class="highlight-concept">Estrategia Comercial:</span> Implementar un enfoque sistemático para la identificación y aprovechamiento de oportunidades, incluyendo segmentación de mercado, estrategias de aproximación y posicionamiento distintivo.</li>
+                            <li><span class="highlight-concept">Optimización de Ejecución:</span> Establecer un sistema escalonado de ejecución basado en tipos de proyectos, con plantillas y procesos estandarizados que equilibren calidad y eficiencia.</li>
+                            <li><span class="highlight-concept">Cultura y Motivación:</span> Definir valores compartidos y crear una identidad distintiva, fomentando el reconocimiento y la celebración de logros, con espacios para la discusión abierta.</li>
+                            <li><span class="highlight-concept">Colaboración con otros grupos:</span> Establecer protocolos claros para la interacción con otras áreas de AZ Capital, potenciando sinergias y evitando conflictos.</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <button class="collapsible">Fases de Implementación</button>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <div class="phase">
+                            <h3>Fase 1: Fundamentos (Junio - Septiembre 2025)</h3>
+                            <p>Enfocada en establecer las bases sólidas para la transformación:</p>
+                            <ul>
+                                <li>Definición de roles y estructura de equipo</li>
+                                <li>Implementación de sistemas básicos de seguimiento</li>
+                                <li>Desarrollo de protocolos fundamentales</li>
+                                <li>Alineamiento en valores y propósito</li>
+                            </ul>
+                            <div class="milestone priority-high">
+                                <h4>Milestone clave: "Tech Playbook" v1.0</h4>
+                                <p>Documento central que detalla procesos de originación, ejecución y estándares de calidad.</p>
+                                <div class="milestone-meta">
+                                    <span>Responsable: Equipo Core</span>
+                                    <span>Fecha límite: 31 Agosto 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="phase">
+                            <h3>Fase 2: Optimización (Octubre - Diciembre 2025)</h3>
+                            <p>Centrada en mejorar la eficiencia y calidad:</p>
+                            <ul>
+                                <li>Implementación de procesos avanzados</li>
+                                <li>Desarrollo de biblioteca de conocimiento</li>
+                                <li>Refinamiento de propuestas de valor por subsector</li>
+                                <li>Implementación de sistema de feedback continuo</li>
+                            </ul>
+                            <div class="milestone priority-medium">
+                                <h4>Milestone clave: Biblioteca de Conocimiento Operativa</h4>
+                                <p>Repositorio centralizado de análisis sectoriales, precedentes de transacciones y mejores prácticas.</p>
+                                <div class="milestone-meta">
+                                    <span>Responsable: Juan C. + Nacho P.</span>
+                                    <span>Fecha límite: 30 Noviembre 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="phase">
+                            <h3>Fase 3: Escalabilidad (Enero - Marzo 2026)</h3>
+                            <p>Orientada a la sostenibilidad y crecimiento:</p>
+                            <ul>
+                                <li>Implementación de sistemas avanzados de medición</li>
+                                <li>Desarrollo de propuestas de valor integradas</li>
+                                <li>Creación del centro de excelencia en valoración</li>
+                                <li>Optimización de la colaboración intergrupos</li>
+                            </ul>
+                            <div class="milestone priority-high">
+                                <h4>Milestone clave: Centro de Excelencia en Valoración Tech</h4>
+                                <p>Desarrollo de metodologías específicas para la valoración de empresas tech por subvertical.</p>
+                                <div class="milestone-meta">
+                                    <span>Responsable: Javier J. + Javier C.</span>
+                                    <span>Fecha límite: 28 Febrero 2026</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="collapsible">Objetivos Estratégicos</button>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <p>Los objetivos estratégicos clave del plan AZ Tech 2.0 son:</p>
+                        
+                        <ol>
+                            <li><span class="highlight-concept">Posicionamiento de mercado:</span> Convertir a AZ Tech en el asesor de referencia en transacciones tecnológicas en España, con presencia destacada en los subsectores de SaaS, Tech-enabled Services y FinTech.</li>
+                            <li><span class="highlight-concept">Excelencia operativa:</span> Desarrollar un modelo de ejecución diferencial que equilibre calidad premium con eficiencia operativa a través del sistema de "tiered execution".</li>
+                            <li><span class="highlight-concept">Desarrollo de talento:</span> Crear un entorno que atraiga y retenga a los mejores profesionales del sector, con trayectorias de carrera claras y oportunidades de crecimiento.</li>
+                            <li><span class="highlight-concept">Resultados financieros:</span> Incrementar de manera sostenible la contribución del equipo Tech a los resultados globales de AZ Capital, con crecimiento anual de ingresos y mejora de márgenes.</li>
+                            <li><span class="highlight-concept">Innovación metodológica:</span> Desarrollar aproximaciones distintivas para la valoración y asesoramiento de empresas tecnológicas, adaptadas a las particularidades del sector.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="structure" class="tab-content">
+                <h2>Estructura del Equipo y Desarrollo de Talento</h2>
+                <p>La estructura organizativa de AZ Tech está diseñada para maximizar tanto la capacidad de originación como la excelencia en ejecución, aprovechando las fortalezas individuales de cada miembro.</p>
+                
+                <button class="collapsible">Estructura Organizativa</button>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <p>El equipo se estructura en torno a un modelo de "tándem" que optimiza la colaboración entre perfiles con diferentes fortalezas:</p>
+                        
+                        <h4>Modelo de Tándem</h4>
+                        <ul>
+                            <li><span class="highlight-concept">Equipo de Originación:</span> Liderado por perfiles con excelentes habilidades comerciales y de networking, responsables de la identificación y aproximación inicial a oportunidades.</li>
+                            <li><span class="highlight-concept">Equipo de Ejecución:</span> Compuesto por profesionales con alta capacidad analítica y atención al detalle, responsables de la implementación rigurosa de los mandatos.</li>
+                            <li><span class="highlight-concept">Roles de Puente:</span> Figuras clave que conectan ambos equipos, asegurando la transición fluida entre fases del proyecto.</li>
+                        </ul>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Asignación de Responsabilidades</h4>
+                        <ul>
+                            <li><span class="highlight-concept">Liderazgo estratégico:</span> <span class="sub-concept">Victor + Javier Julia</span></li>
+                            <li><span class="highlight-concept">Originación principal:</span> <span class="sub-concept">David Matarredona</span></li>
+                            <li><span class="highlight-concept">Puente regional/sectorial:</span> <span class="sub-concept">Juan Corbalán</span></li>
+                            <li><span class="highlight-concept">Ejecución core:</span> <span class="sub-concept">Javier Cuevas + Enrique Lascorz</span></li>
+                            <li><span class="highlight-concept">Soporte analítico:</span> <span class="sub-concept">Nacho Pérez + Sergi Quingles</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <button class="collapsible">Equipo Actual</button>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <div class="team-grid">
+                            <div class="team-member">
+                                <div class="team-photo" style="background-color: #003366;">VM</div>
+                                <div class="team-info">
+                                    <div class="team-name">Victor Mata</div>
+                                    <div class="team-role">Socio | Líder AZ Tech</div>
+                                    <div class="team-description">Responsable estratégico del equipo con amplia experiencia en operaciones de tecnología y servicios financieros.</div>
+                                </div>
+                            </div>
+                            
+                            <div class="team-member">
+                                <div class="team-photo" style="background-color: #004488;">JJ</div>
+                                <div class="team-info">
+                                    <div class="team-name">Javier Julia</div>
+                                    <div class="team-role">Socio | Estrategia y Ejecución</div>
+                                    <div class="team-description">Experto en tecnología e industriales con fuerte enfoque en estrategia y ejecución de operaciones complejas.</div>
+                                </div>
+                            </div>
+                            
+                            <div class="team-member">
+                                <div class="team-photo" style="background-color: #0066aa;">DM</div>
+                                <div class="team-info">
+                                    <div class="team-name">David Matarredona</div>
+                                    <div class="team-role">Asociado | Originación</div>
+                                    <div class="team-description">Especialista en originación con excelente red de contactos en el ecosistema emprendedor y tecnológico.</div>
+                                </div>
+                            </div>
+                            
+                            <div class="team-member">
+                                <div class="team-photo" style="background-color: #0088cc;">JC</div>
+                                <div class="team-info">
+                                    <div class="team-name">Juan Corbalán</div>
+                                    <div class="team-role">VP | Puente Regional</div>
+                                    <div class="team-description">Conecta el mid-market regional con oportunidades tecnológicas, especialmente enfocado en transformación digital.</div>
+                                </div>
+                            </div>
+                            
+                            <div class="team-member">
+                                <div class="team-photo" style="background-color: #00aaee;">JCu</div>
+                                <div class="team-info">
+                                    <div class="team-name">Javier Cuevas</div>
+                                    <div class="team-role">VP | Ejecución</div>
+                                    <div class="team-description">Fuerte perfil analítico con especialización en modelización financiera de empresas SaaS y marketplaces.</div>
+                                </div>
+                            </div>
+                            
+                            <div class="team-member">
+                                <div class="team-photo" style="background-color: #00ccff;">EL</div>
+                                <div class="team-info">
+                                    <div class="team-name">Enrique Lascorz</div>
+                                    <div class="team-role">VP | Ejecución</div>
+                                    <div class="team-description">Especialista en ejecución con background en consultoría estratégica y enfoque en empresas de software.</div>
+                                </div>
+                            </div>
+                            
+                            <div class="team-member">
+                                <div class="team-photo" style="background-color: #55aacc;">NP</div>
+                                <div class="team-info">
+                                    <div class="team-name">Nacho Pérez</div>
+                                    <div class="team-role">Analista Senior | Soporte</div>
+                                    <div class="team-description">Analítica avanzada y conocimiento profundo de ecosistemas tecnológicos emergentes.</div>
+                                </div>
+                            </div>
+                            
+                            <div class="team-member">
+                                <div class="team-photo" style="background-color: #55ccee;">SQ</div>
+                                <div class="team-info">
+                                    <div class="team-name">Sergi Quingles</div>
+                                    <div class="team-role">Asociado | Soporte</div>
+                                    <div class="team-description">Alta capacidad analítica con interés específico en FinTech e integración de tecnologías emergentes.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="collapsible">Desarrollo de Talento</button>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <p>El plan de desarrollo de talento se estructura en varios componentes clave:</p>
+                        
+                        <h4>Planes de Desarrollo Individual (IDP)</h4>
+                        <ul>
+                            <li><span class="highlight-concept">Evaluación de competencias:</span> Mapeo detallado de fortalezas y áreas de mejora de cada miembro</li>
+                            <li><span class="highlight-concept">Objetivos personalizados:</span> Definición de metas específicas a 3-6-12 meses</li>
+                            <li><span class="highlight-concept">Plan de acción:</span> Actividades concretas para desarrollo de capacidades clave</li>
+                            <li><span class="highlight-concept">Seguimiento regular:</span> Check-ins mensuales y evaluación trimestral de progreso</li>
+                        </ul>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Programa de Mentoring</h4>
+                        <ul>
+                            <li><span class="highlight-concept">Mentoring interno:</span> Emparejamiento de perfiles complementarios dentro del equipo</li>
+                            <li><span class="highlight-concept">Mentoring cruzado:</span> Intercambio con otros grupos de AZ Capital</li>
+                            <li><span class="highlight-concept">Frecuencia:</span> Sesiones quincenales con agenda estructurada</li>
+                        </ul>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Formación Específica</h4>
+                        <ul>
+                            <li><span class="highlight-concept">Técnica:</span> Valoración de empresas tech, diligencia tecnológica, tendencias sectoriales</li>
+                            <li><span class="highlight-concept">Soft skills:</span> Comunicación con clientes tech, negociación, gestión de proyectos complejos</li>
+                            <li><span class="highlight-concept">Learning Fridays:</span> Sesiones quincenales dedicadas al aprendizaje compartido</li>
+                        </ul>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Trayectorias Profesionales</h4>
+                        <ul>
+                            <li><span class="highlight-concept">Ruta de Originación:</span> Enfocada en desarrollo de capacidades comerciales y de relación</li>
+                            <li><span class="highlight-concept">Ruta de Ejecución:</span> Centrada en excelencia analítica y gestión de proyectos</li>
+                            <li><span class="highlight-concept">Ruta Híbrida:</span> Combinación balanceada para perfiles versátiles</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Continuing with more sections... -->
+                
+            </div>
+            
+            <!-- Additional tabs content would go here -->
+            
+            <div id="execution" class="tab-content">
+                <h2>Ejecución y Procesos</h2>
+                <p>La optimización de la ejecución es clave para ofrecer un servicio de alta calidad manteniendo la eficiencia operativa. Hemos diseñado un sistema que equilibra ambos aspectos.</p>
+                
+                <button class="collapsible">Sistema de Tiered Execution</button>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <p>Hemos desarrollado un modelo de ejecución escalonado que adapta los recursos y enfoque según la complejidad y tamaño de cada operación:</p>
+                        
+                        <h4>Tier 1: Premium (Fees >€1.5M)</h4>
+                        <ul>
+                            <li><span class="highlight-concept">Enfoque:</span> <span class="sub-concept">Calidad máxima sin compromiso en ningún aspecto</span></li>
+                            <li><span class="highlight-concept">Recursos:</span> <span class="sub-concept">Equipo completo con participación activa de socios</span></li>
+                            <li><span class="highlight-concept">Materiales:</span> <span class="sub-concept">Altamente personalizados y detallados</span></li>
+                            <li><span class="highlight-concept">Proceso:</span> <span class="sub-concept">Sin limitaciones de tiempo o recursos para análisis en profundidad</span></li>
+                            <li><span class="highlight-concept">Ejemplos:</span> <span class="sub-concept">Operaciones corporativas transformadoras, salidas a bolsa, ventas de compañías líderes</span></li>
+                        </ul>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Tier 2: Estándar (Fees €750k-€1.5M)</h4>
+                        <ul>
+                            <li><span class="highlight-concept">Enfoque:</span> <span class="sub-concept">Alta calidad con optimización selectiva de recursos</span></li>
+                            <li><span class="highlight-concept">Recursos:</span> <span class="sub-concept">Equipo core con supervisión periódica de socios</span></li>
+                            <li><span class="highlight-concept">Materiales:</span> <span class="sub-concept">Combinación de templates personalizados y estándar</span></li>
+                            <li><span class="highlight-concept">Proceso:</span> <span class="sub-concept">Foco en elementos de mayor valor añadido</span></li>
+                            <li><span class="highlight-concept">Ejemplos:</span> <span class="sub-concept">Ventas de empresas tech establecidas, adquisiciones estratégicas, levantamientos de capital significativos</span></li>
+                        </ul>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Tier 3: Eficiente (Fees <€750k)</h4>
+                        <ul>
+                            <li><span class="highlight-concept">Enfoque:</span> <span class="sub-concept">Calidad consistente con máxima eficiencia operativa</span></li>
+                            <li><span class="highlight-concept">Recursos:</span> <span class="sub-concept">Equipo ajustado con intervención puntual de seniors</span></li>
+                            <li><span class="highlight-concept">Materiales:</span> <span class="sub-concept">Uso de templates estandarizados con personalización limitada</span></li>
+                            <li><span class="highlight-concept">Proceso:</span> <span class="sub-concept">Metodología optimizada para rapidez sin comprometer elementos críticos</span></li>
+                            <li><span class="highlight-concept">Ejemplos:</span> <span class="sub-concept">Startups early-stage, operaciones más pequeñas pero estratégicas, mandatos de asesoramiento puntual</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <button class="collapsible">Tech Playbook</button>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <p>El Tech Playbook es el documento central que codifica nuestros procesos, metodologías y mejores prácticas:</p>
+                        
+                        <h4>Secciones del Playbook</h4>
+                        <ol>
+                            <li><span class="highlight-concept">Originación Sistemática</span>
+                                <ul>
+                                    <li>Proceso de investigación y targeting</li>
+                                    <li>Guiones para primer contacto (teléfono, email, LinkedIn)</li>
+                                    <li>Mejores prácticas para reuniones iniciales</li>
+                                    <li>Criterios de calificación de leads</li>
+                                </ul>
+                            </li>
+                            <div class="section-divider"></div>
+                            <li><span class="highlight-concept">Proceso de Pitch</span>
+                                <ul>
+                                    <li>Templates de credenciales por subsector</li>
+                                    <li>Metodología de preparación de propuestas</li>
+                                    <li>Argumentarios específicos por tipo de cliente</li>
+                                    <li>Respuestas a objeciones comunes</li>
+                                </ul>
+                            </li>
+                            <div class="section-divider"></div>
+                            <li><span class="highlight-concept">Ejecución de Mandatos</span>
+                                <ul>
+                                    <li>Protocolos por tipo de operación (sellside, buyside, capital raising)</li>
+                                    <li>Estándares de calidad por entregable</li>
+                                    <li>Checklists por fase del proceso</li>
+                                    <li>Especificaciones por tier de ejecución</li>
+                                </ul>
+                            </li>
+                            <div class="section-divider"></div>
+                            <li><span class="highlight-concept">Valoración Tecnológica</span>
+                                <ul>
+                                    <li>Metodologías específicas por tipo de negocio (SaaS, marketplace, hardware)</li>
+                                    <li>KPIs críticos por subsector</li>
+                                    <li>Múltiplos de referencia actualizados</li>
+                                    <li>Benchmarks de valoración</li>
+                                </ul>
+                            </li>
+                            <div class="section-divider"></div>
+                            <li><span class="highlight-concept">Gestión de Proyectos</span>
+                                <ul>
+                                    <li>Sistema de planificación y seguimiento</li>
+                                    <li>Protocolos de comunicación interna y externa</li>
+                                    <li>Gestión de situaciones críticas o excepcionales</li>
+                                    <li>Metodología de postmortem</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Calendario de Desarrollo</h4>
+                        <ul>
+                            <li><span class="highlight-concept">v0.5 (Julio 2025):</span> <span class="sub-concept">Estructura básica y primeros contenidos clave</span></li>
+                            <li><span class="highlight-concept">v1.0 (Agosto 2025):</span> <span class="sub-concept">Versión completa inicial con todas las secciones</span></li>
+                            <li><span class="highlight-concept">v2.0 (Diciembre 2025):</span> <span class="sub-concept">Versión enriquecida con aprendizajes de la implementación</span></li>
+                            <li><span class="highlight-concept">v3.0 (Marzo 2026):</span> <span class="sub-concept">Versión avanzada con metodologías sofisticadas y casos prácticos</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <button class="collapsible">Biblioteca de Conocimiento</button>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <p>Repositorio estructurado de información sectorial, mejores prácticas y recursos de referencia:</p>
+                        
+                        <h4>Estructura de la Biblioteca</h4>
+                        <ol>
+                            <li><span class="highlight-concept">Análisis Sectoriales</span>
+                                <ul>
+                                    <li>Panoramas de subsectores tech (SaaS, FinTech, HealthTech, etc.)</li>
+                                    <li>Estudios de tendencias emergentes</li>
+                                    <li>Análisis de disrupciones tecnológicas</li>
+                                </ul>
+                            </li>
+                            <div class="section-divider"></div>
+                            <li><span class="highlight-concept">Precedentes de Transacciones</span>
+                                <ul>
+                                    <li>Base de datos de operaciones relevantes</li>
+                                    <li>Fichas detalladas de transacciones clave</li>
+                                    <li>Análisis de múltiplos y valoraciones</li>
+                                </ul>
+                            </li>
+                            <div class="section-divider"></div>
+                            <li><span class="highlight-concept">Compradores Estratégicos</span>
+                                <ul>
+                                    <li>Perfiles de corporates activos en adquisiciones</li>
+                                    <li>Estrategias de M&A por compañía</li>
+                                    <li>Historial de transacciones y preferencias</li>
+                                </ul>
+                            </li>
+                            <div class="section-divider"></div>
+                            <li><span class="highlight-concept">Inversores Financieros</span>
+                                <ul>
+                                    <li>Perfiles de fondos de private equity y venture capital</li>
+                                    <li>Criterios de inversión y tesis</li>
+                                    <li>Portfolio actual y estrategia de salidas</li>
+                                </ul>
+                            </li>
+                            <div class="section-divider"></div>
+                            <li><span class="highlight-concept">Recursos de Formación</span>
+                                <ul>
+                                    <li>Materiales didácticos por área técnica</li>
+                                    <li>Selección de artículos y libros relevantes</li>
+                                    <li>Conferencias y webinars recomendados</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Implementación y Mantenimiento</h4>
+                        <ul>
+                            <li><span class="highlight-concept">Plataforma:</span> <span class="sub-concept">SharePoint con estructura optimizada</span></li>
+                            <li><span class="highlight-concept">Roles:</span> <span class="sub-concept">Responsables designados por sección para actualización</span></li>
+                            <li><span class="highlight-concept">Actualización:</span> <span class="sub-concept">Calendario definido por tipo de contenido</span></li>
+                            <li><span class="highlight-concept">Acceso:</span> <span class="sub-concept">Disponible para todo el equipo con permisos específicos</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <button class="collapsible">Sistemas de Gestión</button>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <p>Conjunto de herramientas y procesos para asegurar la eficiencia operativa:</p>
+                        
+                        <h4>CRM y Pipeline</h4>
+                        <ul>
+                            <li><span class="highlight-concept">Adaptación del CRM:</span> <span class="sub-concept">Configuración específica para AZ Tech en Dynamics</span></li>
+                            <li><span class="highlight-concept">Calificación de oportunidades:</span> <span class="sub-concept">Sistema de scoring (A/B/C) con criterios objetivos</span></li>
+                            <li><span class="highlight-concept">Dashboard comercial:</span> <span class="sub-concept">Visualización en tiempo real del estado del pipeline</span></li>
+                            <li><span class="highlight-concept">Seguimiento de KPIs:</span> <span class="sub-concept">Métricas de actividad y conversión</span></li>
+                        </ul>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Gestión de Proyectos</h4>
+                        <ul>
+                            <li><span class="highlight-concept">Sistema de seguimiento:</span> <span class="sub-concept">Herramienta adaptada para monitoreo de hitos y entregables</span></li>
+                            <li><span class="highlight-concept">Asignación de recursos:</span> <span class="sub-concept">Matriz de staffing óptimo por tipo de proyecto</span></li>
+                            <li><span class="highlight-concept">Alertas tempranas:</span> <span class="sub-concept">Mecanismo para identificar desviaciones</span></li>
+                            <li><span class="highlight-concept">Reportes de estado:</span> <span class="sub-concept">Formatos estandarizados para comunicación interna y con clientes</span></li>
+                        </ul>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Quality Assurance</h4>
+                        <ul>
+                            <li><span class="highlight-concept">Puntos de control:</span> <span class="sub-concept">Checkpoints críticos por tipo de entregable</span></li>
+                            <li><span class="highlight-concept">Revisión por pares:</span> <span class="sub-concept">Sistema estructurado de review interno</span></li>
+                            <li><span class="highlight-concept">Sign-off formal:</span> <span class="sub-concept">Proceso escalonado de aprobación final</span></li>
+                            <li><span class="highlight-concept">Feedback de clientes:</span> <span class="sub-concept">Mecanismo sistematizado de recogida y análisis</span></li>
+                        </ul>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Gestión del Conocimiento</h4>
+                        <ul>
+                            <li><span class="highlight-concept">Documentación de procesos:</span> <span class="sub-concept">Protocolos detallados por actividad clave</span></li>
+                            <li><span class="highlight-concept">Captura de lecciones:</span> <span class="sub-concept">Sistema de postmortem de proyectos</span></li>
+                            <li><span class="highlight-concept">Mejora continua:</span> <span class="sub-concept">Mecanismo para incorporar aprendizajes al Playbook</span></li>
+                            <li><span class="highlight-concept">Formación interna:</span> <span class="sub-concept">Programa de transmisión de conocimiento</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div id="commercial" class="tab-content">
+                <h2>Estrategia Comercial</h2>
+                <p>Nuestra aproximación comercial combina un enfoque sistemático con capacidad para adaptarnos a las particularidades del ecosistema tecnológico español.</p>
+                
+                <button class="collapsible">Análisis de Mercado y Segmentación</button>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <p>Hemos desarrollado una segmentación detallada del mercado para focalizar nuestros esfuerzos comerciales:</p>
+                        
+                        <h4>Segmentación por Subsector</h4>
+                        <ol>
+                            <li><span class="highlight-concept">SaaS/Cloud:</span> Empresas de software como servicio y soluciones cloud
+                                <ul>
+                                    <li>Enterprise SaaS (ERP, CRM, HCM, etc.)</li>
+                                    <li>Vertical SaaS (soluciones específicas para industrias)</li>
+                                    <li>Infraestructura cloud y DevOps</li>
+                                </ul>
+                            </li>
+                            <div class="section-divider"></div>
+                            <li><span class="highlight-concept">FinTech:</span> Innovación en servicios financieros
+                                <ul>
+                                    <li>Payments y transferencias</li>
+                                    <li>Lending y financiación alternativa</li>
+                                    <li>WealthTech y gestión patrimonial</li>
+                                    <li>InsurTech y blockchain</li>
+                                </ul>
+                            </li>
+                            <div class="section-divider"></div>
+                            <li><span class="highlight-concept">Digital Business Services:</span> Servicios profesionales potenciados por tecnología
+                                <ul>
+                                    <li>Consultoras tecnológicas</li>
+                                    <li>Agencias digitales</li>
+                                    <li>BPO tecnológico</li>
+                                </ul>
+                            </li>
+                            <div class="section-divider"></div>
+                            <li><span class="highlight-concept">Marketplaces:</span> Plataformas de intermediación
+                                <ul>
+                                    <li>B2C (ecommerce especializado)</li>
+                                    <li>B2B (aprovisionamiento, logística)</li>
+                                    <li>P2P (economía colaborativa)</li>
+                                </ul>
+                            </li>
+                            <div class="section-divider"></div>
+                            <li><span class="highlight-concept">Sectores Verticales con Alta Disrupción:</span>
+                                <ul>
+                                    <li>HealthTech</li>
+                                    <li>EdTech</li>
+                                    <li>PropTech</li>
+                                    <li>Movilidad</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Segmentación por Tipo de Cliente</h4>
+                        <ol>
+                            <li><span class="highlight-concept">Founders/Emprendedores:</span> Creadores de empresas tecnológicas
+                                <ul>
+                                    <li><span class="sub-concept">Prioridad:</span> Primeros fundadores con track record</li>
+                                    <li><span class="sub-concept">Motivaciones:</span> Cristalización de valor, siguiente proyecto, fatiga</li>
+                                    <li><span class="sub-concept">Enfoque:</span> Asesoramiento integral y personalizado</li>
+                                </ul>
+                            </li>
+                            <div class="section-divider"></div>
+                            <li><span class="highlight-concept">Corporates Tech:</span> Empresas tecnológicas consolidadas
+                                <ul>
+                                    <li><span class="sub-concept">Prioridad:</span> Empresas con estrategia de crecimiento inorgánico</li>
+                                    <li><span class="sub-concept">Motivaciones:</span> Consolidación, nuevas capacidades, expansión</li>
+                                    <li><span class="sub-concept">Enfoque:</span> Asesoramiento estratégico y apoyo en ejecución</li>
+                                </ul>
+                            </li>
+                            <div class="section-divider"></div>
+                            <li><span class="highlight-concept">Corporates Tradicionales:</span> Empresas de sectores establecidos
+                                <ul>
+                                    <li><span class="sub-concept">Prioridad:</span> Compañías con agenda de transformación digital</li>
+                                    <li><span class="sub-concept">Motivaciones:</span> Disrupción, digitalización, renovación</li>
+                                    <li><span class="sub-concept">Enfoque:</span> Educación y acompañamiento estratégico</li>
+                                </ul>
+                            </li>
+                            <div class="section-divider"></div>
+                            <li><span class="highlight-concept">Inversores Financieros:</span> Private Equity y Venture Capital
+                                <ul>
+                                    <li><span class="sub-concept">Prioridad:</span> Fondos con interés en tech o portfolio tech</li>
+                                    <li><span class="sub-concept">Motivaciones:</span> Desinversiones optimizadas, add-ons</li>
+                                    <li><span class="sub-concept">Enfoque:</span> Eficiencia y diligencia en procesos</li>
+                                </ul>
+                            </li>
+                            <div class="section-divider"></div>
+                            <li><span class="highlight-concept">Family Offices:</span> Patrimonios familiares
+                                <ul>
+                                    <li><span class="sub-concept">Prioridad:</span> FOs con interés en diversificación hacia tech</li>
+                                    <li><span class="sub-concept">Motivaciones:</span> Renovación de inversiones, exposición a innovación</li>
+                                    <li><span class="sub-concept">Enfoque:</span> Educativo y conservador en riesgo</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <button class="collapsible">Buyer Personas y Aproximación</button>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <p>Hemos definido buyer personas detalladas para personalizar nuestra aproximación comercial:</p>
+                        
+                        <h4>Ejemplos de Buyer Personas</h4>
+                        <ol>
+                            <li><span class="highlight-concept">"El Emprendedor Serial"</span>
+                                <ul>
+                                    <li><span class="highlight-concept">Perfil:</span> <span class="sub-concept">Fundador con varios proyectos exitosos, 35-45 años</span></li>
+                                    <li><span class="highlight-concept">Motivaciones:</span> <span class="sub-concept">Libertad para nuevos proyectos, reconocimiento del valor creado</span></li>
+                                    <li><span class="highlight-concept">Preocupaciones:</span> <span class="sub-concept">Impacto en equipo, legado, timing adecuado</span></li>
+                                    <li><span class="highlight-concept">Aproximación óptima:</span> <span class="sub-concept">Contacto directo, referencias de pares, enfoque en historia personal</span></li>
+                                </ul>
+                            </li>
+                            
+                            <div class="section-divider"></div>
+                            
+                            <li><span class="highlight-concept">"El CFO Estratégico"</span>
+                                <ul>
+                                    <li><span class="highlight-concept">Perfil:</span> <span class="sub-concept">Directivo financiero en tech scaleup, formación internacional</span></li>
+                                    <li><span class="highlight-concept">Motivaciones:</span> <span class="sub-concept">Optimización de valor, proceso estructurado, datos</span></li>
+                                    <li><span class="highlight-concept">Preocupaciones:</span> <span class="sub-concept">Distracciones del equipo, confidencialidad, rigor</span></li>
+                                    <li><span class="highlight-concept">Aproximación óptima:</span> <span class="sub-concept">Enfoque analítico, benchmarks de valoración, case studies</span></li>
+                                </ul>
+                            </li>
+                            
+                            <div class="section-divider"></div>
+                            
+                            <li><span class="highlight-concept">"El Director de M&A Corporativo"</span>
+                                <ul>
+                                    <li><span class="highlight-concept">Perfil:</span> <span class="sub-concept">Ejecutivo en gran corporación, visión estratégica</span></li>
+                                    <li><span class="highlight-concept">Motivaciones:</span> <span class="sub-concept">Alineamiento con estrategia, governance interno, eficiencia</span></li>
+                                    <li><span class="highlight-concept">Preocupaciones:</span> <span class="sub-concept">Aprobación comités, integración post-adquisición, Due Diligence</span></li>
+                                    <li><span class="highlight-concept">Aproximación óptima:</span> <span class="sub-concept">Formalidad, materiales de alta calidad, track record</span></li>
+                                </ul>
+                            </li>
+                            
+                            <div class="section-divider"></div>
+                            
+                            <li><span class="highlight-concept">"El Socio de PE"</span>
+                                <ul>
+                                    <li><span class="highlight-concept">Perfil:</span> <span class="sub-concept">Partner en fondo mid-market, especializado en inversiones tech</span></li>
+                                    <li><span class="highlight-concept">Motivaciones:</span> <span class="sub-concept">Maximización de retornos, velocidad, exclusividad</span></li>
+                                    <li><span class="highlight-concept">Preocupaciones:</span> <span class="sub-concept">Competencia, asimetrías informativas, valoración</span></li>
+                                    <li><span class="highlight-concept">Aproximación óptima:</span> <span class="sub-concept">Concisión, propuestas de valor claras, experiencia previa</span></li>
+                                </ul>
+                            </li>
+                        </ol>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Secuencias de Contacto</h4>
+                        <p>Para cada buyer persona, hemos desarrollado una secuencia multicanal optimizada:</p>
+                        <ol>
+                            <li><span class="highlight-concept">Fase 1: Introducción</span>
+                                <ul>
+                                    <li>Canal preferente (LinkedIn, email, referencia personal)</li>
+                                    <li>Mensaje personalizado con valor específico</li>
+                                    <li>Credenciales relevantes para su contexto</li>
+                                </ul>
+                            </li>
+                            
+                            <div class="section-divider"></div>
+                            
+                            <li><span class="highlight-concept">Fase 2: Engagement</span>
+                                <ul>
+                                    <li>Primer meeting con agenda clara</li>
+                                    <li>Materiales preparados específicamente</li>
+                                    <li>Preguntas estratégicas predefinidas</li>
+                                </ul>
+                            </li>
+                            
+                            <div class="section-divider"></div>
+                            
+                            <li><span class="highlight-concept">Fase 3: Propuesta</span>
+                                <ul>
+                                    <li>Presentación adaptada a hallazgos iniciales</li>
+                                    <li>Equipo óptimo para tipo de cliente</li>
+                                    <li>Ejemplos concretos de valor añadido</li>
+                                </ul>
+                            </li>
+                            
+                            <div class="section-divider"></div>
+                            
+                            <li><span class="highlight-concept">Fase 4: Seguimiento</span>
+                                <ul>
+                                    <li>Comunicación periódica de valor</li>
+                                    <li>Adaptación según evolución de necesidades</li>
+                                    <li>Eventos y contenidos relevantes</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            
+                
+            </div>
+
+            <div id="kpis" class="tab-content">
+                <h2>KPIs y Métricas de Seguimiento</h2>
+                <p>Hemos definido un conjunto integral de indicadores clave que nos permitirán monitorear el éxito de la implementación del plan y su impacto en el negocio.</p>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-title">Pipeline Cualificado</div>
+                        <div class="metric-value">€82M</div>
+                        <div class="metric-description">Total de fees potenciales ponderados por probabilidad</div>
+                        <div class="progress-bar">
+                            <div class="progress progress-success" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-title">Tasa de Conversión</div>
+                        <div class="metric-value">18%</div>
+                        <div class="metric-description">% de oportunidades que se convierten en mandatos</div>
+                        <div class="progress-bar">
+                            <div class="progress progress-warning" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-title">Margen Bruto Promedio</div>
+                        <div class="metric-value">68%</div>
+                        <div class="metric-description">Promedio ponderado por tipo de proyecto</div>
+                        <div class="progress-bar">
+                            <div class="progress progress-success" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-title">Satisfacción Cliente</div>
+                        <div class="metric-value">8.6/10</div>
+                        <div class="metric-description">Promedio de encuestas post-proyecto</div>
+                        <div class="progress-bar">
+                            <div class="progress progress-success" style="width: 86%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="collapsible">KPIs de Negocio</button>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <h4>Métricas Comerciales</h4>
+                        <table class="kpi-table">
+                            <tr>
+                                <th>KPI</th>
+                                <th>Descripción</th>
+                                <th>Frecuencia</th>
+                                <th>Objetivo</th>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Ingresos totales</span></td>
+                                <td>Fees totales generados por AZ Tech</td>
+                                <td>Mensual</td>
+                                <td>+25% vs. año anterior</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Pipeline cualificado</span></td>
+                                <td>Suma de fees potenciales ponderados por probabilidad</td>
+                                <td>Semanal</td>
+                                <td>3x objetivo trimestral</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Tasa de conversión</span></td>
+                                <td>% de oportunidades que se convierten en mandatos firmados</td>
+                                <td>Mensual</td>
+                                <td>>20%</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Ticket medio</span></td>
+                                <td>Valor medio de fees por transacción</td>
+                                <td>Trimestral</td>
+                                <td>>€750k</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Fees por categoría</span></td>
+                                <td>Distribución de ingresos por tipo (Sellside, Buyside, etc.)</td>
+                                <td>Trimestral</td>
+                                <td>Mix balanceado según estrategia</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Número de mandatos activos</span></td>
+                                <td>Total de proyectos en ejecución</td>
+                                <td>Semanal</td>
+                                <td>Capacidad óptima ±15%</td>
+                            </tr>
+                        </table>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Métricas de Rentabilidad</h4>
+                        <table class="kpi-table">
+                            <tr>
+                                <th>KPI</th>
+                                <th>Descripción</th>
+                                <th>Frecuencia</th>
+                                <th>Objetivo</th>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Margen bruto por proyecto</span></td>
+                                <td>(Fee - costes directos)/Fee</td>
+                                <td>Por proyecto</td>
+                                <td>Tier 1: >70%, Tier 2: >65%, Tier 3: >60%</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Ratio de utilización</span></td>
+                                <td>Horas facturables/horas totales</td>
+                                <td>Mensual</td>
+                                <td>>70%</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Coste de adquisición de cliente</span></td>
+                                <td>Recursos invertidos hasta firma de mandato</td>
+                                <td>Trimestral</td>
+                                <td><10% del fee promedio</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Eficiencia de recursos</span></td>
+                                <td>Horas totales vs. benchmark por tipo de transacción</td>
+                                <td>Por proyecto</td>
+                                <td>Desviación <15% vs. benchmark</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">ROI de marketing y BD</span></td>
+                                <td>Ingresos generados/costes de BD</td>
+                                <td>Trimestral</td>
+                                <td>>5x</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <button class="collapsible">KPIs de Proceso</button>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <h4>Métricas de Eficiencia Operativa</h4>
+                        <table class="kpi-table">
+                            <tr>
+                                <th>KPI</th>
+                                <th>Descripción</th>
+                                <th>Frecuencia</th>
+                                <th>Objetivo</th>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Tiempo medio de ejecución</span></td>
+                                <td>Días desde firma hasta cierre por tipo de operación</td>
+                                <td>Por proyecto</td>
+                                <td>Reducción del 15% vs. benchmark</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Desviación de planificación</span></td>
+                                <td>% de desviación vs. timeline estimado</td>
+                                <td>Por proyecto</td>
+                                <td><20%</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Ratio de propuestas exitosas</span></td>
+                                <td>Propuestas presentadas/mandatos ganados</td>
+                                <td>Trimestral</td>
+                                <td>>33%</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Tiempo de respuesta a clientes</span></td>
+                                <td>Horas promedio para respuesta sustancial</td>
+                                <td>Mensual</td>
+                                <td><24h para comunicaciones clave</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Eficiencia en staffing</span></td>
+                                <td>% de proyectos con asignación óptima según matriz</td>
+                                <td>Mensual</td>
+                                <td>>80%</td>
+                            </tr>
+                        </table>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Métricas de Calidad</h4>
+                        <table class="kpi-table">
+                            <tr>
+                                <th>KPI</th>
+                                <th>Descripción</th>
+                                <th>Frecuencia</th>
+                                <th>Objetivo</th>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Satisfacción de clientes</span></td>
+                                <td>NPS o score equivalente</td>
+                                <td>Por proyecto</td>
+                                <td>>8.5/10 o NPS >50</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Tasa de iteraciones</span></td>
+                                <td>Número de revisiones significativas por entregable</td>
+                                <td>Por proyecto</td>
+                                <td><2 por entregable</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Calidad documentada</span></td>
+                                <td>Evaluación interna de materiales según checklist</td>
+                                <td>Por proyecto</td>
+                                <td>>90% cumplimiento</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Índice de incidentes</span></td>
+                                <td>Errores significativos o issues reportados</td>
+                                <td>Mensual</td>
+                                <td><1 por proyecto</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Velocidad de resolución</span></td>
+                                <td>Tiempo medio para resolver issues críticos</td>
+                                <td>Por incidente</td>
+                                <td><24h para issues críticos</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <button class="collapsible">KPIs de Talento</button>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <h4>Métricas de Desarrollo Profesional</h4>
+                        <table class="kpi-table">
+                            <tr>
+                                <th>KPI</th>
+                                <th>Descripción</th>
+                                <th>Frecuencia</th>
+                                <th>Objetivo</th>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Progreso en IDP</span></td>
+                                <td>% de objetivos de desarrollo alcanzados</td>
+                                <td>Trimestral</td>
+                                <td>>75% según cronograma</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Horas de formación</span></td>
+                                <td>Tiempo dedicado a desarrollo por persona</td>
+                                <td>Trimestral</td>
+                                <td>>20h por persona</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Índice de competencias</span></td>
+                                <td>Evaluación de skills técnicas y soft</td>
+                                <td>Semestral</td>
+                                <td>Mejora continua vs. baseline</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Promociones internas</span></td>
+                                <td>% de personas que avanzan según plan</td>
+                                <td>Anual</td>
+                                <td>>25% del equipo</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Participación en mentoring</span></td>
+                                <td>% del equipo en relaciones de mentoring activas</td>
+                                <td>Trimestral</td>
+                                <td>>75%</td>
+                            </tr>
+                        </table>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Métricas de Satisfacción y Cultura</h4>
+                        <table class="kpi-table">
+                            <tr>
+                                <th>KPI</th>
+                                <th>Descripción</th>
+                                <th>Frecuencia</th>
+                                <th>Objetivo</th>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Satisfacción del equipo</span></td>
+                                <td>Score compuesto de engagement</td>
+                                <td>Trimestral</td>
+                                <td>>8/10</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">eNPS interno</span></td>
+                                <td>Disposición a recomendar AZ Tech como lugar de trabajo</td>
+                                <td>Trimestral</td>
+                                <td>>40</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Rotación no deseada</span></td>
+                                <td>% de salidas no planificadas/deseadas</td>
+                                <td>Anual</td>
+                                <td><10%</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Equilibrio trabajo-vida</span></td>
+                                <td>Autoevaluación de balance</td>
+                                <td>Trimestral</td>
+                                <td>>7.5/10</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Alineamiento con valores</span></td>
+                                <td>Percepción de coherencia cultural</td>
+                                <td>Semestral</td>
+                                <td>>8/10</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <button class="collapsible">KPIs de Impacto</button>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <h4>Métricas de Posicionamiento en el Mercado</h4>
+                        <table class="kpi-table">
+                            <tr>
+                                <th>KPI</th>
+                                <th>Descripción</th>
+                                <th>Frecuencia</th>
+                                <th>Objetivo</th>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Cuota de mercado</span></td>
+                                <td>% estimado de mercado de M&A tech en España</td>
+                                <td>Anual</td>
+                                <td>Top 3</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Reconocimiento de marca</span></td>
+                                <td>Posición en rankings o menciones</td>
+                                <td>Trimestral</td>
+                                <td>Presencia en publicaciones clave</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Share of voice</span></td>
+                                <td>Presencia en medios vs. competidores</td>
+                                <td>Trimestral</td>
+                                <td>>20% de menciones relevantes</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Net reputational score</span></td>
+                                <td>Percepción de AZ Tech en el ecosistema</td>
+                                <td>Anual</td>
+                                <td>>8/10</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Referenciaciones</span></td>
+                                <td>Nuevos leads por recomendación</td>
+                                <td>Mensual</td>
+                                <td>>30% de nuevas oportunidades</td>
+                            </tr>
+                        </table>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Métricas de Impacto en Transacciones</h4>
+                        <table class="kpi-table">
+                            <tr>
+                                <th>KPI</th>
+                                <th>Descripción</th>
+                                <th>Frecuencia</th>
+                                <th>Objetivo</th>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Valor agregado para clientes</span></td>
+                                <td>Incremento de valoración vs. expectativa inicial</td>
+                                <td>Por proyecto</td>
+                                <td>>15%</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Velocidad de transacción</span></td>
+                                <td>Tiempo vs. benchmark del mercado</td>
+                                <td>Por proyecto</td>
+                                <td>20% más rápido que mercado</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Tasa de éxito</span></td>
+                                <td>% de procesos que llegan a cierre exitoso</td>
+                                <td>Trimestral</td>
+                                <td>>80%</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Satisfacción post-transacción</span></td>
+                                <td>Evaluación 3-6 meses después del cierre</td>
+                                <td>Por proyecto</td>
+                                <td>>8.5/10</td>
+                            </tr>
+                            <tr>
+                                <td><span class="highlight-concept">Impacto transformacional</span></td>
+                                <td>Cambios significativos derivados de asesoramiento</td>
+                                <td>Anual</td>
+                                <td>>5 casos documentados</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="timeline" class="tab-content">
+                <h2>Calendario e Hitos</h2>
+                <p>La implementación del plan estratégico se estructura en tres fases principales con hitos específicos que permiten monitorear el progreso y realizar ajustes según sea necesario.</p>
+                
+                <div class="calendar">
+                    <div class="timeline">
+                        <!-- FASE 1 -->
+                        <div class="timeline-item timeline-left">
+                            <div class="timeline-content">
+                                <div class="timeline-date">Junio 2025</div>
+                                <h4>Inicio: Fase de Fundamentos</h4>
+                                <p>Workshop inicial de alineamiento estratégico y entrevistas individuales para definición de roles.</p>
+                                <div class="milestone-meta">
+                                    <span><span class="sub-concept">Responsable:</span> Victor + Javier J.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item timeline-right">
+                            <div class="timeline-content">
+                                <div class="timeline-date">Julio 2025</div>
+                                <h4>Implementación sistemas básicos</h4>
+                                <p>Sistema básico de pipeline y primera versión del Tech Playbook v0.5.</p>
+                                <div class="milestone-meta">
+                                    <span><span class="sub-concept">Responsable:</span> David M. + Juan C. / Javier C. + Enrique L.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item timeline-left">
+                            <div class="timeline-content">
+                                <div class="timeline-date">Agosto 2025</div>
+                                <h4>Tech Playbook v1.0</h4>
+                                <p>Versión completa inicial del Tech Playbook con todas las secciones estructuradas.</p>
+                                <div class="milestone-meta">
+                                    <span><span class="sub-concept">Responsable:</span> Javier C. + Enrique L.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item timeline-right">
+                            <div class="timeline-content">
+                                <div class="timeline-date">Septiembre 2025</div>
+                                <h4>Workshop de propósito y valores</h4>
+                                <p>Definición de valores fundamentales y primera sesión de team building.</p>
+                                <div class="milestone-meta">
+                                    <span><span class="sub-concept">Responsable:</span> Victor + todo el equipo</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- FASE 2 -->
+                        <div class="timeline-item timeline-left">
+                            <div class="timeline-content">
+                                <div class="timeline-date">Octubre 2025</div>
+                                <h4>Inicio: Fase de Optimización</h4>
+                                <p>Desarrollo de buyer personas, segmentación de mercado e implementación de secuencias de contacto.</p>
+                                <div class="milestone-meta">
+                                    <span><span class="sub-concept">Responsable:</span> David M. + Juan C.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item timeline-right">
+                            <div class="timeline-content">
+                                <div class="timeline-date">Noviembre 2025</div>
+                                <h4>Biblioteca de conocimiento</h4>
+                                <p>Implementación de biblioteca de conocimiento y sistema de quality assurance.</p>
+                                <div class="milestone-meta">
+                                    <span><span class="sub-concept">Responsable:</span> Juan C. + Nacho P. / Javier C. + Javier J.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item timeline-left">
+                            <div class="timeline-content">
+                                <div class="timeline-date">Diciembre 2025</div>
+                                <h4>Desarrollo de planes individuales</h4>
+                                <p>Implementación de feedback continuo y segunda sesión de team building con retrospectiva.</p>
+                                <div class="milestone-meta">
+                                    <span><span class="sub-concept">Responsable:</span> Victor + Javier J. / Sergi Q. + Enrique L.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- FASE 3 -->
+                        <div class="timeline-item timeline-right">
+                            <div class="timeline-content">
+                                <div class="timeline-date">Enero 2026</div>
+                                <h4>Inicio: Fase de Escalabilidad</h4>
+                                <p>Desarrollo de estrategia de referenciadores e implementación de dashboard de métricas comerciales.</p>
+                                <div class="milestone-meta">
+                                    <span><span class="sub-concept">Responsable:</span> David M. + Victor / Juan C. + Nacho P.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item timeline-left">
+                            <div class="timeline-content">
+                                <div class="timeline-date">Febrero 2026</div>
+                                <h4>Centro de excelencia valoración tech</h4>
+                                <p>Implementación de sistema capacity planning y creación del centro de excelencia en valoración tech.</p>
+                                <div class="milestone-meta">
+                                    <span><span class="sub-concept">Responsable:</span> Enrique L. + Sergi Q. / Javier J. + Javier C.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item timeline-right">
+                            <div class="timeline-content">
+                                <div class="timeline-date">Marzo 2026</div>
+                                <h4>Sesión estratégica cierre y planificación</h4>
+                                <p>Revisión integral del plan, optimización de colaboración intergrupos y planificación del siguiente ciclo.</p>
+                                <div class="milestone-meta">
+                                    <span><span class="sub-concept">Responsable:</span> Victor + todo el equipo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="collapsible">Desglose Detallado por Fase</button>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <h3>Fase 1: Fundamentos (Junio - Septiembre 2025)</h3>
+                        <table class="kpi-table">
+                            <tr>
+                                <th>Actividad</th>
+                                <th>Responsable</th>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Workshop de alineamiento estratégico</span></td>
+                                <td>Victor</td>
+                                <td>1-15 Junio</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Entrevistas individuales</span></td>
+                                <td>Victor + Javier J.</td>
+                                <td>15-30 Junio</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Sesión de roles y responsabilidades</span></td>
+                                <td>Todo el equipo</td>
+                                <td>1-15 Julio</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Implementación sistema básico de pipeline</span></td>
+                                <td>David M. + Juan C.</td>
+                                <td>15-31 Julio</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Desarrollo primera versión Tech Playbook</span></td>
+                                <td>Javier C. + Enrique L.</td>
+                                <td>1-15 Agosto</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Definición modelo Tiered Execution</span></td>
+                                <td>Javier J. + David M. + Nacho P.</td>
+                                <td>15-31 Agosto</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Workshop de propósito y valores</span></td>
+                                <td>Victor + todo el equipo</td>
+                                <td>1-15 Septiembre</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Protocolo colaboración con otros grupos</span></td>
+                                <td>Victor + Javier J.</td>
+                                <td>15-30 Septiembre</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Primera sesión team building</span></td>
+                                <td>Sergi Q. + Todo el equipo</td>
+                                <td>30 Septiembre</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                        </table>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h3>Fase 2: Optimización (Octubre - Diciembre 2025)</h3>
+                        <table class="kpi-table">
+                            <tr>
+                                <th>Actividad</th>
+                                <th>Responsable</th>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Desarrollo buyer personas y segmentación</span></td>
+                                <td>David M. + Juan C.</td>
+                                <td>1-15 Octubre</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Implementación secuencias de contacto</span></td>
+                                <td>David M. + Nacho P.</td>
+                                <td>15-31 Octubre</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Desarrollo plan creación de contenido</span></td>
+                                <td>Javier C. + Sergi Q.</td>
+                                <td>1-15 Noviembre</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Desarrollo templates avanzados</span></td>
+                                <td>Javier J. + Enrique L.</td>
+                                <td>15-30 Noviembre</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Implementación biblioteca de conocimiento</span></td>
+                                <td>Juan C. + Nacho P.</td>
+                                <td>1-15 Diciembre</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Implementación sistema quality assurance</span></td>
+                                <td>Javier C. + Javier J.</td>
+                                <td>15-31 Diciembre</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Implementación feedback continuo</span></td>
+                                <td>Victor + Javier J.</td>
+                                <td>1-15 Diciembre</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Desarrollo planes individuales</span></td>
+                                <td>Victor + cada miembro</td>
+                                <td>15-31 Diciembre</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Segunda sesión team building + retrospectiva</span></td>
+                                <td>Sergi Q. + Enrique L.</td>
+                                <td>31 Diciembre</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                        </table>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h3>Fase 3: Escalabilidad (Enero - Marzo 2026)</h3>
+                        <table class="kpi-table">
+                            <tr>
+                                <th>Actividad</th>
+                                <th>Responsable</th>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Desarrollo estrategia de referenciadores</span></td>
+                                <td>David M. + Victor</td>
+                                <td>1-15 Enero</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Implementación dashboard métricas comerciales</span></td>
+                                <td>Juan C. + Nacho P.</td>
+                                <td>15-31 Enero</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Desarrollo propuestas valor integradas</span></td>
+                                <td>Javier J. + Javier C.</td>
+                                <td>1-15 Febrero</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Implementación sistema capacity planning</span></td>
+                                <td>Enrique L. + Sergi Q.</td>
+                                <td>15-28 Febrero</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Creación centro excelencia valoración tech</span></td>
+                                <td>Javier J. + Javier C.</td>
+                                <td>1-15 Febrero</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Implementación sistema mejora continua</span></td>
+                                <td>Juan C. + Nacho P.</td>
+                                <td>15-28 Febrero</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Desarrollo onboarding estructurado</span></td>
+                                <td>Enrique L. + Sergi Q.</td>
+                                <td>1-15 Marzo</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Revisión optimización colaboración intergrupos</span></td>
+                                <td>Victor + Javier J.</td>
+                                <td>15-31 Marzo</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="sub-concept">Sesión estratégica cierre y planificación</span></td>
+                                <td>Todo el equipo</td>
+                                <td>31 Marzo</td>
+                                <td><span class="status-badge status-not-started">No iniciado</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <button class="collapsible">Governance del Plan</button>
+                <div class="collapsible-content">
+                    <div class="collapsible-content-inner">
+                        <p>Para asegurar una implementación efectiva y ajustada, hemos establecido la siguiente estructura de governance:</p>
+                        
+                        <h4>Transformation Squad (Equipo Core)</h4>
+                        <ul>
+                            <li><span class="highlight-concept">Composición:</span> <span class="sub-concept">Victor, Javier Julia, 1-2 directores/VP</span></li>
+                            <li><span class="highlight-concept">Frecuencia:</span> <span class="sub-concept">Reunión semanal (1 hora)</span></li>
+                            <li><span class="highlight-concept">Función:</span> <span class="sub-concept">Supervisión detallada de implementación, resolución de obstáculos, ajustes tácticos</span></li>
+                        </ul>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Revisión Mensual de Avance</h4>
+                        <ul>
+                            <li><span class="highlight-concept">Composición:</span> <span class="sub-concept">Todo el equipo AZ Tech</span></li>
+                            <li><span class="highlight-concept">Frecuencia:</span> <span class="sub-concept">1 vez al mes (2 horas)</span></li>
+                            <li><span class="highlight-concept">Función:</span> <span class="sub-concept">Comunicar avances, recoger feedback, reforzar alineamiento</span></li>
+                        </ul>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Checkpoint con CODI</h4>
+                        <ul>
+                            <li><span class="highlight-concept">Composición:</span> <span class="sub-concept">Victor + otros miembros del CODI relevantes</span></li>
+                            <li><span class="highlight-concept">Frecuencia:</span> <span class="sub-concept">1 vez al mes (1 hora)</span></li>
+                            <li><span class="highlight-concept">Función:</span> <span class="sub-concept">Alinear con estrategia global, resolver temas que requieren decisión senior</span></li>
+                        </ul>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Sprint Reviews</h4>
+                        <ul>
+                            <li><span class="highlight-concept">Composición:</span> <span class="sub-concept">Equipos de trabajo específicos de cada iniciativa</span></li>
+                            <li><span class="highlight-concept">Frecuencia:</span> <span class="sub-concept">Cada 2 semanas (1 hora)</span></li>
+                            <li><span class="highlight-concept">Función:</span> <span class="sub-concept">Revisar avances detallados en cada workstream, ajustar planes</span></li>
+                        </ul>
+                        
+                        <div class="section-divider"></div>
+                        
+                        <h4>Sistema de Seguimiento</h4>
+                        <ul>
+                            <li><span class="highlight-concept">Dashboard de implementación:</span> <span class="sub-concept">Visualización actualizada del estado de cada iniciativa</span></li>
+                            <li><span class="highlight-concept">Reportes de progreso:</span> <span class="sub-concept">Informes estandarizados de avance por workstream</span></li>
+                            <li><span class="highlight-concept">Sistema de alerta temprana:</span> <span class="sub-concept">Identificación proactiva de desviaciones o riesgos</span></li>
+                            <li><span class="highlight-concept">Documentación de decisiones:</span> <span class="sub-concept">Registro de acuerdos y ajustes al plan</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AZ Capital | Plan Estratégico AZ Tech 2.0</p>
+        </div>
+    </footer>
+    
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
+            
+            for (i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+            }
+            
+            // Add animation to metric bars
+            setTimeout(function() {
+                var progresses = document.getElementsByClassName('progress');
+                for(var i = 0; i < progresses.length; i++) {
+                    progresses[i].style.width = progresses[i].getAttribute('style').split('width:')[1];
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>
