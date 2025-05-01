@@ -53,6 +53,7 @@ header .container {
     width: 100%;
     max-width: 100%;
     padding: 0;
+        position: relative;
 }
 
 header {
@@ -82,14 +83,15 @@ header.header-scrolled {
     padding: 0 20px;
     max-width: 1200px;
     margin: 0 auto;
-    transition: all 0.3s ease;
+    position: relative;
 }
 
 .logo-container {
     display: flex;
-    align-items: center;
+    align-items: center; /* Centra verticalmente el logo y el texto */
     transition: all 0.3s ease;
 }
+
 
 .logo-image {
     height: 35px;
@@ -140,8 +142,10 @@ header.header-scrolled .logo-text {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    transition: all 0.3s ease;
+    justify-content: center;
+    min-width: 350px; /* Asegura espacio suficiente para el texto */
 }
+
 
 .subtitle {
     font-size: 18px;
@@ -154,9 +158,13 @@ header.header-scrolled .subtitle {
 }
 
 .current-section {
-    font-size: 18px;
-    margin-left: 20px;
+    display: inline-block;
+    position: static; /* Cambiar de posición absoluta a estática */
+    transform: none; /* Eliminar transformación */
+    margin-top: 5px; /* Añadir espacio después del subtítulo */
     font-weight: 500;
+    font-size: 18px;
+    text-align: right;
     opacity: 0.9;
     transition: all 0.3s ease;
 }
@@ -682,9 +690,45 @@ ul li, ol li {
 }
 
 /* Responsive adjustments */
-:root {
-        --header-height: 120px; /* Aumentado para dar más espacio al header en modo columna */
-        --header-height-scrolled: 80px;
+
+@media (max-width: 992px) {
+    .header-right {
+        min-width: 280px;
+    }
+    
+    .subtitle, .current-section {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+     .header-content {
+        flex-direction: column;
+        padding: 10px 0;
+    }
+    
+    .header-right {
+        width: 100%;
+        align-items: center;
+        margin-top: 8px;
+        min-width: auto;
+    }
+    .subtitle, .current-section {
+        text-align: center;
+        width: 100%;
+        font-size: 14px;
+    }
+    .current-section {
+        position: static;
+        text-align: center;
+        width: 100%;
+        margin-top: 3px;
+        transform: none;
+    }
+
+    :root {
+        --header-height: 120px;
+        --header-height-scrolled: 90px;
     }
     
     .tabs {
@@ -781,7 +825,7 @@ ul li, ol li {
     .tabs {
         margin-top: 10px;
     }
-
+}
     @media (max-width: 480px) {
     .tabs {
         flex-wrap: wrap; /* Permite que se ajusten en varias filas si es necesario */
