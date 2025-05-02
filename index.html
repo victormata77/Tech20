@@ -837,7 +837,38 @@ ul li, ol li {
         font-size: 12px; /* Fuente aún más pequeña */
     }
 }
-</style>
+.task-description-full {
+  font-size: 0.9em;
+  color: #666;
+  line-height: 1.4;
+  transition: all 0.3s ease;
+}
+
+.toggle-details {
+  background: none;
+  border: none;
+  color: var(--secondary);
+  font-size: 0.85em;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 2px 8px;
+  transition: color 0.2s ease;
+}
+
+.toggle-details:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .task-description-full {
+    font-size: 0.85em;
+  }
+  
+  .toggle-details {
+    font-size: 0.8em;
+  }
+}</style>
 </head>
 <body>
     <header>
@@ -2059,200 +2090,421 @@ ul li, ol li {
                 <div class="collapsible-content">
                     <div class="collapsible-content-inner">
                         <h3>Fase 1: Fundamentos (Junio - Septiembre 2025)</h3>
-                        <table class="kpi-table">
-                            <tr>
-                                <th>Actividad</th>
-                                <th>Responsable</th>
-                                <th>Fecha</th>
-                                <th>Estado</th>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Workshop de alineamiento estratégico</span></td>
-                                <td>Victor</td>
-                                <td>1-15 Junio</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Entrevistas individuales</span></td>
-                                <td>Victor + Javier J.</td>
-                                <td>15-30 Junio</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Sesión de roles y responsabilidades</span></td>
-                                <td>Todo el equipo</td>
-                                <td>1-15 Julio</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Implementación sistema básico de pipeline</span></td>
-                                <td>David M. + Juan C.</td>
-                                <td>15-31 Julio</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Desarrollo primera versión Tech Playbook</span></td>
-                                <td>Javier C. + Enrique L.</td>
-                                <td>1-15 Agosto</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Definición modelo Tiered Execution</span></td>
-                                <td>Javier J. + David M. + Nacho P.</td>
-                                <td>15-31 Agosto</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Workshop de propósito y valores</span></td>
-                                <td>Victor + todo el equipo</td>
-                                <td>1-15 Septiembre</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Protocolo colaboración con otros grupos</span></td>
-                                <td>Victor + Javier J.</td>
-                                <td>15-30 Septiembre</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Primera sesión team building</span></td>
-                                <td>Sergi Q. + Todo el equipo</td>
-                                <td>30 Septiembre</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                        </table>
+<table class="kpi-table">
+  <tr>
+    <th>Actividad</th>
+    <th>Responsable</th>
+    <th>Fecha</th>
+    <th>Estado</th>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Workshop de alineamiento estratégico</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Esta sesión inicial reunirá a todo el equipo para establecer una visión compartida sobre AZ Tech 2.0. Analizaremos colectivamente el estado actual del mercado, la posición de AZ Capital en el sector tecnológico y las oportunidades específicas que podemos aprovechar. El objetivo es lograr un entendimiento común de nuestros puntos fuertes, áreas de mejora y ambición estratégica, estableciendo así las bases para el resto del plan. Incluirá ejercicios de reflexión sobre nuestro posicionamiento diferencial y análisis de competidores.
+      </div>
+    </td>
+    <td>Victor</td>
+    <td>1-15 Junio</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Entrevistas individuales</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Realizaremos conversaciones estructuradas con cada miembro del equipo para comprender en profundidad sus fortalezas, aspiraciones y preferencias profesionales. Estas entrevistas ayudarán a mapear el talento existente, identificar oportunidades de desarrollo y detectar posibles desajustes entre roles actuales y capacidades. El formato incluirá evaluación de competencias técnicas, habilidades interpersonales y alineamiento con los objetivos del equipo, buscando comprender cómo cada persona puede contribuir óptimamente y desarrollarse profesionalmente dentro de AZ Tech.
+      </div>
+    </td>
+    <td>Victor + Javier J.</td>
+    <td>15-30 Junio</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Sesión de roles y responsabilidades</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        En esta actividad definiremos formalmente la estructura del equipo con roles claramente delimitados que maximicen las fortalezas individuales. Implementaremos el modelo "tándem" que distingue entre equipos de originación y ejecución, estableciendo las responsabilidades específicas, líneas de reporte y mecanismos de coordinación. Se definirán también los "roles puente" clave para la transferencia fluida de proyectos entre fases, con especial atención a la integración efectiva de David como especialista en originación con el resto del equipo de ejecución.
+      </div>
+    </td>
+    <td>Todo el equipo</td>
+    <td>1-15 Julio</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Implementación sistema básico de pipeline</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Desarrollaremos e implementaremos la primera versión del sistema de seguimiento de oportunidades adaptado específicamente para el sector tech. Configuraremos el CRM existente (Dynamics) con campos específicos para empresas tecnológicas, estableceremos categorías de clasificación y criterios de priorización, e implementaremos un dashboard visual para monitorización en tiempo real. Se incluirá formación para todo el equipo en el uso del sistema y definición de protocolos de actualización y responsabilidades específicas de mantenimiento.
+      </div>
+    </td>
+    <td>David M. + Juan C.</td>
+    <td>15-31 Julio</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Desarrollo primera versión Tech Playbook</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Crearemos el documento central que codificará nuestros procesos, metodologías y mejores prácticas para el asesoramiento de empresas tecnológicas. Esta primera versión incluirá las secciones principales: procesos de originación, metodología de pitch, protocolos de ejecución por tipo de mandato, y estándares de calidad por entregable. El Playbook será una herramienta viva que evolucionará a medida que refinemos nuestros procesos, pero esta versión inicial establecerá la estructura y contenidos fundamentales que guiarán el trabajo del equipo.
+      </div>
+    </td>
+    <td>Javier C. + Enrique L.</td>
+    <td>1-15 Agosto</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Definición modelo Tiered Execution</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Desarrollaremos un sistema escalonado de ejecución que adapte nuestros recursos y enfoque según la complejidad y tamaño de cada operación. Definiremos criterios claros para categorizar proyectos en tres niveles: Tier 1 (Premium, >€1.5M), Tier 2 (Estándar, €750k-€1.5M) y Tier 3 (Eficiente, <€750k). Para cada nivel, estableceremos protocolos específicos sobre alcance de entregables, composición de equipos, nivel de personalización y mecanismos de supervisión, asegurando que mantenemos calidad consistente mientras optimizamos recursos.
+      </div>
+    </td>
+    <td>Javier J. + David M. + Nacho P.</td>
+    <td>15-31 Agosto</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Workshop de propósito y valores</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Realizaremos una sesión participativa para definir colectivamente el propósito y valores fundamentales de AZ Tech. Identificaremos qué nos hace únicos dentro de AZ Capital y en el mercado, estableciendo principios compartidos que guiarán nuestras decisiones y comportamientos. El objetivo es crear una cultura distintiva y de alto rendimiento con valores auténticos y accionables que motiven al equipo. Se establecerán también comportamientos específicos asociados a cada valor, facilitando su integración en el día a día.
+      </div>
+    </td>
+    <td>Victor + todo el equipo</td>
+    <td>1-15 Septiembre</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Protocolo colaboración con otros grupos</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Desarrollaremos un marco claro para la interacción con otras áreas de AZ Capital, especialmente con los equipos de Mid-Market, Large Caps, Cataluña, Debt Advisory y Real Estate. Definiremos criterios explícitos para determinar qué operaciones corresponden a AZ Tech versus otros grupos, estableceremos protocolos para gestionar operaciones en zonas grises, e implementaremos un sistema de compensación justo para proyectos colaborativos. Se buscará maximizar sinergias mientras minimizamos conflictos potenciales por solapamientos.
+      </div>
+    </td>
+    <td>Victor + Javier J.</td>
+    <td>15-30 Septiembre</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Primera sesión team building</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Organizaremos una actividad estructurada fuera de la oficina para fortalecer relaciones interpersonales y consolidar la identidad de equipo. Combinará elementos de diversión con componentes estratégicos, incluyendo ejercicios para reforzar los valores definidos previamente y celebrar los avances logrados durante la Fase 1. Se buscará también identificar colectivamente oportunidades de mejora para la Fase 2, creando un ambiente propicio para la retroalimentación constructiva y el establecimiento de compromisos compartidos para las siguientes etapas.
+      </div>
+    </td>
+    <td>Sergi Q. + Todo el equipo</td>
+    <td>30 Septiembre</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+</table>
+
                         
                         <div class="section-divider"></div>
                         
-                        <h3>Fase 2: Optimización (Octubre - Diciembre 2025)</h3>
-                        <table class="kpi-table">
-                            <tr>
-                                <th>Actividad</th>
-                                <th>Responsable</th>
-                                <th>Fecha</th>
-                                <th>Estado</th>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Desarrollo buyer personas y segmentación</span></td>
-                                <td>David M. + Juan C.</td>
-                                <td>1-15 Octubre</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Implementación secuencias de contacto</span></td>
-                                <td>David M. + Nacho P.</td>
-                                <td>15-31 Octubre</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Desarrollo plan creación de contenido</span></td>
-                                <td>Javier C. + Sergi Q.</td>
-                                <td>1-15 Noviembre</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Desarrollo templates avanzados</span></td>
-                                <td>Javier J. + Enrique L.</td>
-                                <td>15-30 Noviembre</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Implementación biblioteca de conocimiento</span></td>
-                                <td>Juan C. + Nacho P.</td>
-                                <td>1-15 Diciembre</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Implementación sistema quality assurance</span></td>
-                                <td>Javier C. + Javier J.</td>
-                                <td>15-31 Diciembre</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Implementación feedback continuo</span></td>
-                                <td>Victor + Javier J.</td>
-                                <td>1-15 Diciembre</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Desarrollo planes individuales</span></td>
-                                <td>Victor + cada miembro</td>
-                                <td>15-31 Diciembre</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Segunda sesión team building + retrospectiva</span></td>
-                                <td>Sergi Q. + Enrique L.</td>
-                                <td>31 Diciembre</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                        </table>
+                        <!-- HTML for Fase 2 Table -->
+<h3>Fase 2: Optimización (Octubre - Diciembre 2025)</h3>
+<table class="kpi-table">
+  <tr>
+    <th>Actividad</th>
+    <th>Responsable</th>
+    <th>Fecha</th>
+    <th>Estado</th>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Desarrollo buyer personas y segmentación</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Realizaremos un análisis exhaustivo del mercado tech español para desarrollar una segmentación detallada que nos permita focalizar nuestros esfuerzos comerciales. Crearemos buyer personas específicas para cada segmento clave (founders, CFOs tecnológicos, directores de M&A corporativos, socios de PE), identificando sus perfiles, motivaciones, preocupaciones y canales preferidos de comunicación. Estos arquetipos nos permitirán personalizar nuestras aproximaciones comerciales y comunicación, logrando mayor resonancia con cada audiencia objetivo y aumentando nuestra efectividad comercial.
+      </div>
+    </td>
+    <td>David M. + Juan C.</td>
+    <td>1-15 Octubre</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Implementación secuencias de contacto</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Diseñaremos y pondremos en marcha secuencias multicanal optimizadas para cada buyer persona identificada. Estas secuencias establecerán el timing, contenido y formato ideal para cada tipo de interacción, desde el contacto inicial hasta el cierre del mandato. Incluiremos templates personalizados para comunicaciones por email, LinkedIn y otros canales, así como guiones para llamadas y reuniones. Configuraremos un sistema de seguimiento que asegure consistencia y persistencia en nuestra aproximación comercial, evitando oportunidades perdidas por falta de seguimiento adecuado.
+      </div>
+    </td>
+    <td>David M. + Nacho P.</td>
+    <td>15-31 Octubre</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Desarrollo plan creación de contenido</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Crearemos una estrategia estructurada para posicionar a AZ Tech como referente intelectual en el sector tecnológico. Identificaremos temas clave donde podemos aportar valor diferencial, planificaremos un calendario editorial trimestral y asignaremos responsabilidades específicas para la creación de contenidos. El plan incluirá diferentes formatos (artículos, whitepapers, análisis sectoriales, infografías) adaptados a distintas plataformas y audiencias. Desarrollaremos también un proceso de aprobación eficiente y métricas para evaluar el impacto del contenido en términos de engagement y generación de oportunidades.
+      </div>
+    </td>
+    <td>Javier C. + Sergi Q.</td>
+    <td>1-15 Noviembre</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Desarrollo templates avanzados</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Diseñaremos un conjunto completo de plantillas para estandarizar y elevar la calidad de nuestros materiales, adaptados específicamente al sector tecnológico. Crearemos templates para cada tipo de documento (teasers, CIMs, presentaciones) y por subsector tech (SaaS, FinTech, marketplaces), incorporando las últimas tendencias en diseño y comunicación. Estos templates incluirán estructuras optimizadas, visualizaciones de datos específicas para métricas tech (ARR, CAC, churn) y elementos de marca distintivos. Desarrollaremos versiones adaptadas para cada tier de ejecución, asegurando consistencia visual y narrativa.
+      </div>
+    </td>
+    <td>Javier J. + Enrique L.</td>
+    <td>15-30 Noviembre</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Implementación biblioteca de conocimiento</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Pondremos en marcha un repositorio centralizado y estructurado de información sectorial, mejores prácticas y recursos de referencia. Configuraremos la plataforma SharePoint con una estructura optimizada para categorizar análisis sectoriales, precedentes de transacciones, perfiles de compradores estratégicos y fondos de inversión. Definiremos protocolos para la carga y actualización de información, asignando responsables específicos para cada sección. Implementaremos también un sistema de búsqueda intuitivo y procesos para asegurar que el conocimiento generado en cada proyecto se capture sistemáticamente.
+      </div>
+    </td>
+    <td>Juan C. + Nacho P.</td>
+    <td>1-15 Diciembre</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Implementación sistema quality assurance</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Estableceremos un proceso formal para asegurar consistencia y excelencia en todos nuestros entregables. Desarrollaremos listas de verificación específicas por tipo de documento, protocolos de revisión y estándares de calidad objetivos. Implementaremos un sistema escalonado de aprobaciones con responsabilidades claras según la complejidad y tier del proyecto. Crearemos también mecanismos para la captura sistemática de feedback de clientes, que nos permitirá identificar oportunidades de mejora y alimentar nuestro ciclo de aprendizaje continuo.
+      </div>
+    </td>
+    <td>Javier C. + Javier J.</td>
+    <td>15-31 Diciembre</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Implementación feedback continuo</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Diseñaremos e implementaremos un sistema estructurado para proporcionar y recibir retroalimentación de manera regular, no limitada a evaluaciones formales. Estableceremos un formato para sesiones 1:1 regulares, desarrollaremos guías para dar y recibir feedback constructivo, y crearemos una herramienta para seguimiento del desarrollo profesional. Este sistema fomentará una cultura de mejora continua, facilitando conversaciones honestas y constructivas que aceleren el desarrollo profesional de cada miembro del equipo y fortalezcan las dinámicas de trabajo conjunto.
+      </div>
+    </td>
+    <td>Victor + Javier J.</td>
+    <td>1-15 Diciembre</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Desarrollo planes individuales</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Crearemos planes de desarrollo personalizados para cada miembro del equipo, partiendo de sus fortalezas y aspiraciones profesionales identificadas en las entrevistas iniciales. Cada plan incluirá objetivos específicos a 3-6-12 meses, actividades concretas para el desarrollo de competencias clave, y métricas claras de progreso. Alinearemos estos planes con las necesidades del negocio y las oportunidades dentro de AZ Tech, estableciendo un calendario de check-ins regulares para monitorear avances y realizar ajustes. Este enfoque personalizado contribuirá significativamente a la retención y desarrollo del talento.
+      </div>
+    </td>
+    <td>Victor + cada miembro</td>
+    <td>15-31 Diciembre</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Segunda sesión team building + retrospectiva</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Organizaremos una jornada combinando elementos de celebración, reflexión y planificación. Realizaremos una retrospectiva estructurada sobre los logros y aprendizajes de los primeros seis meses de implementación del plan, identificando colectivamente éxitos y oportunidades de mejora. Incorporaremos actividades lúdicas que refuercen los vínculos entre el equipo y consoliden nuestra cultura distintiva. Concluiremos con una sesión prospectiva para alinear expectativas y energías de cara a la Fase 3, estableciendo compromisos compartidos para la etapa final del plan.
+      </div>
+    </td>
+    <td>Sergi Q. + Enrique L.</td>
+    <td>31 Diciembre</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+</table>
                         
                         <div class="section-divider"></div>
                         
-                        <h3>Fase 3: Escalabilidad (Enero - Marzo 2026)</h3>
-                        <table class="kpi-table">
-                            <tr>
-                                <th>Actividad</th>
-                                <th>Responsable</th>
-                                <th>Fecha</th>
-                                <th>Estado</th>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Desarrollo estrategia de referenciadores</span></td>
-                                <td>David M. + Victor</td>
-                                <td>1-15 Enero</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Implementación dashboard métricas comerciales</span></td>
-                                <td>Juan C. + Nacho P.</td>
-                                <td>15-31 Enero</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Desarrollo propuestas valor integradas</span></td>
-                                <td>Javier J. + Javier C.</td>
-                                <td>1-15 Febrero</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Implementación sistema capacity planning</span></td>
-                                <td>Enrique L. + Sergi Q.</td>
-                                <td>15-28 Febrero</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Creación centro excelencia valoración tech</span></td>
-                                <td>Javier J. + Javier C.</td>
-                                <td>1-15 Febrero</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Implementación sistema mejora continua</span></td>
-                                <td>Juan C. + Nacho P.</td>
-                                <td>15-28 Febrero</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Desarrollo onboarding estructurado</span></td>
-                                <td>Enrique L. + Sergi Q.</td>
-                                <td>1-15 Marzo</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Revisión optimización colaboración intergrupos</span></td>
-                                <td>Victor + Javier J.</td>
-                                <td>15-31 Marzo</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="sub-concept">Sesión estratégica cierre y planificación</span></td>
-                                <td>Todo el equipo</td>
-                                <td>31 Marzo</td>
-                                <td><span class="status-badge status-not-started">No iniciado</span></td>
-                            </tr>
-                        </table>
+                        
+<!-- HTML for Fase 3 Table -->
+<h3>Fase 3: Escalabilidad (Enero - Marzo 2026)</h3>
+<table class="kpi-table">
+  <tr>
+    <th>Actividad</th>
+    <th>Responsable</th>
+    <th>Fecha</th>
+    <th>Estado</th>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Desarrollo estrategia de referenciadores</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Diseñaremos un programa estructurado para convertir a profesionales externos en fuentes sistemáticas de oportunidades. Identificaremos potenciales referenciadores clave (abogados especializados en tecnología, asesores fiscales, inversores de VC, ex-ejecutivos y consejeros) y crearemos un mapeo exhaustivo priorizando según potencial y relación existente. Estableceremos un protocolo formal de colaboración, diseñaremos materiales específicos para este canal y crearemos un sistema de seguimiento y agradecimiento que incentive las referencias de calidad. Esta estrategia ampliará significativamente nuestro alcance en el ecosistema tech.
+      </div>
+    </td>
+    <td>David M. + Victor</td>
+    <td>1-15 Enero</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Implementación dashboard métricas comerciales</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Desarrollaremos un sistema visual de monitorización en tiempo real de nuestro desempeño comercial, integrando datos del CRM y otras fuentes relevantes. El dashboard incluirá métricas clave como pipeline cualificado, tasa de conversión, tiempo del ciclo comercial y distribución por subsector, con capacidades de filtrado por responsable y período. Implementaremos alertas automáticas para desviaciones significativas y estableceremos un ritmo regular de revisión con el equipo. Este dashboard permitirá decisiones más ágiles e informadas, mejorando nuestra efectividad comercial.
+      </div>
+    </td>
+    <td>Juan C. + Nacho P.</td>
+    <td>15-31 Enero</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Desarrollo propuestas valor integradas</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Crearemos ofertas combinadas que aprovechen las sinergias entre AZ Tech y otros grupos de AZ Capital. Diseñaremos propuestas específicas para situaciones clave como "Tech + Cataluña" para el ecosistema Barcelona, "Tech + Debt" para financiación de crecimiento, "Tech + Real Estate" para proptech, y "Tech + Large Caps" para transformación digital. Cada propuesta incluirá mensajes clave, casos de éxito relevantes y procesos de entrega colaborativos. Estas propuestas integradas nos permitirán abordar oportunidades más complejas que un solo equipo no podría capturar.
+      </div>
+    </td>
+    <td>Javier J. + Javier C.</td>
+    <td>1-15 Febrero</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Implementación sistema capacity planning</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Desarrollaremos una metodología estructurada para optimizar la asignación de recursos y evitar cuellos de botella. Implementaremos una herramienta de forecast que visualice la carga de trabajo a 1-3 meses vista, estableceremos parámetros óptimos de asignación por tipo de proyecto y perfil, y crearemos protocolos para gestionar picos de demanda. El sistema incluirá alarmas predictivas para identificar sobrecarga o subcapacidad, permitiéndonos ajustar proactivamente la planificación y optimizar la experiencia tanto de clientes como del equipo.
+      </div>
+    </td>
+    <td>Enrique L. + Sergi Q.</td>
+    <td>15-28 Febrero</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Creación centro excelencia valoración tech</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Estableceremos una unidad especializada en metodologías avanzadas de valoración para empresas tecnológicas. Desarrollaremos modelos específicos para diferentes tipos de negocio (SaaS, marketplace, hardware) incorporando métricas sectoriales especializadas, recopilaremos benchmarks actualizados por subsector, y crearemos herramientas de análisis propietarias. Este centro de excelencia convertirá nuestro conocimiento en un activo diferencial, posicionándonos como referentes en valoración tech en España y proporcionando una ventaja competitiva significativa en pitches y ejecución.
+      </div>
+    </td>
+    <td>Javier J. + Javier C.</td>
+    <td>1-15 Febrero</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Implementación sistema mejora continua</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Desarrollaremos un proceso sistemático para identificar, implementar y compartir mejoras en nuestros métodos de trabajo. Implementaremos un mecanismo estructurado para capturar sugerencias del equipo, estableceremos un proceso de priorización basado en impacto/esfuerzo, y crearemos un ciclo regular de revisión y actualización de procesos y playbooks. Implementaremos también un sistema formal de postmortem para proyectos, asegurando que las lecciones aprendidas se integren en nuestra operativa y contribuyan a una evolución constante de nuestras capacidades.
+      </div>
+    </td>
+    <td>Juan C. + Nacho P.</td>
+    <td>15-28 Febrero</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Desarrollo onboarding estructurado</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Crearemos un programa integral para la rápida y efectiva incorporación de nuevos miembros al equipo. Diseñaremos un recorrido secuencial de aprendizaje con hitos claros, desarrollaremos materiales de autoformación, y estableceremos un sistema de buddy/mentor para acompañamiento personalizado. El programa incluirá exposición progresiva a responsabilidades y evaluaciones periódicas de progreso. Esta estructura asegurará que las nuevas incorporaciones absorban rápidamente nuestra cultura, metodologías y conocimiento sectorial, acelerando su contribución efectiva al equipo.
+      </div>
+    </td>
+    <td>Enrique L. + Sergi Q.</td>
+    <td>1-15 Marzo</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Revisión optimización colaboración intergrupos</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Realizaremos una evaluación profunda de la efectividad de nuestros protocolos de colaboración con otras áreas de AZ Capital. Analizaremos casos concretos de colaboración, mediremos KPIs específicos (transacciones conjuntas, valor generado), y recogeremos feedback tanto interno como de otros grupos. Refinaremos criterios de perímetro según experiencia real, ajustaremos sistemas de compensación si es necesario, y optimizaremos mecanismos de comunicación y coordinación. Esta revisión asegurará que maximizamos sinergias mientras mantenemos la identidad distintiva de AZ Tech.
+      </div>
+    </td>
+    <td>Victor + Javier J.</td>
+    <td>15-31 Marzo</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+  <tr>
+    <td>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <span class="sub-concept">Sesión estratégica cierre y planificación</span>
+        <button class="toggle-details" data-state="collapsed" style="margin-left: auto;">Ver más</button>
+      </div>
+      <div class="task-description-full" style="display: none; margin-top: 8px;">
+        Organizaremos una jornada integral para evaluar los logros del plan AZ Tech 2.0 e iniciar la planificación del siguiente ciclo estratégico. Analizaremos el cumplimiento de objetivos, mediremos el impacto en KPIs de negocio, y recopilaremos aprendizajes clave del proceso. Definiremos colectivamente prioridades estratégicas para el siguiente período, identificaremos nuevas oportunidades de mercado, y estableceremos ambiciones renovadas. La sesión concluirá con una celebración de los logros alcanzados, reforzando la cohesión del equipo y su compromiso con la visión de futuro para AZ Tech.
+      </div>
+    </td>
+    <td>Todo el equipo</td>
+    <td>31 Marzo</td>
+    <td><span class="status-badge status-not-started">No iniciado</span></td>
+  </tr>
+</table>
+
                     </div>
                 </div>
                 
@@ -2401,6 +2653,31 @@ ul li, ol li {
             }
         });
     });
+// Add this to your existing script section
+document.addEventListener("DOMContentLoaded", function() {
+  // Setup toggle buttons for task details
+  const toggleButtons = document.querySelectorAll('.toggle-details');
+  
+  toggleButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const parentTd = this.closest('td');
+      const description = parentTd.querySelector('.task-description-full');
+      
+      if (this.getAttribute('data-state') === 'collapsed') {
+        // Show full description
+        description.style.display = 'block';
+        this.textContent = 'Ver menos';
+        this.setAttribute('data-state', 'expanded');
+      } else {
+        // Hide description
+        description.style.display = 'none';
+        this.textContent = 'Ver más';
+        this.setAttribute('data-state', 'collapsed');
+      }
+    });
+  });
+});
+;
     </script>
 </body>
 </html>
