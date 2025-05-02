@@ -941,6 +941,34 @@ body:not(.scrolled) .sticky-tabs {
     .timeline-left::after, .timeline-right::after {
         left: -2px;
     }
+.kpi-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .collapsible-content-inner {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Optional: visual indicator that table is scrollable */
+    .collapsible-content-inner::after {
+        content: "⟷ Desliza para ver más";
+        display: block;
+        text-align: center;
+        font-size: 12px;
+        color: #666;
+        padding: 5px;
+        margin-top: 5px;
+    }
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 20px;
+}
 }
 
 /* Small screens (phones) */
@@ -1737,43 +1765,7 @@ body:not(.scrolled) .sticky-tabs {
                 <h2>KPIs y Métricas de Seguimiento</h2>
                 <p>Hemos definido un conjunto integral de indicadores clave que nos permitirán monitorear el éxito de la implementación del plan y su impacto en el negocio.</p>
                 
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-title">Pipeline Cualificado</div>
-                        <div class="metric-value">€82M</div>
-                        <div class="metric-description">Total de fees potenciales ponderados por probabilidad</div>
-                        <div class="progress-bar">
-                            <div class="progress progress-success" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="metric-card">
-                        <div class="metric-title">Tasa de Conversión</div>
-                        <div class="metric-value">18%</div>
-                        <div class="metric-description">% de oportunidades que se convierten en mandatos</div>
-                        <div class="progress-bar">
-                            <div class="progress progress-warning" style="width: 60%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="metric-card">
-                        <div class="metric-title">Margen Bruto Promedio</div>
-                        <div class="metric-value">68%</div>
-                        <div class="metric-description">Promedio ponderado por tipo de proyecto</div>
-                        <div class="progress-bar">
-                            <div class="progress progress-success" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="metric-card">
-                        <div class="metric-title">Satisfacción Cliente</div>
-                        <div class="metric-value">8.6/10</div>
-                        <div class="metric-description">Promedio de encuestas post-proyecto</div>
-                        <div class="progress-bar">
-                            <div class="progress progress-success" style="width: 86%"></div>
-                        </div>
-                    </div>
-                </div>
+               
                 
                 <button class="collapsible">KPIs de Negocio</button>
                 <div class="collapsible-content">
@@ -2039,6 +2031,7 @@ body:not(.scrolled) .sticky-tabs {
                                 <td>>8/10</td>
                             </tr>
                         </table>
+
                     </div>
                 </div>
                 
@@ -2127,6 +2120,57 @@ body:not(.scrolled) .sticky-tabs {
                             </tr>
                         </table>
                     </div>
+
+  </div>
+<button class="collapsible">Ejemplos de KPIs</button>
+<div class="collapsible-content">
+    <div class="collapsible-content-inner">
+        <p>A continuación se muestran ejemplos de visualización de métricas clave:</p>
+        
+
+ <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-title">Pipeline Cualificado</div>
+                        <div class="metric-value">€82M</div>
+                        <div class="metric-description">Total de fees potenciales ponderados por probabilidad</div>
+                        <div class="progress-bar">
+                            <div class="progress progress-success" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-title">Tasa de Conversión</div>
+                        <div class="metric-value">18%</div>
+                        <div class="metric-description">% de oportunidades que se convierten en mandatos</div>
+                        <div class="progress-bar">
+                            <div class="progress progress-warning" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-title">Margen Bruto Promedio</div>
+                        <div class="metric-value">68%</div>
+                        <div class="metric-description">Promedio ponderado por tipo de proyecto</div>
+                        <div class="progress-bar">
+                            <div class="progress progress-success" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-title">Satisfacción Cliente</div>
+                        <div class="metric-value">8.6/10</div>
+                        <div class="metric-description">Promedio de encuestas post-proyecto</div>
+                        <div class="progress-bar">
+                            <div class="progress progress-success" style="width: 86%"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+</div>
+
+
                 </div>
             </div>
 
@@ -2134,8 +2178,11 @@ body:not(.scrolled) .sticky-tabs {
                 <h2>Calendario e Hitos</h2>
                 <p>La implementación del plan estratégico se estructura en tres fases principales con hitos específicos que permiten monitorear el progreso y realizar ajustes según sea necesario.</p>
                 
-                <div class="calendar">
-                    <div class="timeline">
+               <button class="collapsible">Línea de Tiempo Visual</button>
+<div class="collapsible-content">
+    <div class="collapsible-content-inner">
+        <div class="calendar">
+            <div class="timeline">
                         <!-- FASE 1 -->
                         <div class="timeline-item timeline-left">
                             <div class="timeline-content">
@@ -2250,11 +2297,14 @@ body:not(.scrolled) .sticky-tabs {
                         </div>
                     </div>
                 </div>
+  </div>
+        </div>
                 
                 <button class="collapsible">Desglose Detallado por Fase</button>
                 <div class="collapsible-content">
                     <div class="collapsible-content-inner">
                         <h3>Fase 1: Fundamentos (Junio - Septiembre 2025)</h3>
+ <div class="table-container">
 <table class="kpi-table">
   <tr>
     <th>Actividad</th>
@@ -2389,11 +2439,12 @@ body:not(.scrolled) .sticky-tabs {
     <td><span class="status-badge status-not-started">No iniciado</span></td>
   </tr>
 </table>
-
-                        
+</div>
+      17:35 02/05/2025                  
                         <div class="section-divider"></div>
                         
                         <!-- HTML for Fase 2 Table -->
+    <div class="collapsible-content-inner">
 <h3>Fase 2: Optimización (Octubre - Diciembre 2025)</h3>
 <table class="kpi-table">
   <tr>
@@ -2529,11 +2580,13 @@ body:not(.scrolled) .sticky-tabs {
     <td><span class="status-badge status-not-started">No iniciado</span></td>
   </tr>
 </table>
-                        
+                        </div>
+
                         <div class="section-divider"></div>
                         
                         
 <!-- HTML for Fase 3 Table -->
+    <div class="collapsible-content-inner">
 <h3>Fase 3: Escalabilidad (Enero - Marzo 2026)</h3>
 <table class="kpi-table">
   <tr>
@@ -2669,6 +2722,7 @@ body:not(.scrolled) .sticky-tabs {
     <td><span class="status-badge status-not-started">No iniciado</span></td>
   </tr>
 </table>
+                    </div>
 
                     </div>
                 </div>
