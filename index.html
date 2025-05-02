@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AZ Tech 2.0 - Plan Estratégico</title>
     <style>
+
+/* Complete CSS for AZ Tech 2.0 with fixed menu */
+
 :root {
     --primary: #003366;
     --primary-light: #0047a9;
@@ -19,8 +22,8 @@
     --gray: #6c757d;
     --gray-light: #e9ecef;
     --white: #ffffff;
-    --header-height: 80px;
-    --header-height-scrolled: 60px;
+    --header-height: 100px; /* Main header height */
+    --header-height-scrolled: 80px; /* Scrolled header height */
 }
 
 * {
@@ -53,7 +56,9 @@ header .container {
     width: 100%;
     max-width: 100%;
     padding: 0;
-        position: relative;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -74,24 +79,81 @@ header.header-scrolled {
     height: var(--header-height-scrolled);
 }
 
-.header-content {
+/* Header top section with logo and title */
+.header-top {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 100%;
-    width: 100%;
-    padding: 0 20px;
+    padding: 5px 20px;
+    height: calc(var(--header-height) - 40px);
     max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
+    transition: height 0.3s ease;
     position: relative;
 }
 
-.logo-container {
+header.header-scrolled .header-top {
+    height: calc(var(--header-height-scrolled) - 40px);
+}
+
+/* Header tabs section */
+.header-tabs {
+    background-color: var(--primary-light);
+    width: 100%;
+    height: 40px;
     display: flex;
-    align-items: center; /* Centra verticalmente el logo y el texto */
+    justify-content: center;
+    align-items: center;
     transition: all 0.3s ease;
 }
 
+.tabs {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.tab {
+    flex: 1 1 auto;
+    min-width: 120px;
+    max-width: 180px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.tab:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.tab.active {
+    background-color: var(--accent);
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* Logo container - left side */
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: auto;
+    margin-right: auto;
+    transition: all 0.3s ease;
+}
 
 .logo-image {
     height: 35px;
@@ -100,7 +162,18 @@ header.header-scrolled {
 }
 
 header.header-scrolled .logo-image {
-    height: 25px; /* Make logo smaller when scrolled */
+    height: 25px;
+}
+
+/* AZ Tech title - right side */
+.header-title {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    z-index: 20;
+    transition: all 0.3s ease;
+    opacity: 1;
+    visibility: visible;
 }
 
 .logo-text {
@@ -110,6 +183,7 @@ header.header-scrolled .logo-image {
     display: flex;
     align-items: center;
     transition: font-size 0.3s ease;
+    margin-right: 0;
 }
 
 header.header-scrolled .logo-text {
@@ -125,105 +199,56 @@ header.header-scrolled .logo-text {
     font-weight: 800;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-}
-
-.logo span {
-    color: var(--accent);
-    font-weight: 800;
-}
-
+/* Plan Estratégico - center */
 .header-right {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
     justify-content: center;
-    min-width: 350px; /* Asegura espacio suficiente para el texto */
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    z-index: 10;
 }
-
 
 .subtitle {
-    font-size: 18px;
-    opacity: 0.9;
-    transition: font-size 0.3s ease;
-}
-
-header.header-scrolled .subtitle {
+    text-align: center;
     font-size: 16px;
-}
-
-.current-section {
-    display: inline-block;
-    position: static; /* Cambiar de posición absoluta a estática */
-    transform: none; /* Eliminar transformación */
-    margin-top: 5px; /* Añadir espacio después del subtítulo */
-    font-weight: 500;
-    font-size: 18px;
-    text-align: right;
+    line-height: 1.3;
+    padding: 0;
+    margin: 0;
     opacity: 0.9;
     transition: all 0.3s ease;
 }
 
-header.header-scrolled .current-section {
-    font-size: 16px;
+header.header-scrolled .subtitle {
+    font-size: 14px;
 }
 
+/* Tab container and content */
 .tab-container {
     margin-bottom: 40px;
 }
 
-.tabs {
-    display: flex;
-    border-bottom: 2px solid var(--primary);
-    margin-bottom: 25px;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-.tab {
-    flex: 1; /* Hace que todos los elementos tengan el mismo ancho */
-    padding: 12px 5px; /* Reduce el padding horizontal para que quepa mejor el texto */
-    cursor: pointer;
-    background-color: var(--gray-light);
-    border: 1px solid #ddd;
-    border-bottom: none;
-    margin-right: 2px; /* Reduce el margen para que estén más juntos */
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    text-align: center; /* Centra el texto */
-    white-space: nowrap; /* Evita saltos de línea */
-    overflow: hidden; /* Oculta el texto que sobresalga */
-    text-overflow: ellipsis; /* Muestra elipsis si el texto es demasiado largo */
-}
-
-.tab:hover {
-    background-color: var(--white);
-    color: var(--primary);
-}
-
-.tab.active {
-    background-color: var(--primary);
-    border: 1px solid var(--primary);
-    color: var(--white);
-    font-weight: bold;
-    position: relative;
-    top: 1px;
-}
-
 .tab-content {
     display: none;
-    padding: 30px;
+    padding: 20px;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     animation: fadeIn 0.5s;
+    margin-top: 10px;
+    padding-top: 15px;
+}
+
+.tab::after {
+    content: "";
+    display: none;
+}
+
+.tab.active::after {
+    content: "";
+    display: none;
 }
 
 .tab-content.active {
@@ -232,17 +257,19 @@ header.header-scrolled .current-section {
 
 .tab-content h2 {
     color: var(--primary);
-    margin-bottom: 20px;
-    padding-bottom: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
     border-bottom: 2px solid var(--accent);
     font-size: 28px;
+    margin-top: 0;
 }
 
 .tab-content p {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 16px;
 }
 
+/* Collapsible elements */
 .collapsible {
     background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%);
     color: white;
@@ -296,6 +323,7 @@ header.header-scrolled .current-section {
     padding: 20px 10px;
 }
 
+/* Phase, milestone and other components */
 .phase {
     margin-bottom: 30px;
     border-left: 5px solid var(--secondary);
@@ -337,6 +365,7 @@ header.header-scrolled .current-section {
     padding-top: 10px;
 }
 
+/* Team grid */
 .team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -392,6 +421,7 @@ header.header-scrolled .current-section {
     line-height: 1.5;
 }
 
+/* Metrics grid */
 .metrics-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -459,6 +489,7 @@ header.header-scrolled .current-section {
     background: linear-gradient(90deg, var(--danger) 0%, #ff6b6b 100%);
 }
 
+/* Calendar and timeline */
 .calendar {
     background-color: white;
     border-radius: 12px;
@@ -552,6 +583,7 @@ header.header-scrolled .current-section {
     font-size: 18px;
 }
 
+/* Tables */
 .kpi-table {
     width: 100%;
     border-collapse: collapse;
@@ -582,6 +614,7 @@ header.header-scrolled .current-section {
     background-color: rgba(0, 102, 204, 0.1);
 }
 
+/* Status badges */
 .status-badge {
     display: inline-block;
     padding: 5px 10px;
@@ -612,11 +645,13 @@ header.header-scrolled .current-section {
     color: white;
 }
 
+/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* Footer */
 footer {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
     color: white;
@@ -626,6 +661,7 @@ footer {
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Priority indicators */
 .priority-high {
     border-left: 5px solid var(--danger);
 }
@@ -638,8 +674,7 @@ footer {
     border-left: 5px solid var(--success);
 }
 
-/* New styles to improve readability and hierarchy */
-
+/* Typography and content styling */
 h3, h4 {
     margin-top: 20px;
     margin-bottom: 15px;
@@ -689,101 +724,189 @@ ul li, ol li {
     border-radius: 3px;
 }
 
-/* Responsive adjustments */
-
-@media (max-width: 992px) {
-    .header-right {
-        min-width: 280px;
-    }
-    
-    .subtitle, .current-section {
-        font-size: 16px;
-    }
+.task-description-full {
+    font-size: 0.9em;
+    color: #666;
+    line-height: 1.4;
+    transition: all 0.3s ease;
 }
 
-@media (max-width: 768px) {
-     .header-content {
-        flex-direction: column;
-        padding: 10px 0;
-    }
-    
+.toggle-details {
+    background: none;
+    border: none;
+    color: var(--secondary);
+    font-size: 0.85em;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 2px 8px;
+    transition: color 0.2s ease;
+}
+
+.toggle-details:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+/* Sticky Tabs Styles */
+.sticky-tabs {
+    position: sticky;
+    top: var(--header-height-scrolled);
+    background-color: white;
+    z-index: 900;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease, background-color 0.5s ease;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+body:not(.scrolled) .sticky-tabs {
+    top: var(--header-height);
+}
+
+.sticky-tabs .tabs {
+    margin-bottom: 0;
+    border-bottom: 2px solid var(--primary);
+}
+
+.tabs-scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tabs-scrolled .tabs {
+    border-bottom-width: 3px;
+}
+
+.tabs-scrolled .tab.active {
+    background-color: var(--primary);
+    color: white;
+    border-bottom-color: transparent;
+    border-top: 3px solid var(--accent);
+}
+
+/* RESPONSIVE STYLES */
+/* Large screens */
+@media (max-width: 992px) {
     .header-right {
-        width: 100%;
-        align-items: center;
-        margin-top: 8px;
         min-width: auto;
     }
-    .subtitle, .current-section {
-        text-align: center;
-        width: 100%;
-        font-size: 14px;
-    }
-    .current-section {
-        position: static;
-        text-align: center;
-        width: 100%;
-        margin-top: 3px;
-        transform: none;
-    }
-
-    :root {
-        --header-height: 120px;
-        --header-height-scrolled: 90px;
-    }
     
-    .tabs {
-        justify-content: stretch; /* Estiran los elementos para llenar el ancho */
+    .subtitle {
+        font-size: 15px;
     }
     
     .tab {
-        flex: 1 1 auto; /* Permite que los elementos se ajusten pero mantengan proporción */
-        font-size: 13px; /* Reduce ligeramente el tamaño de la fuente */
-        padding: 10px 5px; /* Reduce aún más el padding */
+        min-width: 100px;
+        padding: 0 10px;
     }
+}
 
-    
-    .team-grid, .metrics-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+/* Medium screens (tablets) */
+@media (max-width: 768px) {
+    :root {
+        --header-height: 135px;
+        --header-height-scrolled: 105px;
     }
     
-    .timeline::after {
-        left: 40px;
+    /* Header tabs section */
+    .header-tabs {
+        height: auto;
+        min-height: 70px;
+        padding: 5px 0;
     }
     
-    .timeline-item {
-        width: 100%;
-        padding-left: 70px;
-        padding-right: 25px;
+    .tabs {
+        flex-wrap: wrap;
+        justify-content: center;
+        height: auto;
     }
     
-    .timeline-right {
-        left: 0;
+    .tab {
+        flex: 0 0 33.33%;
+        min-width: unset;
+        max-width: unset;
+        height: 35px;
+        font-size: 11px;
+        padding: 0 2px;
     }
     
-    .timeline-left::after, .timeline-right::after {
-        left: 28px;
+    /* Make sure there's always 3 tabs per row */
+    .tab:nth-child(1), .tab:nth-child(2), .tab:nth-child(3) {
+        order: 1; /* First row */
     }
     
-    .header-content {
+    .tab:nth-child(4), .tab:nth-child(5), .tab:nth-child(6) {
+        order: 2; /* Second row */
+    }
+    
+    /* Header top section */
+    .header-top {
         flex-direction: column;
         justify-content: center;
-        padding: 10px 0;
-    }
-    
-    .header-right {
         align-items: center;
-        margin-top: 5px;
+        padding: 5px 10px 2px 10px;
+        height: calc(var(--header-height) - 70px);
+        gap: 2px;
+        position: relative;
     }
     
-    /* Logo más pequeño en responsive */
+    header.header-scrolled .header-top {
+        height: calc(var(--header-height-scrolled) - 70px);
+    }
+    
+    /* Logo container on mobile */
+    .logo-container {
+        width: 100%;
+        justify-content: center;
+        margin-right: 0;
+    }
+    
+    /* AZ Tech title on mobile */
+    .header-title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        margin: 0;
+    }
+    
+    header.header-scrolled .header-title {
+        top: 40%;
+    }
+    
+    /* Plan Estratégico on mobile */
+    .header-right {
+        position: relative;
+        left: auto;
+        transform: none;
+        width: 100%;
+        margin-top: 30px;
+    }
+    
+    .subtitle {
+        text-align: center;
+        width: 100%;
+        font-size: 13px;
+        line-height: 1.2;
+    }
+    
+    header.header-scrolled .subtitle {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    /* Image sizes on mobile */
     .logo-image {
-        height: 30px !important; /* Fuerza un tamaño más pequeño en móvil */
+        height: 25px !important;
     }
     
     header.header-scrolled .logo-image {
-        height: 20px !important; /* Aún más pequeño al hacer scroll */
+        height: 20px !important;
     }
     
+    /* Text sizes on mobile */
     .logo-text {
         font-size: 20px !important;
     }
@@ -792,104 +915,139 @@ ul li, ol li {
         font-size: 16px !important;
     }
     
-    .logo {
-        font-size: 20px;
+    .task-description-full {
+        font-size: 0.85em;
     }
     
-    .subtitle {
-        font-size: 14px !important;
+    .toggle-details {
+        font-size: 0.8em;
     }
     
-    header.header-scrolled .subtitle {
-        font-size: 12px !important;
+    /* Timeline adjustments */
+    .timeline-item {
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
     }
     
-    .current-section {
-        font-size: 14px !important;
+    .timeline-right, .timeline-left {
+        left: 0;
     }
     
-    header.header-scrolled .current-section {
-        font-size: 12px !important;
+    .timeline::after {
+        left: 10px;
     }
     
-    /* Ajustes de margen para evitar superposiciones */
-    body {
-        padding-top: var(--header-height);
-    }
-    
-    body.scrolled {
-        padding-top: var(--header-height-scrolled);
-    }
-    
-    /* Asegura que las tabs no se colapsen demasiado */
-    .tabs {
-        margin-top: 10px;
+    .timeline-left::after, .timeline-right::after {
+        left: -2px;
     }
 }
-    @media (max-width: 480px) {
+
+/* Small screens (phones) */
+@media (max-width: 576px) {
     .tabs {
-        flex-wrap: wrap; /* Permite que se ajusten en varias filas si es necesario */
+        justify-content: flex-start;
     }
     
     .tab {
-        flex: 1 1 40%; /* En pantallas muy pequeñas, 2 tabs por fila */
-        margin-bottom: 2px; /* Espacio entre filas */
-        font-size: 12px; /* Fuente aún más pequeña */
+        font-size: 11px;
+        padding: 0 3px;
+    }
+    
+    .milestone-meta {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .kpi-table th, .kpi-table td {
+        padding: 10px 8px;
+        font-size: 14px;
     }
 }
-.task-description-full {
-  font-size: 0.9em;
-  color: #666;
-  line-height: 1.4;
-  transition: all 0.3s ease;
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    :root {
+        --header-height: 130px;
+        --header-height-scrolled: 110px;
+    }
+    
+    .subtitle {
+        font-size: 11px;
+    }
+    
+    .logo-text {
+        font-size: 16px !important;
+    }
+    
+    .tab {
+        height: 30px;
+        font-size: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 1px;
+    }
+    
+    .header-top {
+        gap: 1px;
+        padding: 3px 5px 1px 5px;
+    }
+    
+    .header-title {
+        margin-bottom: 2px;
+    }
+    
+    .tab-content {
+        padding: 15px 10px;
+    }
+    
+    .tab-content h2 {
+        font-size: 22px;
+    }
+    
+    .kpi-table {
+        font-size: 12px;
+    }
+    
+    .kpi-table th, .kpi-table td {
+        padding: 8px 5px;
+    }
 }
 
-.toggle-details {
-  background: none;
-  border: none;
-  color: var(--secondary);
-  font-size: 0.85em;
-  font-weight: 500;
-  cursor: pointer;
-  padding: 2px 8px;
-  transition: color 0.2s ease;
-}
+/* Reset tab order for all screens to ensure proper display */
+.tab:nth-child(1) { order: 1; }
+.tab:nth-child(2) { order: 2; }
+.tab:nth-child(3) { order: 3; }
+.tab:nth-child(4) { order: 4; }
+.tab:nth-child(5) { order: 5; }
+.tab:nth-child(6) { order: 6; }
 
-.toggle-details:hover {
-  color: var(--primary);
-  text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  .task-description-full {
-    font-size: 0.85em;
-  }
-  
-  .toggle-details {
-    font-size: 0.8em;
-  }
-}</style>
+</style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo-container">
-                    <img src="logoaz.svg" alt="AZ Capital Logo" class="logo-image">
-                    <div class="logo-text">
-                        <span class="az">AZ</span><span class="tech">Tech 2.0</span>
-                    </div>
-                </div>
-                <div class="header-right">
-                    <div class="subtitle">Plan Estratégico | Junio 2025 - Marzo 2026</div>
-                    <div class="current-section" id="current-section-display"></div>
+
+<header>
+    <div class="container">
+        <div class="header-top">
+            <!-- Logo on the left -->
+            <div class="logo-container">
+                <img src="logoaz.svg" alt="AZ Capital Logo" class="logo-image">
+            </div>
+            
+            <!-- Plan Estratégico in the middle -->
+            <div class="header-right">
+                <div class="subtitle">Plan Estratégico | Junio 2025 - Marzo 2026</div>
+            </div>
+            
+            <!-- AZ Tech 2.0 title on the right -->
+            <div class="header-title">
+                <div class="logo-text">
+                    <span class="az">AZ</span><span class="tech">Tech 2.0</span>
                 </div>
             </div>
         </div>
-    </header>
-    
-    <div class="container">
-        <div class="tab-container">
+        <div class="header-tabs">
             <div class="tabs">
                 <div class="tab active" onclick="openTab(event, 'vision')">Visión General</div>
                 <div class="tab" onclick="openTab(event, 'structure')">Estructura y Equipo</div>
@@ -898,7 +1056,14 @@ ul li, ol li {
                 <div class="tab" onclick="openTab(event, 'timeline')">Calendario e Hitos</div>
                 <div class="tab" onclick="openTab(event, 'kpis')">KPIs</div>
             </div>
-            
+        </div>
+    </div>
+</header>
+
+    
+    <div class="container">
+           <div class="tab-container">
+                      
             <div id="vision" class="tab-content active">
                 <h2>Visión General del Plan Estratégico</h2>
                 <p>AZ Tech 2.0 representa nuestra visión para construir un equipo de alto rendimiento enfocado en el sector tecnológico, ofreciendo servicios de M&A de primer nivel adaptados específicamente a las necesidades de empresas tech en España.</p>
@@ -2564,120 +2729,251 @@ ul li, ol li {
         </div>
     </div>
     
-    <footer>
+       <footer>
         <div class="container">
             <p>&copy; 2025 AZ Capital | Plan Estratégico AZ Tech 2.0</p>
         </div>
     </footer>
     
     <script>
-       // Map of tab IDs to their display names
-    const tabNames = {
-        'vision': 'Visión General',
-        'structure': 'Estructura y Equipo',
-        'execution': 'Ejecución y Procesos',
-        'commercial': 'Estrategia Comercial',
-        'timeline': 'Calendario e Hitos',
-        'kpis': 'KPIs'
-    };
 
-    function updateCurrentSection(tabName) {
-        const currentSectionElement = document.getElementById('current-section-display');
-        if (currentSectionElement) {
-            currentSectionElement.textContent = tabNames[tabName] || '';
-        }
+// Complete JavaScript for AZ Tech 2.0 website
+
+// Map of tab IDs to their display names
+const tabNames = {
+    'vision': 'Visión General',
+    'structure': 'Estructura y Equipo',
+    'execution': 'Ejecución y Procesos',
+    'commercial': 'Estrategia Comercial',
+    'timeline': 'Calendario e Hitos',
+    'kpis': 'KPIs'
+};
+
+// Store the current active tab to maintain state
+let activeTabId = 'vision'; // Default active tab
+
+// Function to open a tab when clicked
+function openTab(evt, tabName) {
+    // Update all tab contents
+    var tabcontent = document.getElementsByClassName("tab-content");
+    for (var i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].classList.remove("active");
     }
-
-    function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tab-content");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].classList.remove("active");
-        }
-        tablinks = document.getElementsByClassName("tab");
-        for (i = 0; i < tablinks.length; i++) {
+    
+    // Find the specific tab content and make it active
+    var targetTab = document.getElementById(tabName);
+    if (targetTab) {
+        targetTab.classList.add("active");
+    }
+    
+    // Update all tab buttons in the entire document to reflect the current selection
+    var tablinks = document.getElementsByClassName("tab");
+    for (var i = 0; i < tablinks.length; i++) {
+        // Check if this tab button is for the selected tab
+        if (tablinks[i].getAttribute("onclick").includes(tabName)) {
+            tablinks[i].classList.add("active");
+        } else {
             tablinks[i].classList.remove("active");
         }
-        document.getElementById(tabName).classList.add("active");
-        evt.currentTarget.classList.add("active");
-        
-        // Update the current section in the header
-        updateCurrentSection(tabName);
     }
+    
+    // Update active tab id
+    activeTabId = tabName;
+}
 
-    // Handle collapsible sections
-    document.addEventListener("DOMContentLoaded", function() {
-        // Setup collapsibles
-        const coll = document.getElementsByClassName("collapsible");
-        for (let i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                const content = this.nextElementSibling;
-                if (content.style.maxHeight) {
-                    content.style.maxHeight = null;
-                } else {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                }
-            });
+// Execute when the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", function() {
+    // Initialize collapsible sections
+    initCollapsibles();
+    
+    // Add scroll event listener for sticky header behavior
+    initScrollBehavior();
+    
+    // Setup toggle buttons for task details
+    initToggleButtons();
+    
+    // Initialize progress bars with animation
+    initProgressBars();
+    
+    // Handle window resize events
+    initResizeHandler();
+});
+
+// Initialize collapsible sections
+function initCollapsibles() {
+    const coll = document.getElementsByClassName("collapsible");
+    for (let i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            const content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+}
+
+// Initialize scroll behavior for header
+function initScrollBehavior() {
+    function handleScroll() {
+        const header = document.querySelector('header');
+        const body = document.body;
+        const scrollPosition = window.pageYOffset;
+        const azTechTitle = document.querySelector('.header-title');
+        const subtitle = document.querySelector('.subtitle');
+        
+        // Determine if we should switch to scrolled mode
+        if (scrollPosition > 50) {
+            header.classList.add('header-scrolled');
+            body.classList.add('scrolled');
+            
+            // Ensure AZ Tech title stays visible
+            if (azTechTitle) {
+                azTechTitle.style.opacity = "1";
+                azTechTitle.style.visibility = "visible";
+            }
+            
+            // Handle subtitle visibility on mobile
+            if (window.innerWidth <= 768 && subtitle) {
+                subtitle.style.opacity = "0";
+            }
+        } else {
+            header.classList.remove('header-scrolled');
+            body.classList.remove('scrolled');
+            
+            // Reset subtitle visibility
+            if (subtitle) {
+                subtitle.style.opacity = "1";
+            }
         }
         
-        // Add animation to metric bars
-        setTimeout(function() {
-            const progresses = document.getElementsByClassName('progress');
-            for(let i = 0; i < progresses.length; i++) {
-                if (progresses[i].style.width) {
-                    // Already set, don't overwrite
-                    continue;
-                }
+        // Check for sticky tabs
+        const stickyTabs = document.querySelector('.sticky-tabs');
+        if (stickyTabs) {
+            if (scrollPosition > 100) {
+                stickyTabs.classList.add('tabs-scrolled');
+            } else {
+                stickyTabs.classList.remove('tabs-scrolled');
+            }
+        }
+    }
+    
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+    
+    // Trigger once on page load to set initial state
+    handleScroll();
+}
+
+// Initialize toggle buttons for task details
+function initToggleButtons() {
+    const toggleButtons = document.querySelectorAll('.toggle-details');
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const parentTd = this.closest('td');
+            const description = parentTd.querySelector('.task-description-full');
+            
+            if (this.getAttribute('data-state') === 'collapsed') {
+                // Show full description
+                description.style.display = 'block';
+                this.textContent = 'Ver menos';
+                this.setAttribute('data-state', 'expanded');
+            } else {
+                // Hide description
+                description.style.display = 'none';
+                this.textContent = 'Ver más';
+                this.setAttribute('data-state', 'collapsed');
+            }
+        });
+    });
+}
+
+// Initialize progress bars with animation
+function initProgressBars() {
+    setTimeout(function() {
+        const progresses = document.getElementsByClassName('progress');
+        for(let i = 0; i < progresses.length; i++) {
+            // Only set if not already set
+            if (!progresses[i].style.width) {
                 const width = progresses[i].getAttribute('style');
                 if (width && width.includes('width:')) {
                     progresses[i].style.width = width.split('width:')[1];
                 }
             }
-        }, 500);
+        }
+    }, 500);
+}
+
+// Handle window resize events
+function initResizeHandler() {
+    function handleResize() {
+        // Recalculate heights for active collapsibles
+        recalculateCollapsibleHeights();
         
-        // Initialize the current section display
-        updateCurrentSection('vision');
-        
-        // Add scroll event listener
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            const body = document.body;
-            
-            if (window.pageYOffset > 50) {
-                header.classList.add('header-scrolled');
-                body.classList.add('scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
-                body.classList.remove('scrolled');
+        // Adjust header based on screen size
+        adjustHeaderForScreenSize();
+    }
+    
+    // Recalculate collapsed content heights
+    function recalculateCollapsibleHeights() {
+        const activeCollapsibles = document.querySelectorAll('.collapsible.active');
+        activeCollapsibles.forEach(function(collapsible) {
+            const content = collapsible.nextElementSibling;
+            if (content && content.style.maxHeight) {
+                content.style.maxHeight = content.scrollHeight + "px";
             }
         });
-    });
-// Add this to your existing script section
-document.addEventListener("DOMContentLoaded", function() {
-  // Setup toggle buttons for task details
-  const toggleButtons = document.querySelectorAll('.toggle-details');
-  
-  toggleButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const parentTd = this.closest('td');
-      const description = parentTd.querySelector('.task-description-full');
-      
-      if (this.getAttribute('data-state') === 'collapsed') {
-        // Show full description
-        description.style.display = 'block';
-        this.textContent = 'Ver menos';
-        this.setAttribute('data-state', 'expanded');
-      } else {
-        // Hide description
-        description.style.display = 'none';
-        this.textContent = 'Ver más';
-        this.setAttribute('data-state', 'collapsed');
-      }
-    });
-  });
-});
-;
+    }
+    
+    // Adjust header elements based on screen size
+    function adjustHeaderForScreenSize() {
+        const header = document.querySelector('header');
+        const azTechTitle = document.querySelector('.header-title');
+        const subtitle = document.querySelector('.subtitle');
+        const scrollPosition = window.pageYOffset;
+        
+        if (window.innerWidth <= 768) {
+            // Mobile layout adjustments
+            if (azTechTitle) {
+                azTechTitle.style.position = "absolute";
+                azTechTitle.style.top = "50%";
+                azTechTitle.style.left = "50%";
+                azTechTitle.style.transform = "translate(-50%, -50%)";
+            }
+            
+            // Handle subtitle visibility based on scroll position
+            if (subtitle) {
+                if (scrollPosition > 50) {
+                    subtitle.style.opacity = "0";
+                } else {
+                    subtitle.style.opacity = "1";
+                }
+            }
+        } else {
+            // Desktop layout adjustments
+            if (azTechTitle) {
+                azTechTitle.style.position = "relative";
+                azTechTitle.style.top = "auto";
+                azTechTitle.style.left = "auto";
+                azTechTitle.style.transform = "none";
+            }
+            
+            // Always show subtitle on desktop
+            if (subtitle) {
+                subtitle.style.opacity = "1";
+            }
+        }
+    }
+    
+    // Listen for window resize
+    window.addEventListener('resize', handleResize);
+    
+    // Call once on page load
+    handleResize();
+}
+
     </script>
 </body>
 </html>
