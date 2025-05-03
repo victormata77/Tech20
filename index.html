@@ -785,6 +785,311 @@ body:not(.scrolled) .sticky-tabs {
     border-top: 3px solid var(--accent);
 }
 
+.hexagon-container {
+    padding: 20px 10px;
+}
+
+.section-title {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.hexagon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.hexagon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.hexagon {
+    width: 120px;
+    height: 104px;
+    background-color: var(--primary);
+    position: relative;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hexagon:before,
+.hexagon:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    left: 0;
+}
+
+.hexagon:before {
+    border-bottom: 35px solid var(--primary);
+    top: -35px;
+}
+
+.hexagon:after {
+    border-top: 35px solid var(--primary);
+    bottom: -35px;
+}
+
+.hexagon-content {
+    z-index: 1;
+    color: white;
+    padding: 0 15px;
+}
+
+.hexagon-number {
+    font-size: 24px;
+    font-weight: bold;
+    background-color: var(--accent);
+    color: var(--primary);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 8px;
+}
+
+.hexagon-item h4 {
+    font-size: 16px;
+    margin: 0;
+    color: white;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.hexagon-item p {
+    margin-top: 15px;
+    font-size: 14px;
+    color: var(--dark);
+    line-height: 1.5;
+}
+
+.hexagon:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.strategic-objectives-container {
+    padding: 20px 10px;
+}
+
+.objective-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+.objective-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 25px 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-top: 5px solid var(--accent);
+}
+
+.objective-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 51, 102, 0.05) 0%, rgba(0, 102, 204, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.objective-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.objective-card:hover::before {
+    opacity: 1;
+}
+
+.objective-icon {
+    background-color: rgba(0, 51, 102, 0.1);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.objective-card h4 {
+    color: var(--primary);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-light);
+}
+
+.objective-card p {
+    font-size: 14px;
+    color: var(--dark);
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+.implementation-phases {
+    padding: 10px 0;
+}
+
+.timeline-container {
+    position: relative;
+    max-width: 100%;
+}
+
+.timeline-phase {
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f5f7fa;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.phase-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: rgba(0, 51, 102, 0.05);
+    position: relative;
+}
+
+.phase-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.phase-1 {
+    background-color: var(--primary);
+}
+
+.phase-2 {
+    background-color: var(--secondary);
+}
+
+.phase-3 {
+    background-color: var(--accent);
+}
+
+.phase-header h4 {
+    margin: 0;
+    color: var(--primary);
+    font-size: 16px;
+    font-weight: 600;
+    flex-grow: 1;
+}
+
+.phase-date {
+    color: var(--gray);
+    font-weight: normal;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.phase-content {
+    padding: 15px;
+}
+
+.phase-content p {
+    margin: 0 0 10px;
+    font-size: 14px;
+}
+
+.phase-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.phase-item {
+    background-color: rgba(0, 102, 204, 0.1);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.milestone {
+    border-left: 3px solid var(--accent);
+    padding: 10px 15px;
+    background-color: white;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.milestone-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.milestone-icon {
+    color: var(--accent);
+    font-size: 16px;
+    margin-right: 8px;
+}
+
+.milestone h5 {
+    margin: 0;
+    font-size: 14px;
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.milestone p {
+    margin: 5px 0 8px;
+    font-size: 13px;
+    color: var(--gray);
+}
+
+.milestone-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 8px;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+
 /* RESPONSIVE STYLES */
 /* Large screens */
 @media (max-width: 992px) {
@@ -968,6 +1273,68 @@ body:not(.scrolled) .sticky-tabs {
     -webkit-overflow-scrolling: touch;
     margin-bottom: 20px;
 }
+  .hexagon-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .hexagon {
+        width: 100px;
+        height: 86px;
+    }
+    
+    .hexagon:before,
+    .hexagon:after {
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+    }
+    
+    .hexagon:before {
+        border-bottom: 29px solid var(--primary);
+        top: -29px;
+    }
+    
+    .hexagon:after {
+        border-top: 29px solid var(--primary);
+        bottom: -29px;
+    }
+    
+    .hexagon-item h4 {
+        font-size: 14px;
+    }
+    
+    .hexagon-number {
+        font-size: 20px;
+        width: 30px;
+        height: 30px;
+    }
+ .objective-cards {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .objective-icon {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .objective-icon svg {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .objective-card h4 {
+        font-size: 16px;
+    }
+
+ .phase-items {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .milestone-footer {
+        flex-direction: column;
+    }
 }
 
 /* Small screens (phones) */
@@ -1040,6 +1407,13 @@ body:not(.scrolled) .sticky-tabs {
     .kpi-table th, .kpi-table td {
         padding: 8px 5px;
     }
+.hexagon-grid {
+        grid-template-columns: 1fr;
+    }
+.objective-cards {
+        grid-template-columns: 1fr;
+    }
+
 }
 
 /* Reset tab order for all screens to ensure proper display */
@@ -1054,25 +1428,6 @@ body:not(.scrolled) .sticky-tabs {
 </head>
 <body>
 
-    
-    <div id="password-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #003366; display: flex; justify-content: center; align-items: center; z-index: 9999;">
-    <div style="background-color: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); width: 90%; max-width: 400px; text-align: center;">
-        <div style="margin-bottom: 25px; display: flex; flex-direction: column; align-items: center;">
-            <img src="logoaz.svg" alt="AZ Capital Logo" style="height: 60px; margin-bottom: 15px;">
-            <div style="font-size: 28px; font-weight: bold; display: flex; align-items: center;">
-                <span style="color: #003366;">AZ</span><span style="color: #ff9900; font-weight: 800;">Tech 2.0</span>
-            </div>
-            <div style="font-size: 16px; color: #6c757d; margin-top: 5px;">Plan Estratégico | Acceso Restringido</div>
-        </div>
-        <div style="margin-bottom: 20px; text-align: left;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #003366;">Contraseña:</label>
-            <input type="password" id="password-input" style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 6px; font-size: 16px;">
-        </div>
-        <button id="submit-password" style="background: linear-gradient(90deg, #003366 0%, #0066cc 100%); color: white; border: none; padding: 12px 20px; font-size: 16px; font-weight: 600; border-radius: 6px; cursor: pointer; width: 100%;">Acceder</button>
-        <p id="error-message" style="color: #dc3545; margin-top: 10px; display: none;">Contraseña incorrecta. Intente nuevamente.</p>
-    </div>
-</div>
-    
 <header>
     <div class="container">
         <div class="header-top">
@@ -1114,95 +1469,251 @@ body:not(.scrolled) .sticky-tabs {
                 <h2>Visión General del Plan Estratégico</h2>
                 <p>AZ Tech 2.0 representa nuestra visión para construir un equipo de alto rendimiento enfocado en el sector tecnológico, ofreciendo servicios de M&A de primer nivel adaptados específicamente a las necesidades de empresas tech en España.</p>
                 
+
+
                 <button class="collapsible">Fundamentos del Plan</button>
                 <div class="collapsible-content">
                     <div class="collapsible-content-inner">
-                        <p>El plan estratégico se estructura en seis bloques fundamentales:</p>
-                        <ol>
-                            <li><span class="highlight-concept">Estructura del Equipo y Desarrollo de Talento:</span> Construir un equipo con roles claramente definidos que aprovechen las fortalezas individuales, implementando un sistema de "tándem" que optimice las capacidades de originación y ejecución.</li>
-                            <li><span class="highlight-concept">Sistemas de Organización y Procesos:</span> Desarrollar herramientas y protocolos sistematizados para mejorar la eficiencia, incluyendo un "Tech Playbook", sistema de seguimiento de oportunidades y biblioteca de conocimiento.</li>
-                            <li><span class="highlight-concept">Estrategia Comercial:</span> Implementar un enfoque sistemático para la identificación y aprovechamiento de oportunidades, incluyendo segmentación de mercado, estrategias de aproximación y posicionamiento distintivo.</li>
-                            <li><span class="highlight-concept">Optimización de Ejecución:</span> Establecer un sistema escalonado de ejecución basado en tipos de proyectos, con plantillas y procesos estandarizados que equilibren calidad y eficiencia.</li>
-                            <li><span class="highlight-concept">Cultura y Motivación:</span> Definir valores compartidos y crear una identidad distintiva, fomentando el reconocimiento y la celebración de logros, con espacios para la discusión abierta.</li>
-                            <li><span class="highlight-concept">Colaboración con otros grupos:</span> Establecer protocolos claros para la interacción con otras áreas de AZ Capital, potenciando sinergias y evitando conflictos.</li>
-                        </ol>
-                    </div>
+                  
+
+<div class="hexagon-container">
+    
+    <div class="hexagon-grid">
+        <div class="hexagon-item">
+            <div class="hexagon">
+                <div class="hexagon-content">
+                    <span class="hexagon-number">1</span>
+                    <h4>Estructura del Equipo y Desarrollo de Talento</h4>
+                </div>
+            </div>
+            <p>Construir un equipo con roles claramente definidos que aprovechen las fortalezas individuales, implementando un sistema de "tándem" que optimice las capacidades de originación y ejecución.</p>
+        </div>
+        
+        <div class="hexagon-item">
+            <div class="hexagon">
+                <div class="hexagon-content">
+                    <span class="hexagon-number">2</span>
+                    <h4>Sistemas de Organización y Procesos</h4>
+                </div>
+            </div>
+            <p>Desarrollar herramientas y protocolos sistematizados para mejorar la eficiencia, incluyendo un "Tech Playbook", sistema de seguimiento de oportunidades y biblioteca de conocimiento.</p>
+        </div>
+        
+        <div class="hexagon-item">
+            <div class="hexagon">
+                <div class="hexagon-content">
+                    <span class="hexagon-number">3</span>
+                    <h4>Estrategia Comercial</h4>
+                </div>
+            </div>
+            <p>Implementar un enfoque sistemático para la identificación y aprovechamiento de oportunidades, incluyendo segmentación de mercado, estrategias de aproximación y posicionamiento distintivo.</p>
+        </div>
+        
+        <div class="hexagon-item">
+            <div class="hexagon">
+                <div class="hexagon-content">
+                    <span class="hexagon-number">4</span>
+                    <h4>Optimización de Ejecución</h4>
+                </div>
+            </div>
+            <p>Establecer un sistema escalonado de ejecución basado en tipos de proyectos, con plantillas y procesos estandarizados que equilibren calidad y eficiencia.</p>
+        </div>
+        
+        <div class="hexagon-item">
+            <div class="hexagon">
+                <div class="hexagon-content">
+                    <span class="hexagon-number">5</span>
+                    <h4>Cultura y Motivación</h4>
+                </div>
+            </div>
+            <p>Definir valores compartidos y crear una identidad distintiva, fomentando el reconocimiento y la celebración de logros, con espacios para la discusión abierta.</p>
+        </div>
+        
+        <div class="hexagon-item">
+            <div class="hexagon">
+                <div class="hexagon-content">
+                    <span class="hexagon-number">6</span>
+                    <h4>Colaboración con otros grupos</h4>
+                </div>
+            </div>
+            <p>Establecer protocolos claros para la interacción con otras áreas de AZ Capital, potenciando sinergias y evitando conflictos.</p>
+        </div>
+    </div>
+</div>
+
+
+
+    </div>
                 </div>
                 
                 <button class="collapsible">Fases de Implementación</button>
                 <div class="collapsible-content">
                     <div class="collapsible-content-inner">
-                        <div class="phase">
-                            <h3>Fase 1: Fundamentos (Junio - Septiembre 2025)</h3>
-                            <p>Enfocada en establecer las bases sólidas para la transformación:</p>
-                            <ul>
-                                <li>Definición de roles y estructura de equipo</li>
-                                <li>Implementación de sistemas básicos de seguimiento</li>
-                                <li>Desarrollo de protocolos fundamentales</li>
-                                <li>Alineamiento en valores y propósito</li>
-                            </ul>
-                            <div class="milestone priority-high">
-                                <h4>Milestone clave: "Tech Playbook" v1.0</h4>
-                                <p>Documento central que detalla procesos de originación, ejecución y estándares de calidad.</p>
-                                <div class="milestone-meta">
-                                    <span>Responsable: Equipo Core</span>
-                                    <span>Fecha límite: 31 Agosto 2025</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="phase">
-                            <h3>Fase 2: Optimización (Octubre - Diciembre 2025)</h3>
-                            <p>Centrada en mejorar la eficiencia y calidad:</p>
-                            <ul>
-                                <li>Implementación de procesos avanzados</li>
-                                <li>Desarrollo de biblioteca de conocimiento</li>
-                                <li>Refinamiento de propuestas de valor por subsector</li>
-                                <li>Implementación de sistema de feedback continuo</li>
-                            </ul>
-                            <div class="milestone priority-medium">
-                                <h4>Milestone clave: Biblioteca de Conocimiento Operativa</h4>
-                                <p>Repositorio centralizado de análisis sectoriales, precedentes de transacciones y mejores prácticas.</p>
-                                <div class="milestone-meta">
-                                    <span>Responsable: Juan C. + Nacho P.</span>
-                                    <span>Fecha límite: 30 Noviembre 2025</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="phase">
-                            <h3>Fase 3: Escalabilidad (Enero - Marzo 2026)</h3>
-                            <p>Orientada a la sostenibilidad y crecimiento:</p>
-                            <ul>
-                                <li>Implementación de sistemas avanzados de medición</li>
-                                <li>Desarrollo de propuestas de valor integradas</li>
-                                <li>Creación del centro de excelencia en valoración</li>
-                                <li>Optimización de la colaboración intergrupos</li>
-                            </ul>
-                            <div class="milestone priority-high">
-                                <h4>Milestone clave: Centro de Excelencia en Valoración Tech</h4>
-                                <p>Desarrollo de metodologías específicas para la valoración de empresas tech por subvertical.</p>
-                                <div class="milestone-meta">
-                                    <span>Responsable: Javier J. + Javier C.</span>
-                                    <span>Fecha límite: 28 Febrero 2026</span>
-                                </div>
-                            </div>
-                        </div>
+                      
+<div class="implementation-phases">
+    <h3 class="section-title">Fases de Implementación</h3>
+    
+    <div class="timeline-container">
+        <!-- Phase 1 -->
+        <div class="timeline-phase">
+            <div class="phase-header">
+                <div class="phase-dot phase-1"></div>
+                <h4>Fase 1: Fundamentos <span class="phase-date">Junio - Septiembre 2025</span></h4>
+            </div>
+            <div class="phase-content">
+                <p>Enfocada en establecer las bases sólidas para la transformación:</p>
+                <div class="phase-items">
+                    <span class="phase-item">Definición de roles y estructura</span>
+                    <span class="phase-item">Implementación de sistemas básicos</span>
+                    <span class="phase-item">Desarrollo de protocolos fundamentales</span>
+                    <span class="phase-item">Alineamiento en valores y propósito</span>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-header">
+                        <i class="milestone-icon">★</i>
+                        <h5>Milestone clave: "Tech Playbook" v1.0</h5>
+                    </div>
+                    <p>Documento central que detalla procesos de originación, ejecución y estándares de calidad.</p>
+                    <div class="milestone-footer">
+                        <span>Responsable: Equipo Core</span>
+                        <span>Fecha límite: 31 Agosto 2025</span>
                     </div>
                 </div>
-                
+            </div>
+        </div>
+        
+        <!-- Phase 2 -->
+        <div class="timeline-phase">
+            <div class="phase-header">
+                <div class="phase-dot phase-2"></div>
+                <h4>Fase 2: Optimización <span class="phase-date">Octubre - Diciembre 2025</span></h4>
+            </div>
+            <div class="phase-content">
+                <p>Centrada en mejorar la eficiencia y calidad:</p>
+                <div class="phase-items">
+                    <span class="phase-item">Implementación de procesos avanzados</span>
+                    <span class="phase-item">Desarrollo de biblioteca de conocimiento</span>
+                    <span class="phase-item">Refinamiento de propuestas de valor</span>
+                    <span class="phase-item">Implementación sistema feedback continuo</span>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-header">
+                        <i class="milestone-icon">★</i>
+                        <h5>Milestone clave: Biblioteca de Conocimiento Operativa</h5>
+                    </div>
+                    <p>Repositorio centralizado de análisis sectoriales, precedentes y mejores prácticas.</p>
+                    <div class="milestone-footer">
+                        <span>Responsable: Juan C. + Nacho P.</span>
+                        <span>Fecha límite: 30 Noviembre 2025</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Phase 3 -->
+        <div class="timeline-phase">
+            <div class="phase-header">
+                <div class="phase-dot phase-3"></div>
+                <h4>Fase 3: Escalabilidad <span class="phase-date">Enero - Marzo 2026</span></h4>
+            </div>
+            <div class="phase-content">
+                <p>Orientada a la sostenibilidad y crecimiento:</p>
+                <div class="phase-items">
+                    <span class="phase-item">Sistemas avanzados de medición</span>
+                    <span class="phase-item">Propuestas de valor integradas</span>
+                    <span class="phase-item">Centro de excelencia en valoración</span>
+                    <span class="phase-item">Optimización colaboración intergrupos</span>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-header">
+                        <i class="milestone-icon">★</i>
+                        <h5>Milestone clave: Centro de Excelencia en Valoración Tech</h5>
+                    </div>
+                    <p>Metodologías específicas para valoración de empresas tech por subvertical.</p>
+                    <div class="milestone-footer">
+                        <span>Responsable: Javier J. + Javier C.</span>
+                        <span>Fecha límite: 28 Febrero 2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                        
+                    </div>
+                </div>
+              
+
+
+
+
+  
                 <button class="collapsible">Objetivos Estratégicos</button>
                 <div class="collapsible-content">
                     <div class="collapsible-content-inner">
-                        <p>Los objetivos estratégicos clave del plan AZ Tech 2.0 son:</p>
                         
-                        <ol>
-                            <li><span class="highlight-concept">Posicionamiento de mercado:</span> Convertir a AZ Tech en el asesor de referencia en transacciones tecnológicas en España, con presencia destacada en los subsectores de SaaS, Tech-enabled Services y FinTech.</li>
-                            <li><span class="highlight-concept">Excelencia operativa:</span> Desarrollar un modelo de ejecución diferencial que equilibre calidad premium con eficiencia operativa a través del sistema de "tiered execution".</li>
-                            <li><span class="highlight-concept">Desarrollo de talento:</span> Crear un entorno que atraiga y retenga a los mejores profesionales del sector, con trayectorias de carrera claras y oportunidades de crecimiento.</li>
-                            <li><span class="highlight-concept">Resultados financieros:</span> Incrementar de manera sostenible la contribución del equipo Tech a los resultados globales de AZ Capital, con crecimiento anual de ingresos y mejora de márgenes.</li>
-                            <li><span class="highlight-concept">Innovación metodológica:</span> Desarrollar aproximaciones distintivas para la valoración y asesoramiento de empresas tecnológicas, adaptadas a las particularidades del sector.</li>
-                        </ol>
+<div class="strategic-objectives-container">
+    <h3 class="section-title">Objetivos Estratégicos</h3>
+    <p>Los objetivos estratégicos clave del plan AZ Tech 2.0 son:</p>
+    
+    <div class="objective-cards">
+        <div class="objective-card">
+            <div class="objective-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#ff9900" stroke-width="2">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                </svg>
+            </div>
+            <h4>Posicionamiento de mercado</h4>
+            <p>Convertir a AZ Tech en el asesor de referencia en transacciones tecnológicas en España, con presencia destacada en los subsectores de SaaS, Tech-enabled Services y FinTech.</p>
+        </div>
+        
+        <div class="objective-card">
+            <div class="objective-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#ff9900" stroke-width="2">
+                    <path d="M18 20V10M12 20V4M6 20v-6"></path>
+                </svg>
+            </div>
+            <h4>Excelencia operativa</h4>
+            <p>Desarrollar un modelo de ejecución diferencial que equilibre calidad premium con eficiencia operativa a través del sistema de "tiered execution".</p>
+        </div>
+        
+        <div class="objective-card">
+            <div class="objective-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#ff9900" stroke-width="2">
+                    <circle cx="12" cy="7" r="4"></circle>
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                </svg>
+            </div>
+            <h4>Desarrollo de talento</h4>
+            <p>Crear un entorno que atraiga y retenga a los mejores profesionales del sector, con trayectorias de carrera claras y oportunidades de crecimiento.</p>
+        </div>
+        
+        <div class="objective-card">
+            <div class="objective-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#ff9900" stroke-width="2">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+            </div>
+            <h4>Resultados financieros</h4>
+            <p>Incrementar de manera sostenible la contribución del equipo Tech a los resultados globales de AZ Capital, con crecimiento anual de ingresos y mejora de márgenes.</p>
+        </div>
+        
+        <div class="objective-card">
+            <div class="objective-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#ff9900" stroke-width="2">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                    <polyline points="3.29 7 12 12 20.71 7"></polyline>
+                    <line x1="12" y1="22" x2="12" y2="12"></line>
+                </svg>
+            </div>
+            <h4>Innovación metodológica</h4>
+            <p>Desarrollar aproximaciones distintivas para la valoración y asesoramiento de empresas tecnológicas, adaptadas a las particularidades del sector.</p>
+        </div>
+    </div>
+</div>
+
                     </div>
                 </div>
             </div>
@@ -3044,38 +3555,7 @@ function initResizeHandler() {
     // Call once on page load
     handleResize();
 }
-// Password protection
-document.addEventListener("DOMContentLoaded", function() {
-    // Check if we've already been authenticated
-    if (sessionStorage.getItem("authenticated") === "true") {
-        document.getElementById("password-overlay").style.display = "none";
-    }
-    
-    // Setup password submission
-    document.getElementById("submit-password").addEventListener("click", checkPassword);
-    document.getElementById("password-input").addEventListener("keyup", function(event) {
-        if (event.key === "Enter") {
-            checkPassword();
-        }
-    });
-    
-    function checkPassword() {
-        const password = document.getElementById("password-input").value;
-        const correctPassword = "AZ-Tech&2025!"; // 
-        
-        if (password === correctPassword) {
-            // Store authentication in session storage
-            sessionStorage.setItem("authenticated", "true");
-            // Hide overlay
-            document.getElementById("password-overlay").style.display = "none";
-        } else {
-            // Show error message
-            document.getElementById("error-message").style.display = "block";
-            // Clear password field
-            document.getElementById("password-input").value = "";
-        }
-    }
-});
+
     </script>
 </body>
 </html>
