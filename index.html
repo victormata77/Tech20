@@ -807,6 +807,8 @@ body:not(.scrolled) .sticky-tabs {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    margin-bottom: 60px; /* Increase this value to create more space */
+
 }
 
 .hexagon {
@@ -814,6 +816,7 @@ body:not(.scrolled) .sticky-tabs {
     height: 104px;
     background-color: var(--primary);
     position: relative;
+    margin-top: 25px; /* Add space above the hexagon */
     margin-bottom: 30px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
@@ -871,7 +874,7 @@ body:not(.scrolled) .sticky-tabs {
 }
 
 .hexagon-item p {
-    margin-top: 15px;
+    margin-top: 25px;
     font-size: 14px;
     color: var(--dark);
     line-height: 1.5;
@@ -1089,6 +1092,227 @@ body:not(.scrolled) .sticky-tabs {
     gap: 5px;
 }
 
+.org-structure-visual {
+    margin: 20px 0;
+}
+
+.section-intro {
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 15px;
+    color: var(--gray);
+}
+
+.org-structure-visual {
+    margin: 20px 0;
+    padding: 0 10px;
+}
+
+.section-intro {
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 15px;
+    color: var(--gray);
+}
+
+/* Tandem Container */
+.tandem-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.tandem-side {
+    flex: 1;
+    min-width: 280px;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.originacion-side {
+    background: linear-gradient(135deg, #003366 0%, #004488 100%);
+    color: white;
+}
+
+.bridge-side {
+    background: linear-gradient(135deg, #0066cc 0%, #0088ee 100%);
+    color: white;
+}
+
+.ejecucion-side {
+    background: linear-gradient(135deg, #004488 0%, #0066cc 100%);
+    color: white;
+}
+
+.team-icon {
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px;
+}
+
+.tandem-side h4 {
+    margin: 0 0 12px;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+}
+
+.tandem-side p {
+    font-size: 14px;
+    opacity: 0.9;
+    margin: 0 0 20px;
+    line-height: 1.4;
+}
+
+/* Team Members Box */
+.team-members-box {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: auto;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.team-member {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.team-member:last-child {
+    border-bottom: none;
+}
+
+.member-role {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 3px;
+}
+
+.member-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--primary);
+}
+
+/* Talent Development Styles */
+.talent-development {
+    margin: 20px 0;
+    padding: 0 10px;
+}
+
+.section-intro {
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 15px;
+    color: var(--gray);
+}
+
+.talent-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.talent-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+.talent-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.talent-header {
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Different header colors for each card */
+.idp-header {
+    background-color: #0052a5;
+}
+
+.mentoring-header {
+    background-color: #0066cc;
+}
+
+.training-header {
+    background-color: #005299;
+}
+
+.career-header {
+    background-color: #003f7d;
+}
+
+.talent-icon {
+    background-color: rgba(255, 255, 255, 0.3); /* More opaque background */
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.talent-header h4 {
+     margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff; /* Bright white for better contrast */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Stronger text shadow for better readability */
+}
+
+.talent-content {
+    padding: 20px;
+}
+
+.talent-item {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.talent-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.item-title {
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+
+.item-desc {
+    color: var(--dark);
+    line-height: 1.5;
+    font-size: 14px;
+}
+
 
 /* RESPONSIVE STYLES */
 /* Large screens */
@@ -1104,6 +1328,9 @@ body:not(.scrolled) .sticky-tabs {
     .tab {
         min-width: 100px;
         padding: 0 10px;
+    }
+.talent-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 }
 
@@ -1279,35 +1506,55 @@ body:not(.scrolled) .sticky-tabs {
     }
     
     .hexagon {
-        width: 100px;
-        height: 86px;
+        width: 120px;
+        height: 104px;
+        margin-top: 30px; /* More space above hexagon on mobile */
+
     }
     
     .hexagon:before,
     .hexagon:after {
-        border-left: 50px solid transparent;
-        border-right: 50px solid transparent;
+        border-left: 60px solid transparent;
+        border-right: 60px solid transparent;
     }
     
     .hexagon:before {
-        border-bottom: 29px solid var(--primary);
-        top: -29px;
+        border-bottom: 35px solid var(--primary);
+        top: -35px;
     }
-    
+     .hexagon-item {
+        margin-bottom: 70px; /* Even more space on mobile */
+    }
     .hexagon:after {
-        border-top: 29px solid var(--primary);
-        bottom: -29px;
+        border-top: 35px solid var(--primary);
+        bottom: -35px;
     }
-    
+    .hexagon-content {
+        padding: 0 12px;
+    }
     .hexagon-item h4 {
-        font-size: 14px;
+        font-size: 12px; /* Smaller font size */
+        line-height: 1.2; /* Tighter line height */
+        margin-top: 5px; /* Give more space for the number */
     }
     
     .hexagon-number {
         font-size: 20px;
         width: 30px;
         height: 30px;
+        margin-bottom: 5px;
+
     }
+
+ .hexagon-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 100%;
+    }
+
  .objective-cards {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 20px;
@@ -1335,7 +1582,29 @@ body:not(.scrolled) .sticky-tabs {
     .milestone-footer {
         flex-direction: column;
     }
-}
+    .tandem-container {
+        flex-direction: column;
+    }
+    
+    .tandem-side {
+        margin-bottom: 15px;
+    }
+    
+    .tandem-connector {
+        width: 60%;
+    }
+   .talent-header {
+        padding: 15px;
+    }
+    
+    .talent-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .talent-header h4 {
+        font-size: 16px;
+    }}
 
 /* Small screens (phones) */
 @media (max-width: 576px) {
@@ -1356,6 +1625,28 @@ body:not(.scrolled) .sticky-tabs {
     .kpi-table th, .kpi-table td {
         padding: 10px 8px;
         font-size: 14px;
+    }
+.tandem-title {
+        font-size: 14px;
+    }
+    
+    .tandem-connector {
+        width: 90%;
+    }
+    
+    .tandem-team h4 {
+        font-size: 16px;
+    }
+    
+    .tandem-team p {
+        font-size: 13px;
+    }
+ .tandem-container {
+        flex-direction: column;
+    }
+    
+    .tandem-side {
+        margin-bottom: 15px;
     }
 }
 
@@ -1407,10 +1698,46 @@ body:not(.scrolled) .sticky-tabs {
     .kpi-table th, .kpi-table td {
         padding: 8px 5px;
     }
-.hexagon-grid {
-        grid-template-columns: 1fr;
+  .hexagon {
+        width: 140px; /* Make even larger on very small screens */
+        height: 121px;
+    }
+    
+    .hexagon:before,
+    .hexagon:after {
+        border-left: 70px solid transparent;
+        border-right: 70px solid transparent;
+    }
+    
+    .hexagon:before {
+        border-bottom: 40px solid var(--primary);
+        top: -40px;
+    }
+    
+    .hexagon:after {
+        border-top: 40px solid var(--primary);
+        bottom: -40px;
+    }
+    
+    /* Reduce bottom margin to make hexagons closer together */
+    .hexagon-item {
+        margin-bottom: 40px;
     }
 .objective-cards {
+        grid-template-columns: 1fr;
+    }
+ .tandem-side h4 {
+        font-size: 16px;
+    }
+    
+    .tandem-side p {
+        font-size: 13px;rincip
+    }
+    
+    .member-name {
+        font-size: 14px;
+    }
+.talent-grid {
         grid-template-columns: 1fr;
     }
 
@@ -1725,25 +2052,84 @@ body:not(.scrolled) .sticky-tabs {
                 <button class="collapsible">Estructura Organizativa</button>
                 <div class="collapsible-content">
                     <div class="collapsible-content-inner">
-                        <p>El equipo se estructura en torno a un modelo de "tándem" que optimiza la colaboración entre perfiles con diferentes fortalezas:</p>
-                        
-                        <h4>Modelo de Tándem</h4>
-                        <ul>
-                            <li><span class="highlight-concept">Equipo de Originación:</span> Liderado por perfiles con excelentes habilidades comerciales y de networking, responsables de la identificación y aproximación inicial a oportunidades.</li>
-                            <li><span class="highlight-concept">Equipo de Ejecución:</span> Compuesto por profesionales con alta capacidad analítica y atención al detalle, responsables de la implementación rigurosa de los mandatos.</li>
-                            <li><span class="highlight-concept">Roles de Puente:</span> Figuras clave que conectan ambos equipos, asegurando la transición fluida entre fases del proyecto.</li>
-                        </ul>
-                        
-                        <div class="section-divider"></div>
-                        
-                        <h4>Asignación de Responsabilidades</h4>
-                        <ul>
-                            <li><span class="highlight-concept">Liderazgo estratégico:</span> Victor Mata + Javier Julia</li>
-                            <li><span class="highlight-concept">Originación principal:</span> David Matarredona</li>
-                            <li><span class="highlight-concept">Puente regional/sectorial:</span> Juan Corbalán</li>
-                            <li><span class="highlight-concept">Ejecución core:</span> Javier Cuevas + Enrique Lascorz</li>
-                            <li><span class="highlight-concept">Soporte analítico:</span> Nacho Pérez + Sergi Quingles</li>
-                        </ul>
+
+<div class="org-structure-visual">
+    <h3 class="section-title">Estructura Organizativa</h3>
+    <p class="section-intro">El equipo se estructura en torno a un modelo de "tándem" que optimiza la colaboración entre perfiles con diferentes fortalezas.</p>
+    
+    <div class="tandem-container">
+        <!-- Left side: Originación -->
+        <div class="tandem-side originacion-side">
+            <div class="team-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#ffffff" stroke-width="2">
+                    <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+            </div>
+            <h4>Equipo de Originación</h4>
+            <p>Liderado por perfiles con excelentes habilidades comerciales y de networking, responsables de la identificación y aproximación inicial a oportunidades.</p>
+            
+            <div class="team-members-box">
+                <div class="team-member">
+                    <div class="member-role">Liderazgo originación</div>
+                    <div class="member-name">Javier Julia</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-role">Foco Originación</div>
+                    <div class="member-name">David Matarredona</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Center: Bridge -->
+        <div class="tandem-side bridge-side">
+            <div class="team-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#ffffff" stroke-width="2">
+                    <path d="M9 17l6-6M3 12h3m12 0h3M6 12a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm12 0a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 6a3 3 0 1 1 0-6 3 3 0 0 1 0 6zM6 18a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"></path>
+                </svg>
+            </div>
+            <h4>Roles de Puente</h4>
+            <p>Figuras clave que conectan ambos equipos, asegurando la transición fluida entre fases del proyecto.</p>
+            
+            <div class="team-members-box">
+ <div class="team-member">
+                    <div class="member-role">Foco general</div>
+                    <div class="member-name">Victor Mata</div>
+                </div>
+                
+<div class="team-member">
+                    <div class="member-role">Puente regional/sectorial</div>
+                    <div class="member-name">Juan Corbalán</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right side: Ejecución -->
+        <div class="tandem-side ejecucion-side">
+            <div class="team-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#ffffff" stroke-width="2">
+                    <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                </svg>
+            </div>
+            <h4>Equipo de Ejecución</h4>
+            <p>Compuesto por profesionales con alta capacidad analítica y atención al detalle, responsables de la implementación rigurosa de los mandatos.</p>
+            
+            <div class="team-members-box">
+                <div class="team-member">
+                    <div class="member-role">Ejecución core</div>
+                    <div class="member-name">Javier Cuevas + Enrique Lascorz</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-role">Soporte analítico</div>
+                    <div class="member-name">Nacho Pérez + Sergi Quingles</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>                 
+
+
+
+
                     </div>
                 </div>
                 
@@ -1830,42 +2216,137 @@ body:not(.scrolled) .sticky-tabs {
                 <button class="collapsible">Desarrollo de Talento</button>
                 <div class="collapsible-content">
                     <div class="collapsible-content-inner">
-                        <p>El plan de desarrollo de talento se estructura en varios componentes clave:</p>
                         
-                        <h4>Planes de Desarrollo Individual (IDP)</h4>
-                        <ul>
-                            <li><span class="highlight-concept">Evaluación de competencias:</span> Mapeo detallado de fortalezas y áreas de mejora de cada miembro</li>
-                            <li><span class="highlight-concept">Objetivos personalizados:</span> Definición de metas específicas a 3-6-12 meses</li>
-                            <li><span class="highlight-concept">Plan de acción:</span> Actividades concretas para desarrollo de capacidades clave</li>
-                            <li><span class="highlight-concept">Seguimiento regular:</span> Check-ins mensuales y evaluación trimestral de progreso</li>
-                        </ul>
-                        
-                        <div class="section-divider"></div>
-                        
-                        <h4>Programa de Mentoring</h4>
-                        <ul>
-                            <li><span class="highlight-concept">Mentoring interno:</span> Emparejamiento de perfiles complementarios dentro del equipo</li>
-                            <li><span class="highlight-concept">Mentoring cruzado:</span> Intercambio con otros grupos de AZ Capital</li>
-                            <li><span class="highlight-concept">Frecuencia:</span> Sesiones quincenales con agenda estructurada</li>
-                        </ul>
-                        
-                        <div class="section-divider"></div>
-                        
-                        <h4>Formación Específica</h4>
-                        <ul>
-                            <li><span class="highlight-concept">Técnica:</span> Valoración de empresas tech, diligencia tecnológica, tendencias sectoriales</li>
-                            <li><span class="highlight-concept">Soft skills:</span> Comunicación con clientes tech, negociación, gestión de proyectos complejos</li>
-                            <li><span class="highlight-concept">Learning Fridays:</span> Sesiones quincenales dedicadas al aprendizaje compartido</li>
-                        </ul>
-                        
-                        <div class="section-divider"></div>
-                        
-                        <h4>Trayectorias Profesionales</h4>
-                        <ul>
-                            <li><span class="highlight-concept">Ruta de Originación:</span> Enfocada en desarrollo de capacidades comerciales y de relación</li>
-                            <li><span class="highlight-concept">Ruta de Ejecución:</span> Centrada en excelencia analítica y gestión de proyectos</li>
-                            <li><span class="highlight-concept">Ruta Híbrida:</span> Combinación balanceada para perfiles versátiles</li>
-                        </ul>
+
+<div class="talent-development">
+    <h3 class="section-title">Desarrollo de Talento</h3>
+    <p class="section-intro">El plan de desarrollo de talento se estructura en varios componentes clave:</p>
+    
+    <div class="talent-grid">
+        <!-- IDP Section -->
+        <div class="talent-card">
+            <div class="talent-header idp-header">
+                <div class="talent-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2">
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                        <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                    </svg>
+                </div>
+                <h4>Planes de Desarrollo Individual (IDP)</h4>
+            </div>
+            <div class="talent-content">
+                <div class="talent-item">
+                    <div class="item-title">Evaluación de competencias:</div>
+                    <div class="item-desc">Mapeo detallado de fortalezas y áreas de mejora de cada miembro</div>
+                </div>
+                
+                <div class="talent-item">
+                    <div class="item-title">Objetivos personalizados:</div>
+                    <div class="item-desc">Definición de metas específicas a 3-6-12 meses</div>
+                </div>
+                
+                <div class="talent-item">
+                    <div class="item-title">Plan de acción:</div>
+                    <div class="item-desc">Actividades concretas para desarrollo de capacidades clave</div>
+                </div>
+                
+                <div class="talent-item">
+                    <div class="item-title">Seguimiento regular:</div>
+                    <div class="item-desc">Check-ins mensuales y evaluación trimestral de progreso</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mentoring Section -->
+        <div class="talent-card">
+            <div class="talent-header mentoring-header">
+                <div class="talent-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <h4>Programa de Mentoring</h4>
+            </div>
+            <div class="talent-content">
+                <div class="talent-item">
+                    <div class="item-title">Mentoring interno:</div>
+                    <div class="item-desc">Emparejamiento de perfiles complementarios dentro del equipo</div>
+                </div>
+                
+                <div class="talent-item">
+                    <div class="item-title">Mentoring cruzado:</div>
+                    <div class="item-desc">Intercambio con otros grupos de AZ Capital</div>
+                </div>
+                
+                <div class="talent-item">
+                    <div class="item-title">Frecuencia:</div>
+                    <div class="item-desc">Sesiones quincenales con agenda estructurada</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Training Section -->
+        <div class="talent-card">
+            <div class="talent-header training-header">
+                <div class="talent-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </div>
+                <h4>Formación Específica</h4>
+            </div>
+            <div class="talent-content">
+                <div class="talent-item">
+                    <div class="item-title">Técnica:</div>
+                    <div class="item-desc">Valoración de empresas tech, diligencia tecnológica, tendencias sectoriales</div>
+                </div>
+                
+                <div class="talent-item">
+                    <div class="item-title">Soft skills:</div>
+                    <div class="item-desc">Comunicación con clientes tech, negociación, gestión de proyectos complejos</div>
+                </div>
+                
+                <div class="talent-item">
+                    <div class="item-title">Learning Fridays:</div>
+                    <div class="item-desc">Sesiones quincenales dedicadas al aprendizaje compartido</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Career Paths Section -->
+        <div class="talent-card">
+            <div class="talent-header career-header">
+                <div class="talent-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2">
+                        <path d="M18 6H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z"></path>
+                        <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                </div>
+                <h4>Trayectorias Profesionales</h4>
+            </div>
+            <div class="talent-content">
+                <div class="talent-item">
+                    <div class="item-title">Ruta de Originación:</div>
+                    <div class="item-desc">Enfocada en desarrollo de capacidades comerciales y de relación</div>
+                </div>
+                
+                <div class="talent-item">
+                    <div class="item-title">Ruta de Ejecución:</div>
+                    <div class="item-desc">Centrada en excelencia analítica y gestión de proyectos</div>
+                </div>
+                
+                <div class="talent-item">
+                    <div class="item-title">Ruta Híbrida:</div>
+                    <div class="item-desc">Combinación balanceada para perfiles versátiles</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
                     </div>
                 </div>
                 
