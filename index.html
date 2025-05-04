@@ -1349,6 +1349,9 @@ button.active::after,
     transform: translateY(-50px);
     opacity: 0;
     transition: all 0.3s ease;
+    max-height: 80vh;
+    overflow-y: auto;
+
 }
 
 .library-modal.show .modal-content {
@@ -1410,13 +1413,20 @@ button.active::after,
 }
 
 .modal-close {
-    position: absolute;
-    top: 15px;
+    position: fixed;
+    top: 10px;
     right: 15px;
-    font-size: 24px;
-    cursor: pointer;
-    color: var(--gray);
-    transition: color 0.2s;
+    font-size: 28px;
+    font-weight: bold;
+    z-index: 10000;
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .modal-close:hover {
@@ -2167,6 +2177,30 @@ footer {
         padding: 8px 15px;
         font-size: 14px;
     }
+    .modal-content {
+        margin: 5% auto;
+        width: 90%;
+        padding: 15px;
+    }
+    
+    .modal-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+    }
+    
+    .modal-title {
+        font-size: 18px;
+    }
+    
+    .modal-description {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    
+    .modal-details {
+        padding: 10px;
+    }
 }
 
 /* Small screens (phones) */
@@ -2290,6 +2324,12 @@ footer {
     .page-indicator {
         padding: 0 5px;
         font-size: 13px;
+    }
+    .modal-content {
+        margin: 0 auto;
+        width: 95%;
+        max-height: 90vh;
+        border-radius: 0;
     }
 
 }
@@ -3403,7 +3443,13 @@ footer {
                             
                             <div class="books-container">
                                 <!-- Book Item -->
-                                <div class="book-item" data-type="sector">
+                                <div class="book-item" data-type="sector"
+                                    data-title="SaaS & Cloud" 
+                                    data-icon="📊" 
+                                    data-description="Análisis de tendencias, métricas y valoración de empresas SaaS y Cloud."
+                                    data-content="Panorama del mercado SaaS español, KPIs críticos (ARR, CAC, LTV, Churn), metodologías de valoración específicas, benchmarks de múltiplos."
+                                    data-update="Marzo 2025"
+                                    data-owner="Javier Cuevas">
                                     <div class="book">
                                         <div class="book-front">
                                             <div class="book-icon">📊</div>
@@ -3417,7 +3463,13 @@ footer {
                                 </div>
                                 
                                 <!-- Book Item -->
-                                <div class="book-item" data-type="sector">
+                                <div class="book-item" data-type="sector"
+                                    data-title="FinTech" 
+                                    data-icon="💸" 
+                                    data-description="Panoramas del sector de tecnología financiera e innovación en servicios."
+                                    data-content="Análisis de subsectores clave (Payments, Lending, WealthTech), modelos de negocio relevantes, tendencias regulatorias, casos de éxito en España."
+                                    data-update="Febrero 2025"
+                                    data-owner="David Matarredona">
                                     <div class="book">
                                         <div class="book-front">
                                             <div class="book-icon">💸</div>
@@ -3809,48 +3861,31 @@ footer {
                             <div class="modal-content">
                                 <span class="modal-close">&times;</span>
                                 <div class="modal-header">
-                                    <div class="modal-icon">📊</div>
-                                    <div class="modal-title">SaaS & Cloud</div>
+                                    <div class="modal-icon"></div>
+                                    <div class="modal-title"></div>
                                 </div>
-                                <div class="modal-description">
-                                    Análisis completo del ecosistema SaaS y Cloud, incluyendo tendencias, métricas clave y metodologías de valoración específicas para este subsector.
-                                </div>
+                                <div class="modal-description"></div>
                                 
                                 <div class="modal-details">
                                     <div class="modal-detail-item">
                                         <div class="modal-detail-label">Contenido:</div>
-                                        <div class="modal-detail-content">
-                                            <ul>
-                                                <li>Panorama del mercado SaaS en España y Europa</li>
-                                                <li>KPIs críticos: ARR, CAC, LTV, Churn, Rule of 40</li>
-                                                <li>Metodologías de valoración específicas</li>
-                                                <li>Benchmark de múltiplos por tipo de SaaS</li>
-                                                <li>Tendencias emergentes en Cloud Computing</li>
-                                            </ul>
-                                        </div>
+                                        <div class="modal-detail-content content-field"></div>
                                     </div>
                                     
                                     <div class="modal-detail-item">
                                         <div class="modal-detail-label">Última actualización:</div>
-                                        <div class="modal-detail-content">
-                                            Marzo 2025
-                                        </div>
+                                        <div class="modal-detail-content update-field"></div>
                                     </div>
                                     
                                     <div class="modal-detail-item">
                                         <div class="modal-detail-label">Responsable:</div>
-                                        <div class="modal-detail-content">
-                                            Javier Cuevas
-                                        </div>
+                                        <div class="modal-detail-content owner-field"></div>
                                     </div>
-                                </div>
-                                
-                                <div class="modal-actions">
-                                    <button class="modal-btn btn-secondary">Descargar</button>
-                                    <button class="modal-btn btn-primary">Ver documento</button>
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
@@ -6133,6 +6168,83 @@ function initTechPlaybook() {
 // Call initialization when DOM is loaded
 document.addEventListener('DOMContentLoaded', initTechPlaybook);
 
+function setupItemClicks() {
+    const items = document.querySelectorAll('.book-item, .folder-item');
+    
+    items.forEach(item => {
+        item.addEventListener('click', function() {
+            // Get item details from data attributes
+            const title = this.getAttribute('data-title');
+            const description = this.getAttribute('data-description');
+            const icon = this.getAttribute('data-icon');
+            const content = this.getAttribute('data-content');
+            const update = this.getAttribute('data-update');
+            const owner = this.getAttribute('data-owner');
+            
+            // Open modal with item details
+            openItemDetail(title, description, icon, content, update, owner);
+        });
+    });
+}
+
+// Open modal with item details
+function openItemDetail(title, description, icon, content, update, owner) {
+    const modal = document.getElementById('itemDetailModal');
+    
+    // Set modal content using the parameters
+    modal.querySelector('.modal-title').textContent = title;
+    modal.querySelector('.modal-description').textContent = description;
+    modal.querySelector('.modal-icon').textContent = icon;
+    modal.querySelector('.content-field').textContent = content;
+    modal.querySelector('.update-field').textContent = update;
+    modal.querySelector('.owner-field').textContent = owner;
+    
+    // Show modal
+    modal.classList.add('show');
+    
+    // Prevent body scrolling when modal is open
+    document.body.style.overflow = 'hidden';
+}
+
+// Close modal
+function closeModal() {
+    const modal = document.getElementById('itemDetailModal');
+    modal.classList.remove('show');
+    
+    // Restore body scrolling
+    document.body.style.overflow = '';
+}
+
+// Setup modal events
+function setupModal() {
+    const modal = document.getElementById('itemDetailModal');
+    const closeBtn = modal.querySelector('.modal-close');
+    
+    // Close modal when clicking the close button
+    closeBtn.addEventListener('click', function() {
+        closeModal();
+    });
+    
+    // Close modal when clicking outside the modal content
+    modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+    
+    // Close modal when pressing ESC key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && modal.classList.contains('show')) {
+            closeModal();
+        }
+    });
+}
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    setupModal();
+    setupItemClicks();
+});
 
 </script>
 
