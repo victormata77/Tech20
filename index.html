@@ -151,7 +151,7 @@ header.header-scrolled {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 20px;
+    padding: 2px 10px;
     height: calc(var(--header-height) - 40px);
     max-width: 1200px;
     margin: 0 auto;
@@ -164,34 +164,22 @@ header.header-scrolled .header-top {
     height: calc(var(--header-height-scrolled) - 40px);
 }
 
-/* Logo and branding */
-.logo-container {
+/* Logo and branding container - left side */
+.logo-brand-container {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: auto;
-    margin-right: auto;
     transition: all var(--transition-speed) var(--transition-timing);
 }
 
 .logo-image {
     height: 35px;
-    margin-right: 15px;
+    margin-right: 5px;
     transition: height var(--transition-speed) var(--transition-timing);
 }
 
 header.header-scrolled .logo-image {
     height: 25px;
-}
-
-.header-title {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    z-index: 20;
-    transition: all var(--transition-speed) var(--transition-timing);
-    opacity: 1;
-    visibility: visible;
 }
 
 .logo-text {
@@ -201,7 +189,7 @@ header.header-scrolled .logo-image {
     display: flex;
     align-items: center;
     transition: font-size var(--transition-speed) var(--transition-timing);
-    margin-right: 0;
+    margin-left: 5px;
 }
 
 header.header-scrolled .logo-text {
@@ -218,29 +206,28 @@ header.header-scrolled .logo-text {
 }
 
 /* Plan Estratégico - center */
-.header-right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto;
+.header-center {
+    text-align: center;
     z-index: 10;
 }
 
 .subtitle {
-    text-align: center;
     font-size: 16px;
     line-height: 1.3;
     padding: 0;
     margin: 0;
     opacity: 0.9;
     transition: all var(--transition-speed) var(--transition-timing);
+    white-space: nowrap;
 }
 
 header.header-scrolled .subtitle {
     font-size: 14px;
+}
+
+/* Empty right side for balance */
+.header-right {
+    width: auto;
 }
 
 /* Tabs navigation */
@@ -2052,7 +2039,6 @@ footer {
         min-width: 100px;
         padding: 0 10px;
     }
-    
     .talent-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
@@ -2061,15 +2047,15 @@ footer {
 /* Medium screens (tablets) */
 @media (max-width: 768px) {
     :root {
-        --header-height: 135px;
-        --header-height-scrolled: 105px;
+        --header-height: 110px;
+        --header-height-scrolled: 100px;
     }
     
     /* Header adjustments */
     .header-tabs {
-        height: auto;
-        min-height: 70px;
-        padding: 5px 0;
+        height: 50px;
+        min-height: 50px;
+        padding: 2px 0;
     }
     
     .tabs {
@@ -2082,47 +2068,53 @@ footer {
         flex: 0 0 33.33%;
         min-width: unset;
         max-width: unset;
-        height: 35px;
-        font-size: 11px;
+        height: 23px;
+        font-size: 12px;
         padding: 0 2px;
     }
     
     .header-top {
-        flex-direction: column;
-        justify-content: center;
+        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
-        padding: 5px 10px 2px 10px;
-        height: calc(var(--header-height) - 70px);
-        gap: 2px;
+        padding: 5px 10px;
+        height: calc(var(--header-height) - 50px);
+        margin-bottom: 0;
     }
     
-    .logo-container {
-        width: 100%;
-        justify-content: center;
-        margin-right: 0;
-    }
-    
-    .header-title {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+    .logo-brand-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
         width: auto;
-        margin: 0;
     }
     
-    .header-right {
+    .logo-image {
+        height: 25px;
+        margin-right: 2px;
+    }
+    
+    header.header-scrolled .logo-image {
+        height: 22px;
+    }
+    
+    .logo-text {
+        font-size: 18px;
+        margin-left: 2px;
+    }
+    
+    header.header-scrolled .logo-text {
+        font-size: 16px;
+    }
+    
+    .header-center {
         position: relative;
-        left: auto;
-        transform: none;
-        width: 100%;
-        margin-top: 30px;
+        width: auto;
     }
     
     .subtitle {
         text-align: center;
-        width: 100%;
-        font-size: 13px;
+        font-size: 12px;
         line-height: 1.2;
     }
     
@@ -2179,14 +2171,41 @@ footer {
 
 /* Small screens (phones) */
 @media (max-width: 576px) {
+    :root {
+        --header-height: 110px;
+        --header-height-scrolled: 95px;
+    }
+    
     .tabs {
-        justify-content: flex-start;
+        justify-content: space-around;
     }
     
     .tab {
         font-size: 11px;
-        padding: 0 3px;
+        padding: 0 1px;
+        height: 22px;
     }
+    
+    .subtitle {
+        font-size: 11px;
+    }
+    
+    .logo-text {
+        font-size: 16px;
+    }
+    .header-right {
+        width: 45%;
+    }
+    
+    
+    .logo-container {
+        width: 25%;
+    }
+    
+    .header-title {
+        width: 25%;
+    }
+    
     
     .milestone-meta,
     .phase-items {
@@ -2203,27 +2222,35 @@ footer {
 /* Extra small screens */
 @media (max-width: 480px) {
     :root {
-        --header-height: 130px;
-        --header-height-scrolled: 110px;
+        --header-height: 110px;
+        --header-height-scrolled: 95px;
     }
     
     .subtitle {
-        font-size: 11px;
+        font-size: 10px;
     }
     
     .logo-text {
-        font-size: 16px !important;
+        font-size: 14px;
+    }
+    
+    .logo-image {
+        height: 22px;
+        margin-right: 1px;
     }
     
     .tab {
-        height: 30px;
+        height: 20px;
         font-size: 10px;
-        padding: 0 1px;
+        padding: 0;
     }
     
     .header-top {
-        gap: 1px;
-        padding: 3px 5px 1px 5px;
+        padding: 3px 5px;
+    }
+    
+    .header-right {
+        width: 40%;
     }
     
     .tab-content {
@@ -2264,6 +2291,25 @@ footer {
         padding: 0 5px;
         font-size: 13px;
     }
+
+}
+/* Very small screens */
+@media (max-width: 350px) {
+    .tab {
+        font-size: 9px;
+    }
+    
+    .logo-image {
+        height: 20px;
+    }
+    
+    .logo-text {
+        font-size: 12px;
+    }
+    
+    .subtitle {
+        font-size: 8px;
+    }
 }
 
 </style>
@@ -2272,34 +2318,31 @@ footer {
 <body>
 
 <header>
-    <div class="container">
-        <div class="header-top">
-            <!-- Logo on the left -->
-            <div class="logo-container">
-                <img src="logoaz.svg" alt="AZ Capital Logo" class="logo-image">
-            </div>
-            
-            <!-- Plan Estratégico in the middle -->
-            <div class="header-right">
-                <div class="subtitle">Plan Estratégico | Junio 2025 - Marzo 2026</div>
-            </div>
-            
-            <!-- AZ Tech 2.0 title on the right -->
-            <div class="header-title">
-                <div class="logo-text">
-                    <span class="az">AZ</span><span class="tech">Tech 2.0</span>
-                </div>
+    <div class="header-top">
+        <!-- Left side: AZ Capital Logo and AZ Tech 2.0 -->
+        <div class="logo-brand-container">
+            <img src="logoaz.svg" alt="AZ Capital Logo" class="logo-image">
+            <div class="logo-text">
+                <span class="az">AZ</span><span class="tech">Tech 2.0</span>
             </div>
         </div>
-        <div class="header-tabs">
-            <div class="tabs">
-                <div class="tab active" onclick="openTab(event, 'vision')">Visión General</div>
-                <div class="tab" onclick="openTab(event, 'structure')">Estructura y Equipo</div>
-                <div class="tab" onclick="openTab(event, 'execution')">Ejecución y Procesos</div>
-                <div class="tab" onclick="openTab(event, 'commercial')">Estrategia Comercial</div>
-                <div class="tab" onclick="openTab(event, 'timeline')">Calendario e Hitos</div>
-                <div class="tab" onclick="openTab(event, 'kpis')">KPIs</div>
-            </div>
+        
+        <!-- Center: Plan Estratégico -->
+        <div class="header-center">
+            <div class="subtitle">Plan Estratégico | Junio 2025 - Marzo 2026</div>
+        </div>
+        
+        <!-- Right side: empty space for balance -->
+        <div class="header-right"></div>
+    </div>
+    <div class="header-tabs">
+        <div class="tabs">
+            <div class="tab active" onclick="openTab(event, 'vision')">Visión General</div>
+            <div class="tab" onclick="openTab(event, 'structure')">Estructura y Equipo</div>
+            <div class="tab" onclick="openTab(event, 'execution')">Ejecución y Procesos</div>
+            <div class="tab" onclick="openTab(event, 'commercial')">Estrategia Comercial</div>
+            <div class="tab" onclick="openTab(event, 'timeline')">Calendario e Hitos</div>
+            <div class="tab" onclick="openTab(event, 'kpis')">KPIs</div>
         </div>
     </div>
 </header>
