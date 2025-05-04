@@ -1410,6 +1410,9 @@ body:not(.scrolled) .sticky-tabs {
     width: 100%;
     max-width: 800px;
     margin: 30px auto;
+    overflow: hidden; /* Prevents any internal content from overflowing */
+    padding: 0 5px; /* Add a small padding on the sides */
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 /* Estilo para el libro */
@@ -1419,6 +1422,7 @@ body:not(.scrolled) .sticky-tabs {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     overflow: hidden;
+    max-width: 100%; /* Prevents overflow */
 }
 
 /* Estilos para las páginas */
@@ -1427,8 +1431,10 @@ body:not(.scrolled) .sticky-tabs {
     background: #f7f5f0; /* Fondo color ocre claro/papel */
     padding: 25px;
     display: none;
-    min-height: 600px;
+    min-height: 500px;
     border: 1px solid #e0ddd5;
+    overflow-y: auto;
+    max-height: 70vh;
 }
 
 .page.active {
@@ -1499,6 +1505,9 @@ body:not(.scrolled) .sticky-tabs {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding is included in width */
+    max-width: 100%; /* Prevents overflow */
 }
 
 .page-btn {
@@ -1531,7 +1540,7 @@ body:not(.scrolled) .sticky-tabs {
 /* Estilos para las secciones dentro del libro */
 .book-section-title {
     color: var(--primary);
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
     margin-bottom: 15px;
     padding-bottom: 8px;
@@ -1542,11 +1551,13 @@ body:not(.scrolled) .sticky-tabs {
     color: var(--gray);
     font-style: italic;
     margin-bottom: 20px;
-    line-height: 1.6;
+    line-height: 1.5;
+    font-size: 14px;
+
 }
 
 .book-subsection {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .book-subsection-title {
@@ -1561,11 +1572,14 @@ body:not(.scrolled) .sticky-tabs {
 .book-list {
     padding-left: 20px;
     margin-bottom: 15px;
+    
 }
 
 .book-list li {
     margin-bottom: 8px;
-    line-height: 1.5;
+    line-height: 1.4;
+    font-size: 14px;
+
 }
 
 /* Efecto de página */
@@ -1756,13 +1770,13 @@ body:not(.scrolled) .sticky-tabs {
         padding: 5px;
         margin-top: 5px;
     }
-.table-container {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin-bottom: 20px;
-}
-  .hexagon-grid {
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 20px;
+    }
+    .hexagon-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 20px;
     }
@@ -1808,7 +1822,7 @@ body:not(.scrolled) .sticky-tabs {
 
     }
 
- .hexagon-content {
+    .hexagon-content {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1817,7 +1831,7 @@ body:not(.scrolled) .sticky-tabs {
         height: 100%;
     }
 
- .objective-cards {
+    .objective-cards {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 20px;
     }
@@ -1836,7 +1850,7 @@ body:not(.scrolled) .sticky-tabs {
         font-size: 16px;
     }
 
- .phase-items {
+    .phase-items {
         flex-direction: column;
         gap: 5px;
     }
@@ -1870,7 +1884,7 @@ body:not(.scrolled) .sticky-tabs {
     .tier-container {
         flex-direction: column;
     }
-  .book {
+    .book {
         height: 600px;
     }
     
@@ -1881,7 +1895,28 @@ body:not(.scrolled) .sticky-tabs {
     .book-subtitle {
         font-size: 16px;
     }
-
+    .page {
+        padding: 15px;
+        max-height: 400px;
+        min-height: 400px;
+    }
+    
+    .book-section-title {
+        font-size: 18px;
+    }
+    
+    .book-section-description {
+        font-size: 13px;
+    }
+    
+    .book-subsection-title {
+        font-size: 15px;
+    }
+    
+    .book-list li {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
 }
 
 /* Small screens (phones) */
@@ -2009,7 +2044,7 @@ body:not(.scrolled) .sticky-tabs {
     }
     
     .tandem-side p {
-        font-size: 13px;rincip
+        font-size: 13px;
     }
     
     .member-name {
@@ -2018,7 +2053,32 @@ body:not(.scrolled) .sticky-tabs {
 .talent-grid {
         grid-template-columns: 1fr;
     }
+}
 
+    @media (max-width: 350px) {
+    .book-navigation {
+        padding: 8px 5px;
+        margin-top: 15px;
+    }
+    
+    .page-btn {
+        padding: 5px 8px;
+        font-size: 13px;
+    }
+    
+    .page-indicator {
+        font-size: 12px;
+        max-width: 40%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    /* Fix for content within book pages */
+    .page {
+        padding: 12px 10px;
+        border-radius: 6px;
+    }
 }
 
 /* Reset tab order for all screens to ensure proper display */
@@ -2067,7 +2127,7 @@ body:not(.scrolled) .sticky-tabs {
 </header>
 
     
-    <div class="container">
+<div class="container">
            <div class="tab-container">
                       
             <div id="vision" class="tab-content active">
@@ -2768,7 +2828,7 @@ body:not(.scrolled) .sticky-tabs {
                 <div class="page active" id="page0">
                     <div class="page-content">
                         <h2 class="book-section-title">Tech Playbook</h2>
-                        <p class="book-section-description">El documento central que codifica nuestros procesos, metodologías y mejores prácticas para el asesoramiento de empresas tecnológicas.</p>
+                        <p class="book-section-description">Índice General:</p>
                         
                         <div class="book-subsection">
                             <h3 class="book-subsection-title">1. Originación Sistemática</h3>
@@ -4474,290 +4534,581 @@ body:not(.scrolled) .sticky-tabs {
             <p>&copy; 2025 AZ Capital | Plan Estratégico AZ Tech 2.0</p>
         </div>
     </footer>
-    
+
     <script>
-
-// Complete JavaScript for AZ Tech 2.0 website
-
-// Map of tab IDs to their display names
-const tabNames = {
-    'vision': 'Visión General',
-    'structure': 'Estructura y Equipo',
-    'execution': 'Ejecución y Procesos',
-    'commercial': 'Estrategia Comercial',
-    'timeline': 'Calendario e Hitos',
-    'kpis': 'KPIs'
-};
-
-// Store the current active tab to maintain state
-let activeTabId = 'vision'; // Default active tab
-
-// Function to open a tab when clicked
-function openTab(evt, tabName) {
-    // Update all tab contents
-    var tabcontent = document.getElementsByClassName("tab-content");
-    for (var i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].classList.remove("active");
-    }
-    
-    // Find the specific tab content and make it active
-    var targetTab = document.getElementById(tabName);
-    if (targetTab) {
-        targetTab.classList.add("active");
-    }
-    
-    // Update all tab buttons in the entire document to reflect the current selection
-    var tablinks = document.getElementsByClassName("tab");
-    for (var i = 0; i < tablinks.length; i++) {
-        // Check if this tab button is for the selected tab
-        if (tablinks[i].getAttribute("onclick").includes(tabName)) {
-            tablinks[i].classList.add("active");
-        } else {
-            tablinks[i].classList.remove("active");
-        }
-    }
-    
-    // Update active tab id
-    activeTabId = tabName;
-}
-
-// Execute when the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", function() {
-    // Initialize collapsible sections
-    initCollapsibles();
-    
-    // Add scroll event listener for sticky header behavior
-    initScrollBehavior();
-    
-    // Setup toggle buttons for task details
-    initToggleButtons();
-    
-    // Initialize progress bars with animation
-    initProgressBars();
-    
-    // Handle window resize events
-    initResizeHandler();
-});
-
-// Initialize collapsible sections
-function initCollapsibles() {
-    const coll = document.getElementsByClassName("collapsible");
-    for (let i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            const content = this.nextElementSibling;
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-        });
-    }
-}
-
-// Initialize scroll behavior for header
-function initScrollBehavior() {
-    function handleScroll() {
-        const header = document.querySelector('header');
-        const body = document.body;
-        const scrollPosition = window.pageYOffset;
-        const azTechTitle = document.querySelector('.header-title');
-        const subtitle = document.querySelector('.subtitle');
+        // Complete JavaScript for AZ Tech 2.0 website
         
-        // Determine if we should switch to scrolled mode
-        if (scrollPosition > 50) {
-            header.classList.add('header-scrolled');
-            body.classList.add('scrolled');
-            
-            // Ensure AZ Tech title stays visible
-            if (azTechTitle) {
-                azTechTitle.style.opacity = "1";
-                azTechTitle.style.visibility = "visible";
-            }
-            
-            // Handle subtitle visibility on mobile
-            if (window.innerWidth <= 768 && subtitle) {
-                subtitle.style.opacity = "0";
-            }
-        } else {
-            header.classList.remove('header-scrolled');
-            body.classList.remove('scrolled');
-            
-            // Reset subtitle visibility
-            if (subtitle) {
-                subtitle.style.opacity = "1";
-            }
-        }
+        // Map of tab IDs to their display names
+        const tabNames = {
+            'vision': 'Visión General',
+            'structure': 'Estructura y Equipo',
+            'execution': 'Ejecución y Procesos',
+            'commercial': 'Estrategia Comercial',
+            'timeline': 'Calendario e Hitos',
+            'kpis': 'KPIs'
+        };
         
-        // Check for sticky tabs
-        const stickyTabs = document.querySelector('.sticky-tabs');
-        if (stickyTabs) {
-            if (scrollPosition > 100) {
-                stickyTabs.classList.add('tabs-scrolled');
-            } else {
-                stickyTabs.classList.remove('tabs-scrolled');
-            }
-        }
-    }
-    
-    // Add scroll event listener
-    window.addEventListener('scroll', handleScroll);
-    
-    // Trigger once on page load to set initial state
-    handleScroll();
-}
-
-// Initialize toggle buttons for task details
-function initToggleButtons() {
-    const toggleButtons = document.querySelectorAll('.toggle-details');
-    toggleButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const parentTd = this.closest('td');
-            const description = parentTd.querySelector('.task-description-full');
-            
-            if (this.getAttribute('data-state') === 'collapsed') {
-                // Show full description
-                description.style.display = 'block';
-                this.textContent = 'Ver menos';
-                this.setAttribute('data-state', 'expanded');
-            } else {
-                // Hide description
-                description.style.display = 'none';
-                this.textContent = 'Ver más';
-                this.setAttribute('data-state', 'collapsed');
-            }
-        });
-    });
-}
-
-// Initialize progress bars with animation
-function initProgressBars() {
-    setTimeout(function() {
-        const progresses = document.getElementsByClassName('progress');
-        for(let i = 0; i < progresses.length; i++) {
-            // Only set if not already set
-            if (!progresses[i].style.width) {
-                const width = progresses[i].getAttribute('style');
-                if (width && width.includes('width:')) {
-                    progresses[i].style.width = width.split('width:')[1];
-                }
-            }
-        }
-    }, 500);
-}
-
-// Handle window resize events
-function initResizeHandler() {
-    function handleResize() {
-        // Recalculate heights for active collapsibles
-        recalculateCollapsibleHeights();
+        // Store the current active tab to maintain state
+        let activeTabId = 'vision'; // Default active tab
         
-        // Adjust header based on screen size
-        adjustHeaderForScreenSize();
-    }
-    
-    // Recalculate collapsed content heights
-    function recalculateCollapsibleHeights() {
-        const activeCollapsibles = document.querySelectorAll('.collapsible.active');
-        activeCollapsibles.forEach(function(collapsible) {
-            const content = collapsible.nextElementSibling;
-            if (content && content.style.maxHeight) {
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-        });
-    }
-    
-    // Adjust header elements based on screen size
-    function adjustHeaderForScreenSize() {
-        const header = document.querySelector('header');
-        const azTechTitle = document.querySelector('.header-title');
-        const subtitle = document.querySelector('.subtitle');
-        const scrollPosition = window.pageYOffset;
-        
-        if (window.innerWidth <= 768) {
-            // Mobile layout adjustments
-            if (azTechTitle) {
-                azTechTitle.style.position = "absolute";
-                azTechTitle.style.top = "50%";
-                azTechTitle.style.left = "50%";
-                azTechTitle.style.transform = "translate(-50%, -50%)";
+        // Function to open a tab when clicked
+        function openTab(evt, tabName) {
+            // Update all tab contents
+            var tabcontent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
             }
             
-            // Handle subtitle visibility based on scroll position
-            if (subtitle) {
-                if (scrollPosition > 50) {
-                    subtitle.style.opacity = "0";
+            // Find the specific tab content and make it active
+            var targetTab = document.getElementById(tabName);
+            if (targetTab) {
+                targetTab.classList.add("active");
+            }
+            
+            // Update all tab buttons in the entire document to reflect the current selection
+            var tablinks = document.getElementsByClassName("tab");
+            for (var i = 0; i < tablinks.length; i++) {
+                // Check if this tab button is for the selected tab
+                if (tablinks[i].getAttribute("onclick").includes(tabName)) {
+                    tablinks[i].classList.add("active");
                 } else {
-                    subtitle.style.opacity = "1";
+                    tablinks[i].classList.remove("active");
                 }
             }
-        } else {
-            // Desktop layout adjustments
-            if (azTechTitle) {
-                azTechTitle.style.position = "relative";
-                azTechTitle.style.top = "auto";
-                azTechTitle.style.left = "auto";
-                azTechTitle.style.transform = "none";
-            }
             
-            // Always show subtitle on desktop
-            if (subtitle) {
-                subtitle.style.opacity = "1";
-            }
-        }
-    }
-    
-    // Listen for window resize
-    window.addEventListener('resize', handleResize);
-    
-    // Call once on page load
-    handleResize();
-
-  const pages = document.querySelectorAll('.page');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const currentPageSpan = document.getElementById('current-page');
-        
-        const pageNames = [' Índice', ' 1. Originación', ' 2. Pitch', ' 3. Ejecución', ' 4. Valoración', ' 5. Gestión', ' 6. Calendario'];
-        let currentPageIndex = 0;
-        const totalPages = pages.length;
-        
-        function updatePage() {
-            // Ocultar todas las páginas
-            pages.forEach(page => page.classList.remove('active'));
-            
-            // Mostrar la página actual
-            pages[currentPageIndex].classList.add('active');
-            
-            // Actualizar texto de página actual
-            currentPageSpan.textContent = pageNames[currentPageIndex];
-            
-            // Actualizar estado de los botones
-            prevBtn.disabled = currentPageIndex === 0;
-            nextBtn.disabled = currentPageIndex === totalPages - 1;
+            // Update active tab id
+            activeTabId = tabName;
         }
         
-        // Evento para botón anterior
-        prevBtn.addEventListener('click', function() {
-            if (currentPageIndex > 0) {
-                currentPageIndex--;
-                updatePage();
-            }
+        // Execute when the DOM is fully loaded
+        document.addEventListener("DOMContentLoaded", function() {
+            // Initialize collapsible sections
+            initCollapsibles();
+            
+            // Add scroll event listener for sticky header behavior
+            initScrollBehavior();
+            
+            // Setup toggle buttons for task details
+            initToggleButtons();
+            
+            // Initialize progress bars with animation
+            initProgressBars();
+            
+            // Handle window resize events
+            initResizeHandler();
+            
+            // Initialize Tech Playbook
+            initTechPlaybook();
         });
         
-        // Evento para botón siguiente
-        nextBtn.addEventListener('click', function() {
-            if (currentPageIndex < totalPages - 1) {
-                currentPageIndex++;
-                updatePage();
+        // Initialize collapsible sections
+        function initCollapsibles() {
+            const coll = document.getElementsByClassName("collapsible");
+            for (let i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    const content = this.nextElementSibling;
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
             }
-        });
+        }
         
-        // Inicializar página
-        updatePage();
-
-}
-
+        // Initialize scroll behavior for header
+        function initScrollBehavior() {
+            function handleScroll() {
+                const header = document.querySelector('header');
+                const body = document.body;
+                const scrollPosition = window.pageYOffset;
+                const azTechTitle = document.querySelector('.header-title');
+                const subtitle = document.querySelector('.subtitle');
+                
+                // Determine if we should switch to scrolled mode
+                if (scrollPosition > 50) {
+                    header.classList.add('header-scrolled');
+                    body.classList.add('scrolled');
+                    
+                    // Ensure AZ Tech title stays visible
+                    if (azTechTitle) {
+                        azTechTitle.style.opacity = "1";
+                        azTechTitle.style.visibility = "visible";
+                    }
+                    
+                    // Handle subtitle visibility on mobile
+                    if (window.innerWidth <= 768 && subtitle) {
+                        subtitle.style.opacity = "0";
+                    }
+                } else {
+                    header.classList.remove('header-scrolled');
+                    body.classList.remove('scrolled');
+                    
+                    // Reset subtitle visibility
+                    if (subtitle) {
+                        subtitle.style.opacity = "1";
+                    }
+                }
+                
+                // Check for sticky tabs
+                const stickyTabs = document.querySelector('.sticky-tabs');
+                if (stickyTabs) {
+                    if (scrollPosition > 100) {
+                        stickyTabs.classList.add('tabs-scrolled');
+                    } else {
+                        stickyTabs.classList.remove('tabs-scrolled');
+                    }
+                }
+            }
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', handleScroll);
+            
+            // Trigger once on page load to set initial state
+            handleScroll();
+        }
+        
+        // Initialize toggle buttons for task details
+        function initToggleButtons() {
+            const toggleButtons = document.querySelectorAll('.toggle-details');
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const parentTd = this.closest('td');
+                    const description = parentTd.querySelector('.task-description-full');
+                    
+                    if (this.getAttribute('data-state') === 'collapsed') {
+                        // Show full description
+                        description.style.display = 'block';
+                        this.textContent = 'Ver menos';
+                        this.setAttribute('data-state', 'expanded');
+                    } else {
+                        // Hide description
+                        description.style.display = 'none';
+                        this.textContent = 'Ver más';
+                        this.setAttribute('data-state', 'collapsed');
+                    }
+                });
+            });
+        }
+        
+        // Initialize progress bars with animation
+        function initProgressBars() {
+            setTimeout(function() {
+                const progresses = document.getElementsByClassName('progress');
+                for(let i = 0; i < progresses.length; i++) {
+                    // Only set if not already set
+                    if (!progresses[i].style.width) {
+                        const width = progresses[i].getAttribute('style');
+                        if (width && width.includes('width:')) {
+                            progresses[i].style.width = width.split('width:')[1];
+                        }
+                    }
+                }
+            }, 500);
+        }
+        
+        // Handle window resize events
+        function initResizeHandler() {
+            function handleResize() {
+                // Recalculate heights for active collapsibles
+                recalculateCollapsibleHeights();
+                
+                // Adjust header based on screen size
+                adjustHeaderForScreenSize();
+                
+                // Update Tech Playbook responsive elements
+                if (typeof updatePageIndicator === 'function') {
+                    updatePageIndicator();
+                }
+                
+                // Adjust page heights if needed
+                if (typeof adjustPageHeight === 'function') {
+                    adjustPageHeight();
+                }
+            }
+            
+            // Recalculate collapsed content heights
+            function recalculateCollapsibleHeights() {
+                const activeCollapsibles = document.querySelectorAll('.collapsible.active');
+                activeCollapsibles.forEach(function(collapsible) {
+                    const content = collapsible.nextElementSibling;
+                    if (content && content.style.maxHeight) {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+            }
+            
+            // Adjust header elements based on screen size
+            function adjustHeaderForScreenSize() {
+                const header = document.querySelector('header');
+                const azTechTitle = document.querySelector('.header-title');
+                const subtitle = document.querySelector('.subtitle');
+                const scrollPosition = window.pageYOffset;
+                
+                if (window.innerWidth <= 768) {
+                    // Mobile layout adjustments
+                    if (azTechTitle) {
+                        azTechTitle.style.position = "absolute";
+                        azTechTitle.style.top = "50%";
+                        azTechTitle.style.left = "50%";
+                        azTechTitle.style.transform = "translate(-50%, -50%)";
+                    }
+                    
+                    // Handle subtitle visibility based on scroll position
+                    if (subtitle) {
+                        if (scrollPosition > 50) {
+                            subtitle.style.opacity = "0";
+                        } else {
+                            subtitle.style.opacity = "1";
+                        }
+                    }
+                } else {
+                    // Desktop layout adjustments
+                    if (azTechTitle) {
+                        azTechTitle.style.position = "relative";
+                        azTechTitle.style.top = "auto";
+                        azTechTitle.style.left = "auto";
+                        azTechTitle.style.transform = "none";
+                    }
+                    
+                    // Always show subtitle on desktop
+                    if (subtitle) {
+                        subtitle.style.opacity = "1";
+                    }
+                }
+            }
+            
+            // Listen for window resize
+            window.addEventListener('resize', handleResize);
+            
+            // Call once on page load
+            handleResize();
+        }
+        
+        // Initialize Tech Playbook functionality
+        function initTechPlaybook() {
+            const pages = document.querySelectorAll('.page');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const currentPageSpan = document.getElementById('current-page');
+            
+            // Skip initialization if elements don't exist
+            if (!pages.length || !prevBtn || !nextBtn || !currentPageSpan) {
+                return;
+            }
+            
+            const pageNames = [' Índice', ' 1. Originación', ' 2. Pitch', ' 3. Ejecución', ' 4. Valoración', ' 5. Gestión', ' 6. Calendario'];
+            let currentPageIndex = 0;
+            const totalPages = pages.length;
+            
+            // Update page indicator with responsive text
+            function updatePageIndicator() {
+                // Use shorter names on very small screens
+                if (window.innerWidth <= 350) {
+                    const shortPageNames = [' Índice', ' 1. Orig.', ' 2. Pitch', ' 3. Ejec.', ' 4. Valor.', ' 5. Gest.', ' 6. Cal.'];
+                    currentPageSpan.textContent = shortPageNames[currentPageIndex];
+                } else {
+                    currentPageSpan.textContent = pageNames[currentPageIndex];
+                }
+            }
+            
+            function updatePage() {
+                // Ocultar todas las páginas
+                pages.forEach(page => page.classList.remove('active'));
+                
+                // Mostrar la página actual
+                pages[currentPageIndex].classList.add('active');
+                
+                // Actualizar texto de página actual - usar versión responsive
+                updatePageIndicator();
+                
+                // Actualizar estado de los botones
+                prevBtn.disabled = currentPageIndex === 0;
+                nextBtn.disabled = currentPageIndex === totalPages - 1;
+                
+                // Scroll to top of page when changing pages
+                if (pages[currentPageIndex]) {
+                    pages[currentPageIndex].scrollTop = 0;
+                }
+                
+                // Scroll container into view on mobile
+                const bookContainer = document.querySelector('.book-container');
+                if (bookContainer && window.innerWidth <= 768) {
+                    bookContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                
+                // Fix for navigation bar on small screens - FIX FOR WHITE BAR
+                const bookNavigation = document.querySelector('.book-navigation');
+                if (bookNavigation) {
+                    // Ensure navigation is visible and properly sized
+                    bookNavigation.style.width = '100%';
+                    bookNavigation.style.maxWidth = '100%';
+                    bookNavigation.style.boxSizing = 'border-box';
+                    bookNavigation.style.marginBottom = '0'; // Remove any bottom margin
+                    bookNavigation.style.borderBottomLeftRadius = '0'; // Remove border radius on bottom
+                    bookNavigation.style.borderBottomRightRadius = '0'; // Remove border radius on bottom
+                    
+                    // Extra adjustments for very small screens
+                    if (window.innerWidth <= 350) {
+                        bookNavigation.style.padding = '8px 5px';
+                        
+                        // Make buttons smaller
+                        const buttons = bookNavigation.querySelectorAll('.page-btn');
+                        buttons.forEach(btn => {
+                            btn.style.padding = '5px 8px';
+                            btn.style.minWidth = '60px';
+                            btn.style.fontSize = '13px';
+                        });
+                        
+                        // Make indicator text smaller
+                        const indicator = bookNavigation.querySelector('.page-indicator');
+                        if (indicator) {
+                            indicator.style.fontSize = '12px';
+                            indicator.style.maxWidth = '40%';
+                            indicator.style.overflow = 'hidden';
+                            indicator.style.textOverflow = 'ellipsis';
+                            indicator.style.whiteSpace = 'nowrap';
+                        }
+                    }
+                }
+                
+                // Fix book container to prevent white space at bottom
+                fixBookContainerHeight();
+            }
+            
+            // Fix book container height to prevent white space
+            function fixBookContainerHeight() {
+                const bookContainer = document.querySelector('.book-container');
+                const book = document.querySelector('.book');
+                const activePage = document.querySelector('.page.active');
+                const bookNavigation = document.querySelector('.book-navigation');
+                
+                if (bookContainer && book && activePage && bookNavigation) {
+                    // Calculate the total height needed
+                    const navigationHeight = bookNavigation.offsetHeight;
+                    const pageHeight = activePage.offsetHeight;
+                    
+                    // Set book height to exactly match content + navigation
+                    book.style.height = 'auto';
+                    bookContainer.style.marginBottom = '20px';
+                    
+                    // Fix for very small screens - set specific container adjustments
+                    if (window.innerWidth <= 350) {
+                        bookContainer.style.padding = '0 5px';
+                        book.style.borderRadius = '8px 8px 0 0'; // Remove bottom radius
+                        bookNavigation.style.borderRadius = '0 0 8px 8px'; // Round only bottom
+                        bookContainer.style.marginBottom = '30px'; // Add space after container
+                    }
+                    
+                    // Ensure the parent collapsible section updates its height
+                    const collapsible = bookContainer.closest('.collapsible-content');
+                    if (collapsible && collapsible.style.maxHeight) {
+                        setTimeout(() => {
+                            const collapsibleInner = collapsible.querySelector('.collapsible-content-inner');
+                            if (collapsibleInner) {
+                                collapsible.style.maxHeight = collapsibleInner.scrollHeight + "px";
+                            }
+                        }, 100);
+                    }
+                }
+            }
+            
+            // Adjust page height based on viewport size
+            function adjustPageHeight() {
+                const viewportHeight = window.innerHeight;
+                let maxHeight = Math.min(500, viewportHeight * 0.7);
+                
+                document.querySelectorAll('.page').forEach(page => {
+                    if (window.innerWidth <= 576) {
+                        if (window.innerWidth <= 350) {
+                            // Even smaller height for very small screens
+                            maxHeight = Math.min(450, viewportHeight * 0.65);
+                        }
+                        page.style.maxHeight = maxHeight + 'px';
+                        page.style.minHeight = maxHeight + 'px';
+                        page.style.overflow = 'auto';
+                        page.style.WebkitOverflowScrolling = 'touch'; // Smooth scrolling on iOS
+                    } else {
+                        page.style.maxHeight = '70vh';
+                        page.style.minHeight = '500px';
+                    }
+                    
+                    // Ensure scrolling is enabled
+                    page.style.overflowY = 'auto';
+                });
+                
+                // Fix for book container and navigation on small screens
+                const bookContainer = document.querySelector('.book-container');
+                if (bookContainer) {
+                    bookContainer.style.padding = window.innerWidth <= 350 ? '0 5px' : '0 10px';
+                    bookContainer.style.boxSizing = 'border-box';
+                    bookContainer.style.overflow = 'hidden';
+                    
+                    // Fix navigation bar positioning
+                    const bookNavigation = document.querySelector('.book-navigation');
+                    if (bookNavigation) {
+                        bookNavigation.style.position = 'relative';
+                        bookNavigation.style.bottom = '0';
+                        bookNavigation.style.left = '0';
+                        bookNavigation.style.width = '100%';
+                        bookNavigation.style.zIndex = '10';
+                        
+                        // Fix navigation bar background and border on small screens
+                        if (window.innerWidth <= 350) {
+                            bookNavigation.style.backgroundColor = 'white';
+                            bookNavigation.style.borderTop = '1px solid #e0ddd5';
+                            bookNavigation.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.1)';
+                        }
+                    }
+                }
+                
+                // Call to fix container and prevent white space
+                fixBookContainerHeight();
+            }
+            
+            // Evento para botón anterior
+            prevBtn.addEventListener('click', function() {
+                if (currentPageIndex > 0) {
+                    currentPageIndex--;
+                    updatePage();
+                }
+            });
+            
+            // Evento para botón siguiente
+            nextBtn.addEventListener('click', function() {
+                if (currentPageIndex < totalPages - 1) {
+                    currentPageIndex++;
+                    updatePage();
+                }
+            });
+            
+            // Add touch swipe support for mobile
+            let touchstartX = 0;
+            let touchendX = 0;
+            let isSwiping = false;
+            
+            document.querySelectorAll('.page').forEach(page => {
+                page.addEventListener('touchstart', e => {
+                    touchstartX = e.changedTouches[0].screenX;
+                    isSwiping = true;
+                });
+                
+                page.addEventListener('touchmove', e => {
+                    // Don't prevent default vertical scrolling
+                    // Only check for horizontal swipes without blocking page scrolling
+                    isSwiping = true;
+                }, { passive: true });
+                
+                page.addEventListener('touchend', e => {
+                    touchendX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                    isSwiping = false;
+                });
+            });
+            
+            function handleSwipe() {
+                const threshold = 75; // Minimum swipe distance in pixels
+                
+                if (touchendX < touchstartX - threshold) {
+                    // Swipe left, go to next page
+                    if (currentPageIndex < totalPages - 1) {
+                        currentPageIndex++;
+                        updatePage();
+                    }
+                }
+                
+                if (touchendX > touchstartX + threshold) {
+                    // Swipe right, go to previous page
+                    if (currentPageIndex > 0) {
+                        currentPageIndex--;
+                        updatePage();
+                    }
+                }
+            }
+            
+            // Add keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                // Only process if book is visible in viewport
+                const bookContainer = document.querySelector('.book-container');
+                if (!bookContainer || !isElementInViewport(bookContainer)) {
+                    return;
+                }
+                
+                // Left arrow or page up
+                if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                    if (currentPageIndex > 0) {
+                        currentPageIndex--;
+                        updatePage();
+                        e.preventDefault();
+                    }
+                }
+                // Right arrow or page down
+                else if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+                    if (currentPageIndex < totalPages - 1) {
+                        currentPageIndex++;
+                        updatePage();
+                        e.preventDefault();
+                    }
+                }
+            });
+            
+            // Helper to check if element is in viewport
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.bottom >= 0
+                );
+            }
+            
+            // Initialize page and adjust height
+            updatePage();
+            adjustPageHeight();
+            
+            // Expose functions to global scope for access from resize handler
+            window.updatePageIndicator = updatePageIndicator;
+            window.adjustPageHeight = adjustPageHeight;
+            window.fixBookContainerHeight = fixBookContainerHeight;
+            
+            // Add specific event listener for window resize
+            window.addEventListener('resize', function() {
+                // Need a small delay for accurate calculations
+                setTimeout(adjustPageHeight, 100);
+            });
+            
+            // Fix white space issue on tab change
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Fix book container height after tab change with delay
+                    setTimeout(fixBookContainerHeight, 200);
+                });
+            });
+            
+            // Add mutation observer to watch for DOM changes 
+            // (helps with dynamic content changes that might affect layout)
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'childList' || mutation.type === 'attributes') {
+                        // Fix container height when DOM changes
+                        fixBookContainerHeight();
+                    }
+                });
+            });
+            
+            // Start observing the book container
+            const bookContainerToObserve = document.querySelector('.book-container');
+            if (bookContainerToObserve) {
+                observer.observe(bookContainerToObserve, { 
+                    childList: true, 
+                    subtree: true,
+                    attributes: true,
+                    attributeFilter: ['style', 'class']
+                });
+            }
+        }
     </script>
+
 </body>
 </html>
