@@ -2177,29 +2177,31 @@ footer {
         padding: 8px 15px;
         font-size: 14px;
     }
+    .library-modal {
+        padding-top: 120px; /* Push modal content below the header */
+    }
+    
     .modal-content {
-        margin: 5% auto;
-        width: 90%;
-        padding: 15px;
+        margin: 0 auto 30px; /* Remove top margin since we're using padding-top on the parent */
+        max-height: calc(100vh - 150px); /* Limit height to avoid extending beyond screen */
+        overflow-y: auto;
     }
     
-    .modal-icon {
-        width: 36px;
-        height: 36px;
-        font-size: 20px;
-    }
-    
-    .modal-title {
-        font-size: 18px;
-    }
-    
-    .modal-description {
-        font-size: 14px;
-        margin-bottom: 10px;
-    }
-    
-    .modal-details {
-        padding: 10px;
+    /* Ensure close button is visible and not under header */
+    .modal-close {
+        position: fixed;
+        top: 125px; /* Position below header */
+        right: 20px;
+        z-index: 10000;
+        background-color: rgba(255, 255, 255, 0.9);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        font-size: 24px;
     }
 }
 
@@ -2330,6 +2332,13 @@ footer {
         width: 95%;
         max-height: 90vh;
         border-radius: 0;
+    }
+    .library-modal {
+        padding-top: 110px; /* Slightly less padding on very small screens */
+    }
+    
+    .modal-close {
+        top: 115px;
     }
 
 }
@@ -3447,7 +3456,7 @@ footer {
                                     data-title="SaaS & Cloud" 
                                     data-icon="📊" 
                                     data-description="Análisis de tendencias, métricas y valoración de empresas SaaS y Cloud."
-                                    data-content="Panorama del mercado SaaS español, KPIs críticos (ARR, CAC, LTV, Churn), metodologías de valoración específicas, benchmarks de múltiplos."
+                                    data-content="Incluye análisis detallado de los principales KPIs a monitorizar (ARR, MRR, CAC, LTV, Churn Rate, NRR), guía de interpretación de Rule of 40, metodologías específicas de valoración por tipo de SaaS (horizontal vs vertical), comparativa de múltiplos ajustados por crecimiento y rentabilidad, análisis de estrategias de pricing y escalabilidad, y benchmark específico del mercado español vs internacional."
                                     data-update="Marzo 2025"
                                     data-owner="Javier Cuevas">
                                     <div class="book">
@@ -3467,7 +3476,7 @@ footer {
                                     data-title="FinTech" 
                                     data-icon="💸" 
                                     data-description="Panoramas del sector de tecnología financiera e innovación en servicios."
-                                    data-content="Análisis de subsectores clave (Payments, Lending, WealthTech), modelos de negocio relevantes, tendencias regulatorias, casos de éxito en España."
+                                    data-content="Análisis exhaustivo por verticales (Payments, Lending, WealthTech, InsurTech, RegTech), evaluación del impacto de regulaciones recientes (PSD2, Open Banking), estudio del ecosistema FinTech español con mapping de actores relevantes, comparativa con ecosistemas europeos, análisis de tendencias emergentes (embedded finance, BNPL, DeFi), y consideraciones específicas para startups españolas ante la consolidación del sector."
                                     data-update="Febrero 2025"
                                     data-owner="David Matarredona">
                                     <div class="book">
@@ -3483,7 +3492,13 @@ footer {
                                 </div>
                                 
                                 <!-- Book Item -->
-                                <div class="book-item" data-type="sector">
+                                <div class="book-item" data-type="sector"
+                                    data-title="Marketplaces" 
+                                    data-icon="🛒" 
+                                    data-description="Análisis de plataformas de intermediación B2B, B2C y P2P."
+                                    data-content="Estudio sobre modelos de negocio y monetización (take rate por sectores, comisiones fijas vs variables), métricas específicas para marketplaces (GMV, GTV, CAC por lado), estrategias de crecimiento (resolución del chicken & egg problem), valoraciones específicas según fase de negocio, análisis de moats defensivos, evaluación de estrategias de expansión geográfica para marketplaces españoles, y benchmarks de eficiencia operativa segmentados por tamaño y vertical."
+                                    data-update="Enero 2025"
+                                    data-owner="Enrique Lascorz">
                                     <div class="book">
                                         <div class="book-front">
                                             <div class="book-icon">🛒</div>
@@ -3497,7 +3512,13 @@ footer {
                                 </div>
                                 
                                 <!-- Book Item -->
-                                <div class="book-item" data-type="sector">
+                                <div class="book-item" data-type="sector"
+                                    data-title="HealthTech" 
+                                    data-icon="💊" 
+                                    data-description="Tendencias de innovación tecnológica en el sector salud."
+                                    data-content="Mapping detallado del ecosistema HealthTech español por subsectores (telemedicina, salud digital, medical devices, biotech), análisis del marco regulatorio específico (incluyendo certificaciones CE, MDR, HIPAA), evaluación de ciclos de adopción y ventas en sector público vs privado, métricas de valoración específicas del sector, análisis de tendencias emergentes (IA en diagnóstico, digital therapeutics, medicina preventiva), y consideraciones especiales para startups que venden a sistemas de salud."
+                                    data-update="Febrero 2025"
+                                    data-owner="Sergi Quingles">
                                     <div class="book">
                                         <div class="book-front">
                                             <div class="book-icon">💊</div>
@@ -3511,7 +3532,13 @@ footer {
                                 </div>
                                 
                                 <!-- book Item -->
-                                <div class="book-item" data-type="sector">
+                                <div class="book-item" data-type="sector"
+                                    data-title="Otros Análisis" 
+                                    data-icon="📚" 
+                                    data-description="EdTech, PropTech, Movilidad y otros sectores de alta disrupción."
+                                    data-content="Estudios específicos sobre verticales de alto crecimiento: (1) EdTech: evolución post-Covid, modelos B2B vs B2C, ventas a instituciones educativas; (2) PropTech: digitalización del sector inmobiliario, iBuyers, modelos fractional ownership; (3) Movilidad: micromovilidad urbana, modelos de suscripción, interoperabilidad; (4) ClimaTech: soluciones tecnológicas para sostenibilidad, modelos de negocio carbon-offset. Cada sección incluye análisis de actores relevantes en España y oportunidades específicas."
+                                    data-update="Marzo 2025"
+                                    data-owner="Juan Corbalán">
                                     <div class="book">
                                         <div class="book-back"></div>
                                         <div class="book-tab"></div>
@@ -3536,7 +3563,13 @@ footer {
                             
                             <div class="books-container">
                                 <!-- book Item -->
-                                <div class="book-item" data-type="transacciones">
+                                <div class="book-item" data-type="transacciones"
+                                    data-title="SaaS Exits" 
+                                    data-icon="📈" 
+                                    data-description="Transacciones destacadas de empresas SaaS en los últimos 24 meses."
+                                    data-content="Análisis detallado de 25+ transacciones SaaS relevantes desde 2023, incluyendo múltiplos pagados con desglose completo (EV/ARR, EV/Revenue, EV/EBITDA), estructura de las operaciones (all-cash, earn-outs, equity), perfiles financieros completos de las compañías adquiridas (tasas de crecimiento, márgenes, retention), ratios de valoración ajustados por crecimiento, segmentación por tamaño de transacción y geografía, y lecciones clave para maximizar valoraciones en procesos de venta."
+                                    data-update="Abril 2025"
+                                    data-owner="Javier Cuevas">
                                     <div class="book">
                                         <div class="book-back"></div>
                                         <div class="book-tab"></div>
@@ -3549,7 +3582,13 @@ footer {
                                 </div>
                                 
                                 <!-- book Item -->
-                                <div class="book-item" data-type="transacciones">
+                                <div class="book-item" data-type="transacciones"
+                                    data-title="FinTech M&A" 
+                                    data-icon="🏦" 
+                                    data-description="Operaciones relevantes en el sector de tecnología financiera."
+                                    data-content="Estudio comprensivo de 20+ operaciones FinTech recientes, con análisis de valoraciones específicas por subsector (payments, lending, banking-as-a-service, wealthtech), tendencias en consolidación de mercado, factores diferenciadores en valoración, estructuras de transacción específicas del sector, consideraciones regulatorias que han impactado negociaciones, perfil de compradores más activos, y casos específicos de fintech españolas adquiridas incluyendo valoraciones confidenciales y lessons learned."
+                                    data-update="Marzo 2025"
+                                    data-owner="Victor Mata">
                                     <div class="book">
                                         <div class="book-back"></div>
                                         <div class="book-tab"></div>
@@ -3562,7 +3601,13 @@ footer {
                                 </div>
                                 
                                 <!-- Book Item -->
-                                <div class="book-item" data-type="transacciones">
+                                <div class="book-item" data-type="transacciones"
+                                    data-title="Múltiplos Tech" 
+                                    data-icon="📊" 
+                                    data-description="Análisis de valoraciones y múltiplos por subsector tecnológico."
+                                    data-content="Base de datos exhaustiva de múltiplos actualizada trimestralmente, con más de 200 transacciones tecnológicas clasificadas por subsector, tamaño, geografía y rentabilidad. Incluye análisis histórico de evolución de múltiplos desde 2018, correlaciones estadísticas entre métricas financieras y valoraciones alcanzadas, herramientas de valoración comparativa, factores de premio/descuento específicos para empresas españolas, y análisis del impacto de las condiciones macroeconómicas actuales en las valoraciones tecnológicas."
+                                    data-update="Abril 2025"
+                                    data-owner="Nacho Pérez">
                                     <div class="book">
                                         <div class="book-front">
                                             <div class="book-icon">📊</div>
@@ -3576,7 +3621,13 @@ footer {
                                 </div>
                                 
                                 <!-- Book Item -->
-                                <div class="book-item" data-type="transacciones">
+                                <div class="book-item" data-type="transacciones"
+                                    data-title="Top Deals" 
+                                    data-icon="📑" 
+                                    data-description="Fichas detalladas de las transacciones más relevantes del sector."
+                                    data-content="Análisis en profundidad de las 15 operaciones tech más relevantes para el mercado español, con detalles no publicados procedentes de nuestra experiencia directa o fuentes privilegiadas: estructura completa de la transacción, valoración detallada con desglose de múltiplos, proceso competitivo y número de interesados, factores determinantes en la selección del comprador, términos clave del SPA incluyendo garantías y condiciones, lecciones aprendidas, y testimonios confidenciales de participantes en las operaciones."
+                                    data-update="Febrero 2025"
+                                    data-owner="Javier Julia">
                                     <div class="book">
                                         <div class="book-front">
                                             <div class="book-icon">📑</div>
@@ -3590,7 +3641,13 @@ footer {
                                 </div>
                                 
                                 <!-- Book Item -->
-                                <div class="book-item" data-type="transacciones">
+                                <div class="book-item" data-type="transacciones"
+                                    data-title="IPOs Tech" 
+                                    data-icon="💹" 
+                                    data-description="Análisis de salidas a bolsa recientes en el sector tecnológico."
+                                    data-content="Estudio detallado de IPOs tecnológicas europeas recientes, incluyendo valoración pre-money y post-money, performance del precio desde salida, comparativa con valoraciones previas en rondas privadas, estructura de la oferta (primaria vs secundaria), lock-up períodos, costes asociados al proceso, perfiles completos de los bancos colocadores, análisis de timing óptimo, e implicaciones específicas para empresas tech españolas considerando alternativas como BME Growth o salida a mercados internacionales."
+                                    data-update="Enero 2025"
+                                    data-owner="Juan Corbalán">
                                     <div class="book">
                                         <div class="book-front">
                                             <div class="book-icon">💹</div>
@@ -3609,14 +3666,20 @@ footer {
                     
                         <!-- Category: Compradores Estratégicos -->
                         <div class="category-section" data-category="compradores">
-                            <div class="category-title">
                                 <i class="category-title-icon">🏢</i>
                                 Compradores Estratégicos
                             </div>
                             
                             <div class="books-container">
                                 <!-- Book Item -->
-                                <div class="book-item" data-type="compradores">
+                                <div class="book-item" data-type="compradores"
+                                    data-title="Tech Giants" 
+                                    data-icon="🌐" 
+                                    data-description="Perfiles de estrategia M&A de grandes corporaciones tecnológicas."
+                                    data-content="Análisis exhaustivo de las estrategias de adquisición de los principales gigantes tecnológicos (GAFAM, entre otros), incluyendo motivaciones estratégicas específicas por área, presupuestos de adquisición estimados, criterios de selección documentados, procesos internos de aprobación, estructuras de deal típicas, equipos clave de corporate development, approach histórico a integraciones post-adquisición, track record de éxito/fracaso en adquisiciones previas, y recomendaciones específicas para maximizar probabilidades de éxito al aproximarse a cada uno."
+                                    data-update="Marzo 2025"
+                                    data-owner="David Matarredona">
+                                >
                                     <div class="book">
                                         <div class="book-front">
                                             <div class="book-icon">🌐</div>
@@ -3630,7 +3693,13 @@ footer {
                                 </div>
                                 
                                 <!-- Book Item -->
-                                <div class="book-item" data-type="compradores">
+                                <div class="book-item" data-type="compradores"
+                                    data-title="Corporates España" 
+                                    data-icon="🇪🇸" 
+                                    data-description="Estrategias de adquisición de empresas tecnológicas en España."
+                                    data-content="Mapping detallado de los 30 principales compradores corporativos de tecnología en España, incluyendo presupuestos estimados para M&A, áreas estratégicas prioritarias (con actualizaciones 2025), perfiles de las adquisiciones realizadas en los últimos 3 años, personas clave en los equipos de desarrollo corporativo, procesos internos de decisión mapeados, consideraciones de governance específicas por empresa, criterios financieros observados, y detalle de estructuras utilizadas en transacciones previas (incluyendo términos de earn-outs y permanencia)."
+                                    data-update="Febrero 2025"
+                                    data-owner="Juan Corbalán">
                                     <div class="book">
                                         <div class="book-front">
                                             <div class="book-icon">🇪🇸</div>
@@ -3644,7 +3713,13 @@ footer {
                                 </div>
                                 
                                 <!-- book Item -->
-                                <div class="book-item" data-type="compradores">
+                                <div class="book-item" data-type="compradores"
+                                    data-title="Industriales Tech" 
+                                    data-icon="🏭" 
+                                    data-description="Empresas industriales con estrategias activas de adquisición tech."
+                                    data-content="Análisis de los principales players industriales con estrategias de transformación digital vía M&A, segmentado por verticales (automoción, energía, manufactura, química, agroindustria). Para cada sector se detalla: principales actores en España y Europa, racionales estratégicos específicos por vertical, áreas prioritarias de inversión digital, casos de estudio de integraciones exitosas, estructura organizativa de innovación y corporate venturing, personas clave de contacto, y recomendaciones para estructuración óptima de deals con estos perfiles de compradores."
+                                    data-update="Enero 2025"
+                                    data-owner="Javier Cuevas">
                                     <div class="book">
                                         <div class="book-back"></div>
                                         <div class="book-tab"></div>
@@ -3657,7 +3732,13 @@ footer {
                                 </div>
                                 
                                 <!-- book Item -->
-                                <div class="book-item" data-type="compradores">
+                                <div class="book-item" data-type="compradores"
+                                    data-title="Telcos" 
+                                    data-icon="📱" 
+                                    data-description="Operadores de telecomunicaciones y su estrategia de M&A tecnológico."
+                                    data-content="Investigación en profundidad sobre las estrategias de diversificación digital de los principales operadores telco en España y Europa. Incluye: análisis comparativo de inversiones digitales por operador, verticales de mayor actividad (ciberseguridad, IoT, cloud, servicios profesionales), áreas estratégicas prioritarias actualizadas para 2025, equipos responsables de M&A con contactos, criterios financieros específicos, procesos internos de evaluación documentados, mecanismos de integración post-adquisición, y casos prácticos de transacciones realizadas con foco en lecciones aprendidas."
+                                    data-update="Marzo 2025"
+                                    data-owner="Victor Mata">
                                     <div class="book">
                                         <div class="book-back"></div>
                                         <div class="book-tab"></div>
@@ -3670,7 +3751,13 @@ footer {
                                 </div>
                                 
                                 <!-- Book Item -->
-                                <div class="book-item" data-type="compradores">
+                                <div class="book-item" data-type="compradores"
+                                    data-title="Internacional" 
+                                    data-icon="🌍" 
+                                    data-description="Compradores estratégicos internacionales con interés en el mercado español."
+                                    data-content="Mapa exhaustivo de los 50 principales compradores internacionales con apetito comprobado por empresas tech españolas. Organizado por geografías (US, UK, Francia, Alemania, etc.) e industrias. Para cada comprador se detalla: estrategia específica para el mercado español, adquisiciones previas en España y Europa, equipos responsables con contactos directos, procesos de aproximación preferidos, consideraciones culturales relevantes, adaptaciones legales para el mercado español, y factores críticos para maximizar valoraciones cuando se negocia con cada uno de estos perfiles."
+                                    data-update="Abril 2025"
+                                    data-owner="Javier Julia">
                                     <div class="book">
                                         <div class="book-front">
                                             <div class="book-icon">🌍</div>
@@ -3688,7 +3775,7 @@ footer {
                         </div>
                     
                         <!-- Category: Inversores Financieros -->
-                        <div class="category-section" data-category="inversores">
+                        <div class="category-section" data-category="inversores"
                             <div class="category-title">
                                 <i class="category-title-icon">💰</i>
                                 Inversores Financieros
@@ -3696,7 +3783,13 @@ footer {
                             
                             <div class="books-container">
                                 <!-- Book Item -->
-                                <div class="book-item" data-type="inversores">
+                                <div class="book-item" data-type="inversores"
+                                    data-title="Private Equity" 
+                                    data-icon="🏦" 
+                                    data-description="Fondos de private equity con foco en tecnología y digital."
+                                    data-content="Análisis detallado de los 40 principales fondos PE activos en tecnología en España y Europa, incluyendo: tesis de inversión específica por fondo, dry powder estimado, criterios de inversión específicos (tamaño mínimo/máximo, métricas financieras requeridas), verticales de mayor interés en 2025, portfolio actual y estrategia de creación de valor, equipos de inversión con contactos directos, estrategias de approach preferidas, track record de valoraciones pagadas en deals previos, y consideraciones específicas para la negociación (management packages, co-inversión, governance)."
+                                    data-update="Abril 2025"
+                                    data-owner="Victor Mata">
                                     <div class="book">
                                         <div class="book-front">
                                             <div class="book-icon">🏦</div>
@@ -3710,7 +3803,13 @@ footer {
                                 </div>
                                 
                                 <!-- Book Item -->
-                                <div class="book-item" data-type="inversores">
+                                <div class="book-item" data-type="inversores"
+                                    data-title="Venture Capital" 
+                                    data-icon="🚀" 
+                                    data-description="Principales fondos VC y sus criterios de inversión y desinversión."
+                                    data-content="Mapeo completo del ecosistema VC español e internacional con actividad en España, organizado por fase (Seed, Series A, B, C y Growth). Para cada fondo se incluye: estrategia de inversión actualizada para 2025, tesis específica por verticales tecnológicas, tamaño objetivo de inversión, criterios de evaluación documentados (métricas, KPIs, unit economics), estrategias de salida observadas, relaciones con PE y corporates para secundarios, equipos de inversión con contactos directos, y consideraciones sobre términos específicos (liquidation preference, anti-dilución, control, etc)."
+                                    data-update="Febrero 2025"
+                                    data-owner="David Matarredona">
                                     <div class="book">
                                         <div class="book-front">
                                             <div class="book-icon">🚀</div>
@@ -3724,7 +3823,13 @@ footer {
                                 </div>
                                 
                                 <!-- book Item -->
-                                <div class="book-item" data-type="inversores">
+                                <div class="book-item" data-type="inversores"
+                                    data-title="Family Offices" 
+                                    data-icon="👨‍👩‍👧‍👦" 
+                                    data-description="Family offices con interés en diversificación hacia tecnología."
+                                    data-content="Investigación exclusiva sobre los principales family offices españoles e internacionales con actividad en tecnología. El informe detalla: estrategias de inversión específicas en tech (directa vs fondos), apetito por riesgo y perfil de inversión, sectores de interés prioritarios, ticket medio y rango de inversión, procesos de toma de decisión mapeados, personas clave con contactos directos, criterios específicos (financieros, governance, ESG), track record histórico en inversiones tech, y consideraciones para estructurar deals atractivos para este perfil de inversor."
+                                    data-update="Marzo 2025"
+                                    data-owner="Enrique Lascorz">
                                     <div class="book">
                                         <div class="book-back"></div>
                                         <div class="book-tab"></div>
@@ -3737,7 +3842,13 @@ footer {
                                 </div>
                                 
                                 <!-- book Item -->
-                                <div class="book-item" data-type="inversores">
+                                <div class="book-item" data-type="inversores"
+                                    data-title="Growth Equity" 
+                                    data-icon="🌱" 
+                                    data-description="Fondos especializados en empresas tech en fase de expansión."
+                                    data-content="Análisis de los fondos de growth equity más activos en empresas tech españolas, incluyendo: estrategias de inversión específicas (minority growth vs buyout), verticales tecnológicas prioritarias, criterios de crecimiento y rentabilidad requeridos, enfoque sobre estructura de capital (deuda vs equity), tamaño de tickets por fase, procesos de diligencia típicos, configuraciones de governance preferidas, modelos de creación de valor, equipos de inversión con contactos directos, y experiencias previas en el mercado español con factores críticos de éxito."
+                                    data-update="Enero 2025"
+                                    data-owner="Sergi Quingles">
                                     <div class="book">
                                         <div class="book-back"></div>
                                         <div class="book-tab"></div>
@@ -3750,7 +3861,13 @@ footer {
                                 </div>
                                 
                                 <!-- Book Item -->
-                                <div class="book-item" data-type="inversores">
+                                <div class="book-item" data-type="inversores"
+                                    data-title="Fondos España" 
+                                    data-icon="🇪🇸" 
+                                    data-description="Mapa de fondos nacionales con estrategias de inversión en tecnología."
+                                    data-content="Panorama completo del ecosistema de inversión español en tecnología, incluyendo fondos VC, PE, corporate venture y públicos. Para cada firma se incluye: capital disponible estimado, estrategia de inversión actualizada para 2025, sectores y fases prioritarias, criterios de inversión específicos, equipos de gestión con contactos directos, participaciones actuales relevantes, track record histórico documentado, relaciones con otros fondos nacionales e internacionales para co-inversión y secundarios, y recomendaciones específicas para aproximación y negociación."
+                                    data-update="Febrero 2025"
+                                    data-owner="Juan Corbalán">
                                     <div class="book">
                                         <div class="book-front">
                                             <div class="book-icon">🇪🇸</div>
@@ -3776,7 +3893,13 @@ footer {
                             
                             <div class="books-container">
                                 <!-- Book Item -->
-                                <div class="book-item" data-type="formacion">
+                                <div class="book-item" data-type="formacion"
+                                    data-title="Tech Basics" 
+                                    data-icon="💻" 
+                                    data-description="Fundamentos de tecnología para profesionales de M&A."
+                                    data-content="Guía comprensiva sobre conceptos tecnológicos fundamentales para profesionales de M&A, incluyendo: fundamentos de SaaS (multitenancy, cloud infrastructure, API economy), arquitecturas software modernas (microservicios, serverless), metodologías de desarrollo (Agile, DevOps, CI/CD), evaluación tecnológica en diligencia (tech stack assessment, technical debt, arquitectura), IP y propiedad del código, ciberseguridad y compliance (ISO, SOC2, GDPR), y evaluación de equipos tecnológicos. Incluye estudios de caso prácticos y checklists para diligencia."
+                                    data-update="Marzo 2025"
+                                    data-owner="Javier Cuevas">
                                     <div class="book">
                                         <div class="book-front">
                                             <div class="book-icon">💻</div>
@@ -3790,7 +3913,13 @@ footer {
                                 </div>
                                 
                                 <!-- Book Item -->
-                                <div class="book-item" data-type="formacion">
+                                <div class="book-item" data-type="formacion"
+                                    data-title="Métricas SaaS" 
+                                    data-icon="📊" 
+                                    data-description="Guía completa de KPIs y métodos de valoración para SaaS."
+                                    data-content="Manual detallado sobre métricas críticas para evaluación SaaS con metodologías prácticas de cálculo: ARR/MRR (incluyendo non-GAAP adjustments), Customer Acquisition Cost (CAC) y periodo de recuperación, Customer Lifetime Value (LTV) y ratio LTV:CAC, Net Revenue Retention y Gross Revenue Retention, Churn analysis (logo vs revenue), Rule of 40 y variantes, Unit Economics (CAC payback, magic number), SaaS Quick Ratio, y modelos específicos de valoración por tipo de negocio. Incluye benchmarks actualizados por tamaño, sector y fase de crecimiento."
+                                    data-update="Febrero 2025"
+                                    data-owner="Sergi Quingles">
                                     <div class="book">
                                         <div class="book-front">
                                             <div class="book-icon">📊</div>
@@ -3804,7 +3933,13 @@ footer {
                                 </div>
                                 
                                 <!-- Book Item -->
-                                <div class="book-item" data-type="formacion">
+                                <div class="book-item" data-type="formacion"
+                                    data-title="Due Diligence Tech" 
+                                    data-icon="🧪" 
+                                    data-description="Metodología para diligencia tecnológica en procesos de M&A."
+                                    data-content="Guía comprensiva sobre la realización de due diligence tecnológica en operaciones tech, incluyendo: metodología paso a paso para evaluación técnica, assessment de arquitectura y escalabilidad (incluyendo análisis de cloud infrastructure), evaluación de technical debt, revisión de propiedad intelectual y code ownership, análisis de security y compliance, evaluación de data privacy y GDPR, assessment de equipos técnicos, metodologías de trabajo y prácticas de desarrollo, y red flags específicas por tipo de empresa tecnológica. Incluye checklist exhaustiva, modelos de solicitud de información, y plantillas de reporting."
+                                    data-update="Enero 2025"
+                                    data-owner="Nacho Pérez">
                                     <div class="book">
                                         <div class="book-front">
                                             <div class="book-icon">🧪</div>
@@ -3818,7 +3953,13 @@ footer {
                                 </div>
                                 
                                 <!-- book Item -->
-                                <div class="book-item" data-type="formacion">
+                                <div class="book-item" data-type="formacion"
+                                    data-title="Biblioteca Externa" 
+                                    data-icon="📚" 
+                                    data-description="Selección de libros, artículos y recursos sobre tech y M&A."
+                                    data-content="Colección curada de recursos externos fundamentales para profesionales de M&A tech, organizada por categorías: libros esenciales sobre valoración de empresas tecnológicas, papers académicos sobre metodologías de valoración específicas, subscripciones recomendadas a newsletters y plataformas de investigación, recursos para comprender las últimas tendencias tecnológicas, bases de datos de transacciones y múltiplos, comunidades profesionales relevantes para networking, cursos y certificaciones recomendadas, y herramientas especializadas para análisis financiero y de mercado. Cada recurso incluye una evaluación crítica y recomendaciones de uso."
+                                    data-update="Abril 2025"
+                                    data-owner="Enrique Lascorz">   
                                     <div class="book">
                                         <div class="book-back"></div>
                                         <div class="book-tab"></div>
@@ -3831,7 +3972,13 @@ footer {
                                 </div>
                                 
                                 <!-- book Item -->
-                                <div class="book-item" data-type="formacion">
+                                <div class="book-item" data-type="formacion"
+                                    data-title="Webinars" 
+                                    data-icon="🎬" 
+                                    data-description="Colección de seminarios web y conferencias sobre tecnología."
+                                    data-content="Biblioteca de webinars, conferencias y sesiones internas de formación, organizadas por temáticas: valoración de empresas SaaS y metodologías específicas, análisis de tendencias sectoriales emergentes, masterclasses sobre diligencia tecnológica, sesiones sobre estructuración fiscal de operaciones tech, paneles sobre el ecosistema de venture capital español, presentaciones sobre transformación digital corporativa, casos prácticos de operaciones cross-border, y entrevistas con fundadores y expertos del sector. Cada recurso incluye resumen ejecutivo, key takeaways, y materiales complementarios."
+                                    data-update="Febrero 2025"
+                                    data-owner="David Matarredona">  
                                     <div class="book">
                                         <div class="book-back"></div>
                                         <div class="book-tab"></div>
