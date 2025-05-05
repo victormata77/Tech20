@@ -2588,10 +2588,24 @@ D
             }
             
             .hexagon {
-                width: 140px; /* Make even larger on very small screens */
-                height: 121px;
+                width: 180px; /* Make even larger on very small screens */
+                height: 156px;
             }
-            
+            .hexagon:before,
+            .hexagon:after {
+                border-left: 90px solid transparent; /* Adjusted proportionally */
+                border-right: 90px solid transparent; /* Adjusted proportionally */
+            }
+
+            .hexagon:before {
+                border-bottom: 52px solid var(--primary);
+                top: -52px;
+            }
+
+            .hexagon:after {
+                border-top: 52px solid var(--primary);
+                bottom: -52px;
+            }
             .objective-cards {
                 grid-template-columns: 1fr;
             }
