@@ -139,6 +139,11 @@ header {
     width: 100%;
     z-index: 1000;
     transition: all var(--transition-speed) var(--transition-timing);
+    will-change: transform;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 header.header-scrolled {
@@ -317,7 +322,7 @@ header.header-scrolled .subtitle {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all var(--transition-speed) var(--transition-timing);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     height: auto !important;
     min-height: 38px !important;
     
@@ -331,15 +336,31 @@ header.header-scrolled .subtitle {
     z-index: 20;
     
     /* Optimizaciones para iOS */
+    will-change: transform, background;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
 
+/* Make collapsible buttons taller only when not in sticky mode */
+.collapsible:not(.collapsible-sticky) {
+    min-height: 50px !important; /* Increase from 38px to 50px */
+    padding: 15px 20px !important; /* Increase vertical padding */
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Ensure text is vertically centered */
+.collapsible:not(.collapsible-sticky) span {
+    display: block;
+    margin: auto 0;
+}
+
 /* Styles specifically for sticky state - Mejor centrado vertical */
 .collapsible-sticky {
-    background: linear-gradient(90deg, #1a7cd1 0%, #0066cc 100%) !important;
+    /* Light blue gradient that works across all devices */
+    background: linear-gradient(90deg, #00a0ff 0%, #0091ea 100%) !important;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
     border-radius: 0 !important;
     margin-bottom: 0 !important;
@@ -355,6 +376,26 @@ header.header-scrolled .subtitle {
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
+    
+    /* Add transition delay to avoid flashing */
+    transition: background 0.25s ease-in-out 0.05s, 
+                box-shadow 0.25s ease-in-out, 
+                border-radius 0.25s ease-in-out;
+}
+
+/* Add specific :before pseudo-element to improve the transition */
+.collapsible-sticky::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, #00a0ff 0%, #0091ea 100%);
+    opacity: 0; /* Initially hidden */
+    z-index: -1;
+    transition: opacity 0.2s ease-in-out;
+    border-radius: 0;
 }
 
 /* Icono mejorado con más espacio */
@@ -365,6 +406,7 @@ header.header-scrolled .subtitle {
     margin-left: 10px !important; /* Más espacio entre texto e icono */
     font-size: 16px !important;
     line-height: 1 !important;
+    transition: transform 0.3s ease;
 }
 
 .collapsible:hover {
@@ -402,13 +444,14 @@ header.header-scrolled .subtitle {
     float: right;
     margin-left: 10px !important;
     font-size: 16px !important;
+    transform: rotate(0deg);
 }
 
 .collapsible-content {
     padding: 0;
     max-height: 0;
     overflow: hidden;
-    transition: max-height var(--transition-speed) ease-out;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background-color: white;
     border-radius: 0 0 6px 6px;
     margin-bottom: 20px;
@@ -1395,6 +1438,8 @@ header.header-scrolled .subtitle {
     background-color: rgba(0, 0, 0, 0.7);
     opacity: 0;
     transition: opacity 0.3s ease;
+    -webkit-overflow-scrolling: touch; /* Improve iOS scrolling */
+    will-change: opacity; /* Hardware acceleration hint */
 }
 
 .library-modal.show {
@@ -1416,6 +1461,8 @@ header.header-scrolled .subtitle {
     transition: all 0.3s ease;
     max-height: 80vh;
     overflow-y: auto;
+    transform: translateZ(0); /* Force hardware acceleration */
+    backface-visibility: hidden;
 
 }
 
@@ -2151,17 +2198,7 @@ footer p {
     .team-grid > div:nth-child(5) {
         grid-column: span 1.5;
     }
-    .collapsible {
-        padding: 8px 15px !important; /* Más ajustado en pantallas grandes */
-        min-height: 36px !important;
-        top: 80px !important; /* Menú más pequeño en desktop */
-
-    }
     
-    .collapsible-sticky {
-        padding: 6px 15px !important; /* Extremadamente compacto en sticky */
-        min-height: 30px !important;
-    }
 }
 
 /* Medium screens (tablets) */
@@ -2322,21 +2359,31 @@ footer p {
         grid-template-columns: repeat(1, 1fr);
     }
     .collapsible {
-        top: 100px !important; /* Menú un poco más grande en tablet */
+        top: 100px !important;
         padding: 9px 15px !important;
         line-height: 1.3 !important;
+        transition: all 0.25s ease-in-out;
+    }
+    
+    .collapsible:not(.collapsible-sticky) {
+        min-height: 36px !important;
+        padding: 9px 15px !important;
+        font-size: 13px !important;
     }
     
     .collapsible-sticky {
-        padding-left: 15px !important;
-        padding-right: 15px !important;
         padding: 7px 15px !important;
-        /* Texto más pequeño en sticky móvil */
+        top: 100px !important;
         font-size: 13px !important;
-        /* Mejor alineación vertical */
-        display: flex !important;
-        align-items: flex-end !important; /* Alineado al bottom */
-        padding-bottom: 9px !important; /* Ajuste para bottom */
+        /* Ensure consistent light blue on all devices */
+        background: linear-gradient(90deg, #00a0ff 0%, #0091ea 100%) !important;
+        min-height: 32px !important;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2) !important;
+        /* Smoother transition for mobile */
+        transition: background 0.2s ease-in-out,
+                    box-shadow 0.2s ease-in-out,
+                    color 0.2s ease-in-out,
+                    border-radius 0.2s ease-in-out;
     }
 }
 
@@ -2401,15 +2448,29 @@ footer p {
     .collapsible {
         padding: 9px 12px !important;
         font-size: 12px !important;
+        top: 100px !important;
+    }
+    
+    .collapsible:not(.collapsible-sticky) {
+        padding: 9px 12px !important;
+        font-size: 12px !important;
     }
     
     .collapsible-sticky {
-        padding-left: 10px !important;
-        padding-right: 10px !important;
         padding: 7px 12px !important;
-        font-size: 12px !important; /* Aún más pequeño en móviles */
-        padding-bottom: 9px !important;
+        font-size: 11px !important;
+        /* Keep consistent light blue color on mobile */
+        background: linear-gradient(90deg, #00a0ff 0%, #0091ea 100%) !important;
         letter-spacing: 0.1px !important;
+        /* Add extra contrast with shadow */
+        box-shadow: 0 2px 10px rgba(0, 0, 140, 0.15) !important;
+    }
+    
+    /* Fix icons for small screens */
+    .collapsible:after,
+    .collapsible.active:after {
+        font-size: 14px !important;
+        margin-left: 3px !important;
     }
 }
 
@@ -2520,6 +2581,17 @@ footer p {
     
     .subtitle {
         font-size: 8px;
+    }
+    .collapsible {
+        padding: 8px 10px !important;
+        font-size: 11px !important;
+    }
+    
+    .collapsible-sticky {
+        padding: 6px 10px !important;
+        font-size: 10px !important;
+        /* Ensure color consistency even on tiny screens */
+        background: linear-gradient(90deg, #00a0ff 0%, #0091ea 100%) !important;
     }
 }
 
@@ -3735,7 +3807,6 @@ footer p {
                                 </div>
                             </div>
                             
-                            <div class="bookshelf-row"></div>
                         </div>
                     
                         <!-- Category: Precedentes de Transacciones -->
@@ -3841,7 +3912,6 @@ footer p {
                                 </div>
                             </div>
                             
-                            <div class="bookshelf-row"></div>
                         </div>
                     
                         <!-- Category: Compradores Estratégicos -->
@@ -3950,7 +4020,6 @@ footer p {
                                 </div>
                             </div>
                             
-                            <div class="bookshelf-row"></div>
                         </div>
                     
                         <!-- Category: Inversores Financieros -->
@@ -4060,7 +4129,6 @@ footer p {
                                 </div>
                             </div>
                             
-                            <div class="bookshelf-row"></div>
                         </div>
                     
                         <!-- Category: Recursos de Formación -->
@@ -4170,12 +4238,11 @@ footer p {
                                 </div>
                             </div>
                             
-                            <div class="bookshelf-row"></div>
                         </div>
                     
                                           
                         <!-- Item Detail Modal -->
-                        <div class="library-modal" id="itemDetailModal">
+                        <div class="library-modal" id="marketDetailModal">
                             <div class="modal-content">
                                 <span class="modal-close">&times;</span>
                                 <div class="modal-header">
@@ -4186,13 +4253,8 @@ footer p {
                                 
                                 <div class="modal-details">
                                     <div class="modal-detail-item">
-                                        <div class="modal-detail-label">Contenido:</div>
+                                        <div class="modal-detail-label">Análisis detallado:</div>
                                         <div class="modal-detail-content content-field"></div>
-                                    </div>
-                                    
-                                    <div class="modal-detail-item">
-                                        <div class="modal-detail-label">Última actualización:</div>
-                                        <div class="modal-detail-content update-field"></div>
                                     </div>
                                     
                                     <div class="modal-detail-item">
@@ -4332,97 +4394,219 @@ footer p {
             <button class="collapsible">Análisis de Mercado y Segmentación</button>
             <div class="collapsible-content">
                 <div class="collapsible-content-inner">
-                    <p>Hemos desarrollado una segmentación detallada del mercado para focalizar nuestros esfuerzos comerciales:</p>
+                    <div class="library-container">
+                        
                     
-                    <h4>Segmentación por Subsector</h4>
-                    <ol>
-                        <li><span class="highlight-concept">SaaS/Cloud:</span> Empresas de software como servicio y soluciones cloud
-                            <ul>
-                                <li>Enterprise SaaS (ERP, CRM, HCM, etc.)</li>
-                                <li>Vertical SaaS (soluciones específicas para industrias)</li>
-                                <li>Infraestructura cloud y DevOps</li>
-                            </ul>
-                        </li>
-                        <div class="section-divider"></div>
-                        <li><span class="highlight-concept">FinTech:</span> Innovación en servicios financieros
-                            <ul>
-                                <li>Payments y transferencias</li>
-                                <li>Lending y financiación alternativa</li>
-                                <li>WealthTech y gestión patrimonial</li>
-                                <li>InsurTech y blockchain</li>
-                            </ul>
-                        </li>
-                        <div class="section-divider"></div>
-                        <li><span class="highlight-concept">Digital Business Services:</span> Servicios profesionales potenciados por tecnología
-                            <ul>
-                                <li>Consultoras tecnológicas</li>
-                                <li>Agencias digitales</li>
-                                <li>BPO tecnológico</li>
-                            </ul>
-                        </li>
-                        <div class="section-divider"></div>
-                        <li><span class="highlight-concept">Marketplaces:</span> Plataformas de intermediación
-                            <ul>
-                                <li>B2C (ecommerce especializado)</li>
-                                <li>B2B (aprovisionamiento, logística)</li>
-                                <li>P2P (economía colaborativa)</li>
-                            </ul>
-                        </li>
-                        <div class="section-divider"></div>
-                        <li><span class="highlight-concept">Sectores Verticales con Alta Disrupción:</span>
-                            <ul>
-                                <li>HealthTech</li>
-                                <li>EdTech</li>
-                                <li>PropTech</li>
-                                <li>Movilidad</li>
-                            </ul>
-                        </li>
-                    </ol>
+                        <div class="library-description">
+                            Hemos desarrollado una segmentación detallada del mercado para focalizar nuestros esfuerzos comerciales en los segmentos más relevantes para AZ Tech 2.0.
+                        </div>
                     
-                    <div class="section-divider"></div>
+                        <!-- Category: Segmentación por Subsector -->
+                        <div class="category-section" data-category="subsector">
+                            <div class="category-title">
+                                <i class="category-title-icon">🔍</i>
+                                Segmentación por Subsector
+                            </div>
+                            
+                            <div class="books-container" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px;">
+                                <!-- SaaS/Cloud -->
+                                <div class="book-item" 
+                                    data-title="SaaS/Cloud" 
+                                    data-icon="☁️" 
+                                    data-description="Empresas de software como servicio y soluciones cloud"
+                                    data-content="Incluye empresas enfocadas en Enterprise SaaS (ERP, CRM, HCM, etc.), Vertical SaaS (soluciones específicas para industrias) e Infraestructura cloud y DevOps. Este segmento representa aproximadamente el 40% del mercado tech en España y muestra altas tasas de crecimiento y valoraciones premium, especialmente en soluciones B2B con elevada retención."
+                                    data-owner="Javier C.">
+                                    <div class="book">
+                                        <div class="book-front">
+                                            <div class="book-icon">☁️</div>
+                                            <div class="book-title">SaaS/Cloud</div>
+                                            <div class="book-description">Empresas de software como servicio y soluciones cloud</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- FinTech -->
+                                <div class="book-item"
+                                    data-title="FinTech" 
+                                    data-icon="💰" 
+                                    data-description="Innovación en servicios financieros"
+                                    data-content="Abarca compañías en areas de Payments y transferencias, Lending y financiación alternativa, WealthTech y gestión patrimonial, InsurTech y blockchain. Este segmento es particularmente activo en España con el auge de neobancos, soluciones de pago digital y BNPL. Presenta oportunidades significativas por la reestructuración del sector bancario tradicional."
+                                    data-owner="Victor M.">
+                                    <div class="book">
+                                        <div class="book-front">
+                                            <div class="book-icon">💰</div>
+                                            <div class="book-title">FinTech</div>
+                                            <div class="book-description">Innovación en servicios financieros</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Digital Business Services -->
+                                <div class="book-item"
+                                    data-title="Digital Business Services" 
+                                    data-icon="🔄" 
+                                    data-description="Servicios profesionales potenciados por tecnología"
+                                    data-content="Incluye consultoras tecnológicas, agencias digitales y empresas de BPO tecnológico. Este segmento se caracteriza por modelos de negocio de alto valor añadido con relaciones contractuales de larga duración. Especialmente relevante por la transformación digital acelerada en grandes corporaciones españolas y la demanda de servicios especializados."
+                                    data-owner="Juan C.">
+                                    <div class="book">
+                                        <div class="book-front">
+                                            <div class="book-icon">🔄</div>
+                                            <div class="book-title">Digital Business Services</div>
+                                            <div class="book-description">Servicios profesionales potenciados por tecnología</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Marketplaces -->
+                                <div class="book-item"
+                                    data-title="Marketplaces" 
+                                    data-icon="🛒" 
+                                    data-description="Plataformas de intermediación"
+                                    data-content="Comprende plataformas B2C (ecommerce especializado), B2B (aprovisionamiento, logística) y P2P (economía colaborativa). Este segmento está experimentando una especialización creciente hacia verticales específicos, con oportunidades significativas en nichos desatendidos. Los modelos de marketplace presentan oportunidades de valoración premium cuando demuestran efectos de red robustos."
+                                    data-owner="Enrique L.">
+                                    <div class="book">
+                                        <div class="book-front">
+                                            <div class="book-icon">🛒</div>
+                                            <div class="book-title">Marketplaces</div>
+                                            <div class="book-description">Plataformas de intermediación</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Sectores Verticales -->
+                                <div class="book-item"
+                                    data-title="Sectores Verticales" 
+                                    data-icon="📈" 
+                                    data-description="Sectores tradicionales con alta disrupción tecnológica"
+                                    data-content="Incluye HealthTech, EdTech, PropTech y Movilidad. Estos sectores están experimentando transformación acelerada mediante tecnología, creando oportunidades significativas para empresas que resuelven problemas específicos de industria. Destacan por la complejidad regulatoria y el potencial de generar eficiencias significativas en sectores tradicionalmente ineficientes."
+                                    data-owner="David M.">
+                                    <div class="book">
+                                        <div class="book-front">
+                                            <div class="book-icon">📈</div>
+                                            <div class="book-title">Sectores Verticales</div>
+                                            <div class="book-description">Sectores tradicionales con alta disrupción tecnológica</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
                     
-                    <h4>Segmentación por Tipo de Cliente</h4>
-                    <ol>
-                        <li><span class="highlight-concept">Founders/Emprendedores:</span> Creadores de empresas tecnológicas
-                            <ul>
-                                <li><span class="sub-concept">Prioridad:</span> Primeros fundadores con track record</li>
-                                <li><span class="sub-concept">Motivaciones:</span> Cristalización de valor, siguiente proyecto, fatiga</li>
-                                <li><span class="sub-concept">Enfoque:</span> Asesoramiento integral y personalizado</li>
-                            </ul>
-                        </li>
-                        <div class="section-divider"></div>
-                        <li><span class="highlight-concept">Corporates Tech:</span> Empresas tecnológicas consolidadas
-                            <ul>
-                                <li><span class="sub-concept">Prioridad:</span> Empresas con estrategia de crecimiento inorgánico</li>
-                                <li><span class="sub-concept">Motivaciones:</span> Consolidación, nuevas capacidades, expansión</li>
-                                <li><span class="sub-concept">Enfoque:</span> Asesoramiento estratégico y apoyo en ejecución</li>
-                            </ul>
-                        </li>
-                        <div class="section-divider"></div>
-                        <li><span class="highlight-concept">Corporates Tradicionales:</span> Empresas de sectores establecidos
-                            <ul>
-                                <li><span class="sub-concept">Prioridad:</span> Compañías con agenda de transformación digital</li>
-                                <li><span class="sub-concept">Motivaciones:</span> Disrupción, digitalización, renovación</li>
-                                <li><span class="sub-concept">Enfoque:</span> Educación y acompañamiento estratégico</li>
-                            </ul>
-                        </li>
-                        <div class="section-divider"></div>
-                        <li><span class="highlight-concept">Inversores Financieros:</span> Private Equity y Venture Capital
-                            <ul>
-                                <li><span class="sub-concept">Prioridad:</span> Fondos con interés en tech o portfolio tech</li>
-                                <li><span class="sub-concept">Motivaciones:</span> Desinversiones optimizadas, add-ons</li>
-                                <li><span class="sub-concept">Enfoque:</span> Eficiencia y diligencia en procesos</li>
-                            </ul>
-                        </li>
-                        <div class="section-divider"></div>
-                        <li><span class="highlight-concept">Family Offices:</span> Patrimonios familiares
-                            <ul>
-                                <li><span class="sub-concept">Prioridad:</span> FOs con interés en diversificación hacia tech</li>
-                                <li><span class="sub-concept">Motivaciones:</span> Renovación de inversiones, exposición a innovación</li>
-                                <li><span class="sub-concept">Enfoque:</span> Educativo y conservador en riesgo</li>
-                            </ul>
-                        </li>
-                    </ol>
+                        <!-- Category: Segmentación por Tipo de Cliente -->
+                        <div class="category-section" data-category="clientes">
+                            <div class="category-title">
+                                <i class="category-title-icon">👥</i>
+                                Segmentación por Tipo de Cliente
+                            </div>
+                            
+                            <div class="books-container" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px;">
+                                <!-- Founders/Emprendedores -->
+                                <div class="book-item"
+                                    data-title="Founders/Emprendedores" 
+                                    data-icon="🚀" 
+                                    data-description="Creadores de empresas tecnológicas"
+                                    data-content="Prioridad: Primeros fundadores con track record demostrado. Motivaciones: Cristalización de valor creado, preparación para siguiente proyecto, fatiga tras años de crecimiento. Enfoque: Asesoramiento integral y personalizado, con énfasis en entender motivaciones personales y emocionales. Particularmente relevante en ecosistema español actual con maduración de startups fundadas en 2015-2018."
+                                    data-owner="David M.">
+                                    <div class="book">
+                                        <div class="book-front">
+                                            <div class="book-icon">🚀</div>
+                                            <div class="book-title">Founders/ Emprendedores</div>
+                                            <div class="book-description">Creadores de empresas tecnológicas</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Corporates Tech -->
+                                <div class="book-item"
+                                    data-title="Corporates Tech" 
+                                    data-icon="🏢" 
+                                    data-description="Empresas tecnológicas consolidadas"
+                                    data-content="Prioridad: Empresas con estrategia activa de crecimiento inorgánico. Motivaciones: Consolidación sectorial, adquisición de nuevas capacidades, expansión geográfica. Enfoque: Asesoramiento estratégico y apoyo en procesos de ejecución eficientes. Especialmente relevante con empresas tech españolas que buscan expandirse en Latinoamérica o adquirir capacidades complementarias."
+                                    data-owner="Javier J.">
+                                    <div class="book">
+                                        <div class="book-front">
+                                            <div class="book-icon">🏢</div>
+                                            <div class="book-title">Corporates Tech</div>
+                                            <div class="book-description">Empresas tecnológicas consolidadas</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Corporates Tradicionales -->
+                                <div class="book-item"
+                                    data-title="Corporates Tradicionales" 
+                                    data-icon="🏭" 
+                                    data-description="Empresas de sectores establecidos"
+                                    data-content="Prioridad: Compañías con agenda activa de transformación digital. Motivaciones: Respuesta a disrupción, digitalización de procesos core, renovación cultural. Enfoque: Educación sobre valor estratégico de adquisiciones tech y acompañamiento durante el proceso. Foco en sectores como banca, seguros, energía y retail que enfrentan presión competitiva de nuevos entrantes tecnológicos."
+                                    data-owner="Victor M.">
+                                    <div class="book">
+                                        <div class="book-front">
+                                            <div class="book-icon">🏭</div>
+                                            <div class="book-title">Corporates Tradicionales</div>
+                                            <div class="book-description">Empresas de sectores establecidos</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Inversores Financieros -->
+                                <div class="book-item"
+                                    data-title="Inversores Financieros" 
+                                    data-icon="💼" 
+                                    data-description="Private Equity y Venture Capital"
+                                    data-content="Prioridad: Fondos con interés específico en tech o con portfolio tech significativo. Motivaciones: Desinversiones optimizadas, adquisiciones complementarias (add-ons). Enfoque: Eficiencia y diligencia en procesos, maximización de valoraciones. Particularmente relevante con el incremento de fondos midmarket con tesis de inversión en digitalización y el creciente interés internacional en el ecosistema español."
+                                    data-owner="Javier C.">
+                                    <div class="book">
+                                        <div class="book-front">
+                                            <div class="book-icon">💼</div>
+                                            <div class="book-title">Inversores Financieros</div>
+                                            <div class="book-description">Private Equity y Venture Capital</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Family Offices -->
+                                <div class="book-item"
+                                    data-title="Family Offices" 
+                                    data-icon="👨‍👩‍👧‍👦" 
+                                    data-description="Patrimonios familiares"
+                                    data-content="Prioridad: FOs con interés en diversificación hacia tech como asset class. Motivaciones: Renovación de portfolio de inversiones, exposición a innovación. Enfoque: Educativo y conservador en evaluación de riesgos. Tendencia creciente de grandes patrimonios españoles a destinar porción de capital a inversiones directas en tech, buscando rendimientos superiores a inversiones tradicionales."
+                                    data-owner="Juan C.">
+                                    <div class="book">
+                                        <div class="book-front">
+                                            <div class="book-icon">👨‍👩‍👧‍👦</div>
+                                            <div class="book-title">Family Offices</div>
+                                            <div class="book-description">Patrimonios familiares</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    
+                        <div class="library-modal" id="itemDetailModal">
+                            <div class="modal-content">
+                                <span class="modal-close">&times;</span>
+                                <div class="modal-header">
+                                    <div class="modal-icon"></div>
+                                    <div class="modal-title"></div>
+                                </div>
+                                <div class="modal-description"></div>
+                                
+                                <div class="modal-details">
+                                    <div class="modal-detail-item">
+                                        <div class="modal-detail-label">Análisis detallado:</div>
+                                        <div class="modal-detail-content content-field"></div>
+                                    </div>
+                                    
+                                    <div class="modal-detail-item">
+                                        <div class="modal-detail-label">Responsable:</div>
+                                        <div class="modal-detail-content owner-field"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
@@ -5541,565 +5725,668 @@ footer p {
 </footer>
 
 <script>
-// Complete JavaScript including improved sticky collapsibles functionality
+    // Map of tab IDs to their display names
+    const tabNames = {
+        'vision': 'Visión General',
+        'structure': 'Estructura y Equipo',
+        'execution': 'Ejecución y Procesos',
+        'commercial': 'Estrategia Comercial',
+        'timeline': 'Calendario e Hitos',
+        'kpis': 'KPIs'
+    };
 
-// Map of tab IDs to their display names
-const tabNames = {
-    'vision': 'Visión General',
-    'structure': 'Estructura y Equipo',
-    'execution': 'Ejecución y Procesos',
-    'commercial': 'Estrategia Comercial',
-    'timeline': 'Calendario e Hitos',
-    'kpis': 'KPIs'
-};
+    // Store the current active tab to maintain state
+    let activeTabId = 'vision'; // Default active tab
 
-// Store the current active tab to maintain state
-let activeTabId = 'vision'; // Default active tab
-
-// Function to open a tab when clicked
-function openTab(evt, tabName) {
-    // Update all tab contents
-    var tabcontent = document.getElementsByClassName("tab-content");
-    for (var i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].classList.remove("active");
-    }
-    
-    // Find the specific tab content and make it active
-    var targetTab = document.getElementById(tabName);
-    if (targetTab) {
-        targetTab.classList.add("active");
-    }
-    
-    // Update all tab buttons in the entire document to reflect the current selection
-    var tablinks = document.getElementsByClassName("tab");
-    for (var i = 0; i < tablinks.length; i++) {
-        // Check if this tab button is for the selected tab
-        if (tablinks[i].getAttribute("onclick").includes(tabName)) {
-            tablinks[i].classList.add("active");
-        } else {
-            tablinks[i].classList.remove("active");
+    // Function to open a tab when clicked
+    function openTab(evt, tabName) {
+        // Update all tab contents
+        var tabcontent = document.getElementsByClassName("tab-content");
+        for (var i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
         }
-    }
-    
-    // Update active tab id
-    activeTabId = tabName;
-    
-    // Reset collapsibles in the new tab
-    setTimeout(function() {
-        recalculateCollapsibleHeights();
-        checkStickyCollapsibles();
-    }, 50);
-}
-
-// Execute when the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", function() {
-    // Initialize collapsible sections
-    initCollapsibles();
-    
-    // Add scroll event listener for sticky header behavior
-    initScrollBehavior();
-    
-    // Initialize sticky collapsibles
-    initStickyCollapsibles();
-    
-    // Setup toggle buttons for task details
-    initToggleButtons();
-    
-    // Initialize progress bars with animation
-    initProgressBars();
-    
-    // Handle window resize events
-    initResizeHandler();
-    
-    // Password protection check
-    initPasswordProtection();
-});
-
-// Initialize password protection
-function initPasswordProtection() {
-    // Check if we've already been authenticated
-    if (sessionStorage.getItem("authenticated") === "true") {
-        document.getElementById("password-overlay").style.display = "none";
-    }
-    
-    // Setup password submission
-    const submitBtn = document.getElementById("submit-password");
-    if (submitBtn) {
-        submitBtn.addEventListener("click", checkPassword);
-    }
-    
-    const passwordInput = document.getElementById("password-input");
-    if (passwordInput) {
-        passwordInput.addEventListener("keyup", function(event) {
-            if (event.key === "Enter") {
-                checkPassword();
-            }
-        });
-    }
-}
-
-function checkPassword() {
-    const passwordInput = document.getElementById("password-input");
-    if (!passwordInput) return;
-    
-    const password = passwordInput.value;
-    const correctPassword = "AZTech2025&"; // Change this to your desired password
-    
-    if (password === correctPassword) {
-        // Store authentication in session storage
-        sessionStorage.setItem("authenticated", "true");
-        // Hide overlay
-        const overlay = document.getElementById("password-overlay");
-        if (overlay) {
-            overlay.style.display = "none";
+        
+        // Find the specific tab content and make it active
+        var targetTab = document.getElementById(tabName);
+        if (targetTab) {
+            targetTab.classList.add("active");
         }
-    } else {
-        // Show error message
-        const errorMsg = document.getElementById("error-message");
-        if (errorMsg) {
-            errorMsg.style.display = "block";
-        }
-        // Clear password field
-        passwordInput.value = "";
-    }
-}
-
-// Initialize collapsible sections
-function initCollapsibles() {
-    const coll = document.getElementsByClassName("collapsible");
-    for (let i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            const content = this.nextElementSibling;
-            
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
+        
+        // Update all tab buttons in the entire document to reflect the current selection
+        var tablinks = document.getElementsByClassName("tab");
+        for (var i = 0; i < tablinks.length; i++) {
+            // Check if this tab button is for the selected tab
+            if (tablinks[i].getAttribute("onclick").includes(tabName)) {
+                tablinks[i].classList.add("active");
             } else {
-                content.style.maxHeight = content.scrollHeight + "px";
+                tablinks[i].classList.remove("active");
             }
-            
-            // Recalculate collapsibles after animation
-            setTimeout(function() {
-                checkStickyCollapsibles();
-                recalculateCollapsibleHeights();
-            }, 300);
-        });
+        }
+        
+        // Update active tab id
+        activeTabId = tabName;
+        
+        // Reset collapsibles in the new tab
+        setTimeout(function() {
+            recalculateCollapsibleHeights();
+            checkStickyCollapsibles();
+        }, 50);
     }
-}
 
-// Optimización del manejo de scroll para iOS
-function initScrollBehavior() {
-    // Variable para throttling
-    let isScrolling = false;
-    let lastScrollY = window.pageYOffset;
-    
-    // Función con throttling para mejor rendimiento en iOS
-    function handleScroll() {
-        if (!isScrolling) {
-            isScrolling = true;
-            
-            // Usar requestAnimationFrame para sincronizar con el refresco de pantalla
-            requestAnimationFrame(() => {
-                const header = document.querySelector('header');
-                const body = document.body;
-                const scrollPosition = window.pageYOffset;
-                
-                // Determinar si ha habido un cambio significativo en el scroll (>5px)
-                // Esto reduce cambios de clase innecesarios
-                if (Math.abs(scrollPosition - lastScrollY) > 5) {
-                    if (scrollPosition > 50) {
-                        if (!header.classList.contains('header-scrolled')) {
-                            header.classList.add('header-scrolled');
-                            body.classList.add('scrolled');
-                        }
-                    } else {
-                        if (header.classList.contains('header-scrolled')) {
-                            header.classList.remove('header-scrolled');
-                            body.classList.remove('scrolled');
-                        }
-                    }
-                    
-                    // Actualizar último valor de scroll
-                    lastScrollY = scrollPosition;
+    // Execute when the DOM is fully loaded
+    document.addEventListener("DOMContentLoaded", function() {
+        // Initialize collapsible sections
+        initCollapsibles();
+        
+        // Add scroll event listener for sticky header behavior
+        initScrollBehavior();
+        
+        // Initialize sticky collapsibles
+        initStickyCollapsibles();
+        
+        // Setup toggle buttons for task details
+        initToggleButtons();
+        
+        // Initialize progress bars with animation
+        initProgressBars();
+        
+        // Handle window resize events
+        initResizeHandler();
+        
+        // Password protection check
+        initPasswordProtection();
+        
+        // Initialize Tech Playbook if present
+        if (document.querySelector('.page')) {
+            initTechPlaybook();
+        }
+        
+        // Initialize all library components across the site
+        initAllLibraryItems();
+        
+        // Add key press event listener to close modals with escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const visibleModals = document.querySelectorAll('.library-modal.show');
+                visibleModals.forEach(modal => closeModal(modal));
+            }
+        });
+    });
+
+    // Initialize password protection
+    function initPasswordProtection() {
+        // Check if we've already been authenticated
+        if (sessionStorage.getItem("authenticated") === "true") {
+            document.getElementById("password-overlay").style.display = "none";
+        }
+        
+        // Setup password submission
+        const submitBtn = document.getElementById("submit-password");
+        if (submitBtn) {
+            submitBtn.addEventListener("click", checkPassword);
+        }
+        
+        const passwordInput = document.getElementById("password-input");
+        if (passwordInput) {
+            passwordInput.addEventListener("keyup", function(event) {
+                if (event.key === "Enter") {
+                    checkPassword();
                 }
-                
-                // Revisar collapsibles después de manejar el header
-                checkStickyCollapsibles();
-                
-                isScrolling = false;
             });
         }
     }
-    
-    // Usar passive: true para mejor rendimiento en scroll, especialmente en iOS
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    // Trigger once on page load to set initial state
-    handleScroll();
-}
 
-// Improved sticky collapsibles functionality
-function initStickyCollapsibles() {
-    // Initial check for sticky collapsibles
-    checkStickyCollapsibles();
-    
-    // Re-check on resize
-    window.addEventListener('resize', function() {
+    function checkPassword() {
+        const passwordInput = document.getElementById("password-input");
+        if (!passwordInput) return;
+        
+        const password = passwordInput.value;
+        const correctPassword = "AZTech2025&"; // Change this to your desired password
+        
+        if (password === correctPassword) {
+            // Store authentication in session storage
+            sessionStorage.setItem("authenticated", "true");
+            // Hide overlay
+            const overlay = document.getElementById("password-overlay");
+            if (overlay) {
+                overlay.style.display = "none";
+            }
+        } else {
+            // Show error message
+            const errorMsg = document.getElementById("error-message");
+            if (errorMsg) {
+                errorMsg.style.display = "block";
+            }
+            // Clear password field
+            passwordInput.value = "";
+        }
+    }
+
+    // Initialize collapsible sections
+    function initCollapsibles() {
+        const coll = document.getElementsByClassName("collapsible");
+        for (let i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                const content = this.nextElementSibling;
+                
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+                
+                // Recalculate collapsibles after animation
+                setTimeout(function() {
+                    checkStickyCollapsibles();
+                    recalculateCollapsibleHeights();
+                }, 300);
+            });
+        }
+    }
+
+    // Optimización del manejo de scroll para iOS
+    function initScrollBehavior() {
+        // Variable para throttling
+        let isScrolling = false;
+        let lastScrollY = window.pageYOffset;
+        
+        // Función con throttling para mejor rendimiento en iOS
+        function handleScroll() {
+            if (!isScrolling) {
+                isScrolling = true;
+                
+                // Usar requestAnimationFrame para sincronizar con el refresco de pantalla
+                requestAnimationFrame(() => {
+                    const header = document.querySelector('header');
+                    const body = document.body;
+                    const scrollPosition = window.pageYOffset;
+                    
+                    // Determinar si ha habido un cambio significativo en el scroll (>5px)
+                    // Esto reduce cambios de clase innecesarios
+                    if (Math.abs(scrollPosition - lastScrollY) > 5) {
+                        if (scrollPosition > 50) {
+                            if (!header.classList.contains('header-scrolled')) {
+                                header.classList.add('header-scrolled');
+                                body.classList.add('scrolled');
+                            }
+                        } else {
+                            if (header.classList.contains('header-scrolled')) {
+                                header.classList.remove('header-scrolled');
+                                body.classList.remove('scrolled');
+                            }
+                        }
+                        
+                        // Actualizar último valor de scroll
+                        lastScrollY = scrollPosition;
+                    }
+                    
+                    // Revisar collapsibles después de manejar el header
+                    checkStickyCollapsibles();
+                    
+                    isScrolling = false;
+                });
+            }
+        }
+        
+        // Usar passive: true para mejor rendimiento en scroll, especialmente en iOS
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        
+        // Trigger once on page load to set initial state
+        handleScroll();
+    }
+
+    // Improved sticky collapsibles functionality
+    function initStickyCollapsibles() {
+        // Initial check for sticky collapsibles
         checkStickyCollapsibles();
-        recalculateCollapsibleHeights();
-    });
-}
+        
+        // Re-check on resize
+        window.addEventListener('resize', function() {
+            checkStickyCollapsibles();
+            recalculateCollapsibleHeights();
+        });
+    }
 
-function checkStickyCollapsibles() {
+    function checkStickyCollapsibles() {
+        const collapsibles = document.querySelectorAll('.collapsible');
+        const header = document.querySelector('header');
+        
+        // Get current header height 
+        const headerHeight = header.classList.contains('header-scrolled') 
+            ? header.offsetHeight 
+            : header.offsetHeight;
+        
+        collapsibles.forEach(collapsible => {
+            // Obtener posición antes de cualquier cambio de clase
+            const rect = collapsible.getBoundingClientRect();
+            const tabContent = collapsible.closest('.tab-content');
+            
+            // Calcular si debería ser sticky
+            const shouldBeSticky = rect.top <= headerHeight;
+            const isSticky = collapsible.classList.contains('collapsible-sticky');
+            
+            // Solo realizar cambios si el estado es diferente para evitar reflows innecesarios
+            if (shouldBeSticky && !isSticky) {
+                // Aplicamos transform en vez de modificar directamente otras propiedades
+                requestAnimationFrame(() => {
+                    collapsible.classList.add('collapsible-sticky');
+                    
+                    // Si el collapsible está activo, añadir padding para evitar saltos
+                    if (tabContent && collapsible.classList.contains('active') && 
+                        !tabContent.style.paddingTop) {
+                        const collapsibleHeight = collapsible.offsetHeight;
+                        // Usar transform en vez de paddingTop para mejor rendimiento
+                        tabContent.style.paddingTop = collapsibleHeight + 'px';
+                    }
+                });
+            } else if (!shouldBeSticky && isSticky) {
+                requestAnimationFrame(() => {
+                    collapsible.classList.remove('collapsible-sticky');
+                    
+                    // Eliminar padding con animación suave
+                    if (tabContent && tabContent.style.paddingTop) {
+                        // Transición suave para eliminar padding
+                        tabContent.style.transition = 'padding-top 0.2s ease-out';
+                        tabContent.style.paddingTop = '';
+                        // Eliminar la transición después de completarse
+                        setTimeout(() => {
+                            tabContent.style.transition = '';
+                        }, 200);
+                    }
+                });
+            }
+        });
+    }
+
+        function recalculateCollapsibleHeights() {
+        // Use requestAnimationFrame for smoother animations
+        requestAnimationFrame(() => {
+            const activeCollapsibles = document.querySelectorAll('.collapsible.active');
+            activeCollapsibles.forEach(function(collapsible) {
+                const content = collapsible.nextElementSibling;
+                if (content && content.classList.contains('collapsible-content')) {
+                    // Get the content inner element
+                    const contentInner = content.querySelector('.collapsible-content-inner');
+                    
+                    // Only proceed if the content inner exists
+                    if (contentInner) {
+                        // Calculate height before applying it
+                        const scrollHeight = contentInner.offsetHeight;
+                        
+                        // Apply height with a small margin to prevent scrollbars
+                        // Use a timeout to ensure the DOM has settled
+                        setTimeout(() => {
+                            content.style.maxHeight = (scrollHeight + 5) + 'px';
+                        }, 5);
+                    }
+                }
+            });
+        });
+    }
+
+    // Initialize toggle buttons for task details
+    function initToggleButtons() {
+        const toggleButtons = document.querySelectorAll('.toggle-details');
+        toggleButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const parentTd = this.closest('td');
+                const description = parentTd.querySelector('.task-description-full');
+                
+                if (this.getAttribute('data-state') === 'collapsed') {
+                    // Show full description
+                    description.style.display = 'block';
+                    this.textContent = 'Ver menos';
+                    this.setAttribute('data-state', 'expanded');
+                } else {
+                    // Hide description
+                    description.style.display = 'none';
+                    this.textContent = 'Ver más';
+                    this.setAttribute('data-state', 'collapsed');
+                }
+                
+                // Recalculate heights after toggling
+                setTimeout(recalculateCollapsibleHeights, 50);
+            });
+        });
+    }
+
+    // Initialize progress bars with animation
+    function initProgressBars() {
+        setTimeout(function() {
+            const progresses = document.getElementsByClassName('progress');
+            for(let i = 0; i < progresses.length; i++) {
+                // Only set if not already set
+                if (!progresses[i].style.width) {
+                    const width = progresses[i].getAttribute('data-width') || '0%';
+                    progresses[i].style.width = width;
+                }
+            }
+        }, 500);
+    }
+
+    function initResizeHandler() {
+        let resizeTimer;
+        let lastWidth = window.innerWidth;
+        
+        function handleResize() {
+            // Solo realizar cambios si el ancho realmente cambió
+            // Esto es importante en iOS donde el scroll puede disparar eventos resize
+            const currentWidth = window.innerWidth;
+            if (currentWidth !== lastWidth) {
+                lastWidth = currentWidth;
+                
+                // Recalcular con prioridad
+                recalculateCollapsibleHeights();
+                checkStickyCollapsibles();
+                adjustResponsiveElements();
+            }
+        }
+        
+        // Usar passive: true para mejor rendimiento
+        window.addEventListener('resize', function() {
+            // Debounce resize event
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(handleResize, 100);
+        }, { passive: true });
+        
+        // Call once on page load
+        handleResize();
+    }
+
+    // Adjust responsive elements based on screen size
+    function adjustResponsiveElements() {
+        const viewportWidth = window.innerWidth;
+        
+        // Adjust font sizes for very small screens
+        if (viewportWidth <= 350) {
+            document.body.classList.add('very-small-screen');
+        } else {
+            document.body.classList.remove('very-small-screen');
+        }
+        
+        // More responsive adjustments can be added here
+    }
+
+    // Initialize Tech Playbook functionality
+    function initTechPlaybook() {
+        const pages = document.querySelectorAll('.page');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const currentPageSpan = document.getElementById('current-page');
+        
+        // Skip initialization if elements don't exist
+        if (!pages.length || !prevBtn || !nextBtn || !currentPageSpan) {
+            return;
+        }
+        
+        const pageNames = ['Índice', '1. Originación', '2. Pitch', '3. Ejecución', '4. Valoración', '5. Gestión', '6. Calendario'];
+        let currentPageIndex = 0;
+        const totalPages = pages.length;
+        
+        // Update page indicator with responsive text
+        function updatePageIndicator() {
+            // Use shorter names on very small screens
+            if (window.innerWidth <= 350) {
+                const shortPageNames = ['Índice', '1. Orig.', '2. Pitch', '3. Ejec.', '4. Valor.', '5. Gest.', '6. Cal.'];
+                currentPageSpan.textContent = shortPageNames[currentPageIndex];
+            } else {
+                currentPageSpan.textContent = pageNames[currentPageIndex];
+            }
+        }
+        
+        function updatePage() {
+            // Hide all pages
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show current page
+            pages[currentPageIndex].classList.add('active');
+            
+            // Update current page text
+            updatePageIndicator();
+            
+            // Update button states
+            prevBtn.disabled = currentPageIndex === 0;
+            nextBtn.disabled = currentPageIndex === totalPages - 1;
+            
+            // Reset scroll position
+            if (pages[currentPageIndex]) {
+                pages[currentPageIndex].scrollTop = 0;
+            }
+        }
+        
+        // Previous button event
+        prevBtn.addEventListener('click', function() {
+            if (currentPageIndex > 0) {
+                currentPageIndex--;
+                updatePage();
+            }
+        });
+        
+        // Next button event
+        nextBtn.addEventListener('click', function() {
+            if (currentPageIndex < totalPages - 1) {
+                currentPageIndex++;
+                updatePage();
+            }
+        });
+        
+        // Initialize
+        updatePage();
+        
+        // Handle window resize
+        window.addEventListener('resize', updatePageIndicator);
+    }
+
+    // IMPROVED LIBRARY AND MODAL FUNCTIONALITY
+    // =========================================
+
+    // Function to initialize all library components across all sections
+    function initAllLibraryItems() {
+        // Get all book items across both libraries (original library and market analysis)
+        const allBookItems = document.querySelectorAll('.book-item, .folder-item');
+        const allFilterBtns = document.querySelectorAll('.filter-btn');
+        const allModals = document.querySelectorAll('.library-modal');
+        
+        // Setup click handlers for all book items
+        allBookItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                openBookDetail(this);
+            });
+        });
+        
+        // Setup filter functionality for all filter buttons
+        if (allFilterBtns.length > 0) {
+            allFilterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    const libraryContainer = this.closest('.library-container');
+                    
+                    if (libraryContainer) {
+                        // Only filter items in the current library section
+                        filterLibraryItems(filter, libraryContainer);
+                        
+                        // Update active state within this section
+                        const sectionFilterBtns = libraryContainer.querySelectorAll('.filter-btn');
+                        sectionFilterBtns.forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                });
+            });
+        }
+        
+        // Setup close functionality for all modals
+        allModals.forEach(modal => {
+            const closeBtn = modal.querySelector('.modal-close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    closeModal(modal);
+                });
+            }
+            
+            // Close modal when clicking outside content
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal(modal);
+                }
+            });
+        });
+    }
+
+    // Improved function to open book detail in appropriate modal
+    function openBookDetail(item) {
+        // Find the closest library container to this item
+        const libraryContainer = item.closest('.library-container');
+        if (!libraryContainer) return;
+        
+        // Find the modal that belongs to this library container
+        const modal = libraryContainer.querySelector('.library-modal');
+        if (!modal) {
+            console.warn('Modal not found for this library container');
+            return;
+        }
+        
+        // Get data from item with fallbacks to prevent undefined
+        const title = item.getAttribute('data-title') || '';
+        const description = item.getAttribute('data-description') || '';
+        const icon = item.getAttribute('data-icon') || '';
+        const content = item.getAttribute('data-content') || '';
+        const update = item.getAttribute('data-update') || '';
+        const owner = item.getAttribute('data-owner') || '';
+        
+        // Update modal content
+        const modalTitle = modal.querySelector('.modal-title');
+        if (modalTitle) modalTitle.textContent = title;
+        
+        const modalDescription = modal.querySelector('.modal-description');
+        if (modalDescription) modalDescription.textContent = description;
+        
+        const modalIcon = modal.querySelector('.modal-icon');
+        if (modalIcon) modalIcon.textContent = icon;
+        
+        // Update detail fields if they exist
+        const contentEl = modal.querySelector('.content-field');
+        if (contentEl) contentEl.textContent = content;
+        
+        const updateEl = modal.querySelector('.update-field');
+        if (updateEl) updateEl.textContent = update;
+        
+        const ownerEl = modal.querySelector('.owner-field');
+        if (ownerEl) ownerEl.textContent = owner;
+        
+        // Save current scroll position
+        const scrollY = window.scrollY;
+        
+        // Show modal with proper animation
+        modal.style.display = 'block';
+        // Use setTimeout to ensure display change is registered before animation starts
+        setTimeout(() => {
+            modal.classList.add('show');
+            
+            // Fix body position to prevent background scrolling
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollY}px`;
+            document.body.style.width = '100%';
+            document.body.style.overflow = 'hidden';
+        }, 10);
+    }
+
+    // Improved function to close any modal
+    function closeModal(modal) {
+        if (!modal) return;
+        
+        // Get the saved scroll position
+        const scrollY = document.body.style.top;
+        
+        // Remove show class to trigger fade out animation
+        modal.classList.remove('show');
+        
+        // Wait for animation to complete before hiding
+        setTimeout(() => {
+            modal.style.display = 'none';
+            
+            // Restore body styles
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            document.body.style.overflow = '';
+            
+            // Restore scroll position
+            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        }, 300); // Match the transition time in CSS
+    }
+
+    // Improved function to filter library items within a specific container
+    function filterLibraryItems(filter, container) {
+        if (!container) return;
+        
+        const categories = container.querySelectorAll('.category-section');
+        const items = container.querySelectorAll('.book-item, .folder-item');
+        
+        if (filter === 'all') {
+            // Show all categories and items
+            categories.forEach(cat => cat.style.display = 'block');
+            items.forEach(item => item.style.display = 'block');
+        } else {
+            // Filter categories and items
+            categories.forEach(cat => {
+                const categoryType = cat.getAttribute('data-category');
+                cat.style.display = (categoryType === filter) ? 'block' : 'none';
+            });
+            
+            items.forEach(item => {
+                const itemType = item.getAttribute('data-type');
+                item.style.display = (itemType === filter || !itemType) ? 'block' : 'none';
+            });
+        }
+        
+        // Recalculate heights after filtering to ensure proper display
+        setTimeout(recalculateCollapsibleHeights, 100);
+    }
+
+    function checkStickyCollapsibles() {
     const collapsibles = document.querySelectorAll('.collapsible');
     const header = document.querySelector('header');
     
     // Get current header height 
-    const headerHeight = header.classList.contains('header-scrolled') 
-        ? header.offsetHeight 
-        : header.offsetHeight;
+    const headerHeight = header.offsetHeight;
     
-    collapsibles.forEach(collapsible => {
-        // Obtener posición antes de cualquier cambio de clase
-        const rect = collapsible.getBoundingClientRect();
-        const tabContent = collapsible.closest('.tab-content');
-        
-        // Calcular si debería ser sticky
-        const shouldBeSticky = rect.top <= headerHeight;
-        const isSticky = collapsible.classList.contains('collapsible-sticky');
-        
-        // Solo realizar cambios si el estado es diferente para evitar reflows innecesarios
-        if (shouldBeSticky && !isSticky) {
-            // Aplicamos transform en vez de modificar directamente otras propiedades
-            requestAnimationFrame(() => {
+    // Use requestAnimationFrame for better performance
+    requestAnimationFrame(() => {
+        collapsibles.forEach(collapsible => {
+            const rect = collapsible.getBoundingClientRect();
+            const tabContent = collapsible.closest('.tab-content');
+            
+            // Calculate if should be sticky with threshold to prevent flickering
+            const shouldBeSticky = rect.top <= (headerHeight + 5); // Add 5px threshold
+            const isSticky = collapsible.classList.contains('collapsible-sticky');
+            
+            // Only change state if needed
+            if (shouldBeSticky && !isSticky) {
                 collapsible.classList.add('collapsible-sticky');
                 
-                // Si el collapsible está activo, añadir padding para evitar saltos
+                // If active, add padding to tab content to prevent jumping
                 if (tabContent && collapsible.classList.contains('active') && 
                     !tabContent.style.paddingTop) {
                     const collapsibleHeight = collapsible.offsetHeight;
-                    // Usar transform en vez de paddingTop para mejor rendimiento
                     tabContent.style.paddingTop = collapsibleHeight + 'px';
                 }
-            });
-        } else if (!shouldBeSticky && isSticky) {
-            requestAnimationFrame(() => {
+            } else if (!shouldBeSticky && isSticky) {
                 collapsible.classList.remove('collapsible-sticky');
                 
-                // Eliminar padding con animación suave
+                // Remove padding with animation
                 if (tabContent && tabContent.style.paddingTop) {
-                    // Transición suave para eliminar padding
                     tabContent.style.transition = 'padding-top 0.2s ease-out';
                     tabContent.style.paddingTop = '';
-                    // Eliminar la transición después de completarse
                     setTimeout(() => {
                         tabContent.style.transition = '';
                     }, 200);
                 }
-            });
-        }
-    });
-}
-
-function recalculateCollapsibleHeights() {
-    // Usar requestAnimationFrame para sincronizar con refresco de pantalla
-    requestAnimationFrame(() => {
-        const activeCollapsibles = document.querySelectorAll('.collapsible.active');
-        activeCollapsibles.forEach(function(collapsible) {
-            const content = collapsible.nextElementSibling;
-            if (content && content.classList.contains('collapsible-content')) {
-                // Calcular altura antes de aplicarla
-                const contentInner = content.querySelector('.collapsible-content-inner');
-                const scrollHeight = contentInner ? contentInner.offsetHeight : content.scrollHeight;
-                
-                // Aplicar altura con un pequeño margen para evitar scrollbars
-                content.style.maxHeight = (scrollHeight + 2) + 'px';
             }
         });
     });
-}
-
-
-// Initialize toggle buttons for task details
-function initToggleButtons() {
-    const toggleButtons = document.querySelectorAll('.toggle-details');
-    toggleButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const parentTd = this.closest('td');
-            const description = parentTd.querySelector('.task-description-full');
-            
-            if (this.getAttribute('data-state') === 'collapsed') {
-                // Show full description
-                description.style.display = 'block';
-                this.textContent = 'Ver menos';
-                this.setAttribute('data-state', 'expanded');
-            } else {
-                // Hide description
-                description.style.display = 'none';
-                this.textContent = 'Ver más';
-                this.setAttribute('data-state', 'collapsed');
-            }
-            
-            // Recalculate heights after toggling
-            setTimeout(recalculateCollapsibleHeights, 50);
-        });
-    });
-}
-
-// Initialize progress bars with animation
-function initProgressBars() {
-    setTimeout(function() {
-        const progresses = document.getElementsByClassName('progress');
-        for(let i = 0; i < progresses.length; i++) {
-            // Only set if not already set
-            if (!progresses[i].style.width) {
-                const width = progresses[i].getAttribute('data-width') || '0%';
-                progresses[i].style.width = width;
-            }
-        }
-    }, 500);
-}
-
-function initResizeHandler() {
-    let resizeTimer;
-    let lastWidth = window.innerWidth;
-    
-    function handleResize() {
-        // Solo realizar cambios si el ancho realmente cambió
-        // Esto es importante en iOS donde el scroll puede disparar eventos resize
-        const currentWidth = window.innerWidth;
-        if (currentWidth !== lastWidth) {
-            lastWidth = currentWidth;
-            
-            // Recalcular con prioridad
-            recalculateCollapsibleHeights();
-            checkStickyCollapsibles();
-            adjustResponsiveElements();
-        }
-    }
-    
-    // Usar passive: true para mejor rendimiento
-    window.addEventListener('resize', function() {
-        // Debounce resize event
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(handleResize, 100);
-    }, { passive: true });
-    
-    // Call once on page load
-    handleResize();
-}
-
-function handleResize() {
-    // Recalculate collapsed content heights
-    recalculateCollapsibleHeights();
-    
-    // Check sticky state of collapsibles
-    checkStickyCollapsibles();
-    
-    // Adjust responsive elements
-    adjustResponsiveElements();
-}
-
-// Adjust responsive elements based on screen size
-function adjustResponsiveElements() {
-    const viewportWidth = window.innerWidth;
-    
-    // Adjust font sizes for very small screens
-    if (viewportWidth <= 350) {
-        document.body.classList.add('very-small-screen');
-    } else {
-        document.body.classList.remove('very-small-screen');
-    }
-    
-    // More responsive adjustments can be added here
-}
-
-// Initialize Tech Playbook if present
-function initTechPlaybook() {
-    const pages = document.querySelectorAll('.page');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const currentPageSpan = document.getElementById('current-page');
-    
-    // Skip initialization if elements don't exist
-    if (!pages.length || !prevBtn || !nextBtn || !currentPageSpan) {
-        return;
-    }
-    
-    const pageNames = ['Índice', '1. Originación', '2. Pitch', '3. Ejecución', '4. Valoración', '5. Gestión', '6. Calendario'];
-    let currentPageIndex = 0;
-    const totalPages = pages.length;
-    
-    // Update page indicator with responsive text
-    function updatePageIndicator() {
-        // Use shorter names on very small screens
-        if (window.innerWidth <= 350) {
-            const shortPageNames = ['Índice', '1. Orig.', '2. Pitch', '3. Ejec.', '4. Valor.', '5. Gest.', '6. Cal.'];
-            currentPageSpan.textContent = shortPageNames[currentPageIndex];
-        } else {
-            currentPageSpan.textContent = pageNames[currentPageIndex];
-        }
-    }
-    
-    function updatePage() {
-        // Hide all pages
-        pages.forEach(page => page.classList.remove('active'));
-        
-        // Show current page
-        pages[currentPageIndex].classList.add('active');
-        
-        // Update current page text
-        updatePageIndicator();
-        
-        // Update button states
-        prevBtn.disabled = currentPageIndex === 0;
-        nextBtn.disabled = currentPageIndex === totalPages - 1;
-        
-        // Reset scroll position
-        if (pages[currentPageIndex]) {
-            pages[currentPageIndex].scrollTop = 0;
-        }
-    }
-    
-    // Previous button event
-    prevBtn.addEventListener('click', function() {
-        if (currentPageIndex > 0) {
-            currentPageIndex--;
-            updatePage();
-        }
-    });
-    
-    // Next button event
-    nextBtn.addEventListener('click', function() {
-        if (currentPageIndex < totalPages - 1) {
-            currentPageIndex++;
-            updatePage();
-        }
-    });
-    
-    // Initialize
-    updatePage();
-    
-    // Handle window resize
-    window.addEventListener('resize', updatePageIndicator);
-}
-
-// Check if we need to initialize the Tech Playbook
-if (document.querySelector('.page')) {
-    document.addEventListener('DOMContentLoaded', initTechPlaybook);
-}
-
-// Library functionality initialization if needed
-function initLibrary() {
-    const bookItems = document.querySelectorAll('.book-item, .folder-item');
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const modal = document.getElementById('itemDetailModal');
-    
-    if (bookItems.length > 0) {
-        // Setup click handlers for book items
-        bookItems.forEach(item => {
-            item.addEventListener('click', function() {
-                openBookDetail(this);
-            });
-        });
-    }
-    
-    if (filterBtns.length > 0) {
-        // Setup filter functionality
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const filter = this.getAttribute('data-filter');
-                filterLibraryItems(filter);
-                
-                // Update active state
-                filterBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    }
-    
-    if (modal) {
-        // Setup modal close functionality
-        const closeBtn = modal.querySelector('.modal-close');
-        if (closeBtn) {
-            closeBtn.addEventListener('click', closeModal);
-        }
-        
-        // Close modal when clicking outside content
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-    }
-}
-
-function openBookDetail(item) {
-    const modal = document.getElementById('itemDetailModal');
-    if (!modal) return;
-    
-    // Get data from item
-    const title = item.getAttribute('data-title') || '';
-    const description = item.getAttribute('data-description') || '';
-    const icon = item.getAttribute('data-icon') || '';
-    const content = item.getAttribute('data-content') || '';
-    const update = item.getAttribute('data-update') || '';
-    const owner = item.getAttribute('data-owner') || '';
-    
-    // Update modal content
-    modal.querySelector('.modal-title').textContent = title;
-    modal.querySelector('.modal-description').textContent = description;
-    modal.querySelector('.modal-icon').textContent = icon;
-    
-    // Update detail fields if they exist
-    const contentEl = modal.querySelector('.content-field');
-    if (contentEl) contentEl.textContent = content;
-    
-    const updateEl = modal.querySelector('.update-field');
-    if (updateEl) updateEl.textContent = update;
-    
-    const ownerEl = modal.querySelector('.owner-field');
-    if (ownerEl) ownerEl.textContent = owner;
-    
-    // Show modal
-    modal.classList.add('show');
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-}
-
-function closeModal() {
-    const modal = document.getElementById('itemDetailModal');
-    if (!modal) return;
-    
-    modal.classList.remove('show');
-    document.body.style.overflow = ''; // Restore scrolling
-}
-
-function filterLibraryItems(filter) {
-    const categories = document.querySelectorAll('.category-section');
-    const items = document.querySelectorAll('.book-item, .folder-item');
-    
-    if (filter === 'all') {
-        // Show all categories and items
-        categories.forEach(cat => cat.style.display = 'block');
-        items.forEach(item => item.style.display = 'block');
-    } else {
-        // Filter categories and items
-        categories.forEach(cat => {
-            cat.style.display = cat.getAttribute('data-category') === filter ? 'block' : 'none';
-        });
-        
-        items.forEach(item => {
-            item.style.display = item.getAttribute('data-type') === filter ? 'block' : 'none';
-        });
-    }
-    
-    // Recalculate heights after filtering
-    setTimeout(recalculateCollapsibleHeights, 100);
-}
-
-// Check if we need to initialize the Library
-if (document.querySelector('.library-container')) {
-    document.addEventListener('DOMContentLoaded', initLibrary);
 }
 </script>
 
