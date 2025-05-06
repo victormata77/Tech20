@@ -731,7 +731,183 @@
             border-radius: 20px;
             font-size: 14px;
         }
+        .timeline-compact {
+        position: relative;
+        margin: 30px 0;
+        padding: 0;
+        }
+        
+        .timeline-compact::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 2px;
+        }
+        
+        .timeline-item-compact {
+            position: relative;
+            padding: 15px 15px 15px 50px;
+            margin-bottom: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .timeline-item-compact::before {
+            content: '';
+            position: absolute;
+            left: 16px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            border: 3px solid white;
+            box-shadow: 0 0 6px rgba(255, 153, 0, 0.4);
+            z-index: 1;
+        }
+        
+        .timeline-date-compact {
+            display: inline-block;
+            padding: 4px 12px;
+            font-weight: bold;
+            font-size: 14px;
+            color: white;
+            background-color: var(--secondary);
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+        
+        .timeline-title-compact {
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0 0 8px 0;
+            font-size: 16px;
+        }
+        
+        .timeline-content-compact {
+            font-size: 14px;
+            line-height: 1.4;
+            color: var(--dark);
+        }
+        
+        .timeline-responsible-compact {
+            font-size: 13px;
+            color: var(--gray);
+            margin-top: 8px;
+            font-style: italic;
+        }
+        
+        /* Alternate coloring for items */
+        .timeline-item-compact:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+        
+        .timeline-item-compact:nth-child(even) .timeline-date-compact {
+            background-color: var(--primary);
+        }
 
+        /* Timeline container with central line */
+        .timeline-container {
+        position: relative;
+        padding: 20px 0;
+        margin: 0 auto;
+        max-width: 1200px;
+        }
+
+        /* Central vertical timeline line */
+        .timeline-line {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: linear-gradient(to bottom, var(--primary) 0%, var(--secondary) 100%);
+        transform: translateX(-50%);
+        border-radius: 2px;
+        }
+
+        /* Timeline row (containing 2 cards) */
+        .timeline-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        }
+
+        /* Timeline marker (circle) */
+        .timeline-marker {
+        position: absolute;
+        left: 50%;
+        width: 16px;
+        height: 16px;
+        background-color: var(--accent);
+        border: 3px solid white;
+        border-radius: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        box-shadow: 0 0 6px rgba(255, 153, 0, 0.4);
+        }
+
+        /* Timeline card */
+        .timeline-card {
+        width: 45%;
+        padding: 15px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+        position: relative;
+        }
+
+        /* Left side cards */
+        .timeline-row .timeline-card:first-of-type {
+        margin-right: 5%;
+        }
+
+        /* Right side cards */
+        .timeline-row .timeline-card:last-of-type {
+        margin-left: 5%;
+        }
+
+        /* Date formatting */
+        .timeline-date {
+        display: inline-block;
+        padding: 4px 12px;
+        font-weight: bold;
+        font-size: 14px;
+        color: white;
+        background-color: var(--secondary);
+        border-radius: 20px;
+        margin-bottom: 8px;
+        }
+
+        /* Title formatting */
+        .timeline-title {
+        font-weight: 600;
+        color: var(--primary);
+        margin: 0 0 8px 0;
+        font-size: 16px;
+        }
+
+        /* Content text */
+        .timeline-content {
+        font-size: 14px;
+        line-height: 1.4;
+        color: var(--dark);
+        }
+
+        /* Responsible text */
+        .timeline-responsible {
+        font-size: 13px;
+        color: var(--gray);
+        margin-top: 8px;
+        font-style: italic;
+        }
+
+        
         /* 5.6 Tables */
         .kpi-table {
             width: 100%;
@@ -2942,7 +3118,23 @@
             .governance-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-
+            .timeline-item-compact {
+                padding: 12px 12px 12px 45px;
+                margin-bottom: 15px;
+            }
+            
+            .timeline-date-compact {
+                font-size: 12px;
+                padding: 3px 10px;
+            }
+            
+            .timeline-title-compact {
+                font-size: 15px;
+            }
+            
+            .timeline-content-compact {
+                font-size: 13px;
+            }
         }
 
         /* Small screens (phones) */
@@ -5938,122 +6130,156 @@
                 <button class="collapsible">Línea de Tiempo Visual</button>
                 <div class="collapsible-content">
                     <div class="collapsible-content-inner">
-                        <div class="calendar">
-                            <div class="timeline">
-                                <!-- FASE 1 -->
-                                <div class="timeline-item timeline-left">
-                                    <div class="timeline-content">
-                                        <div class="timeline-date">Junio 2025</div>
-                                        <h4>Inicio: Fase de Fundamentos</h4>
-                                        <p>Workshop inicial de alineamiento estratégico y entrevistas individuales para definición de roles.</p>
-                                        <div class="milestone-meta">
-                                            <span><span class="sub-concept">Responsable:</span> Victor + Javier J.</span>
-                                        </div>
-                                    </div>
+                        <div class="timeline-container">
+                            <div class="timeline-line"></div>
+                            
+                            <!-- Row 1 -->
+                            <div class="timeline-row">
+                              <!-- Left column -->
+                              <div class="timeline-marker"></div>
+                              <div class="timeline-card">
+                                <div class="timeline-date">Junio 2025</div>
+                                <h4 class="timeline-title">Inicio: Fase de Fundamentos</h4>
+                                <div class="timeline-content">
+                                  Workshop inicial de alineamiento estratégico y entrevistas individuales para definición de roles.
                                 </div>
-                                
-                                <div class="timeline-item timeline-right">
-                                    <div class="timeline-content">
-                                        <div class="timeline-date">Julio 2025</div>
-                                        <h4>Implementación sistemas básicos</h4>
-                                        <p>Sistema básico de pipeline y primera versión del Tech Playbook v0.5.</p>
-                                        <div class="milestone-meta">
-                                            <span><span class="sub-concept">Responsable:</span> David M. + Juan C. / Javier C. + Enrique L.</span>
-                                        </div>
-                                    </div>
+                                <div class="timeline-responsible">
+                                  Responsable: Victor + Javier J.
                                 </div>
-                                
-                                <div class="timeline-item timeline-left">
-                                    <div class="timeline-content">
-                                        <div class="timeline-date">Agosto 2025</div>
-                                        <h4>Tech Playbook v1.0</h4>
-                                        <p>Versión completa inicial del Tech Playbook con todas las secciones estructuradas.</p>
-                                        <div class="milestone-meta">
-                                            <span><span class="sub-concept">Responsable:</span> Javier C. + Enrique L.</span>
-                                        </div>
-                                    </div>
+                              </div>
+                              
+                              <!-- Right column -->
+                              <div class="timeline-marker"></div>
+                              <div class="timeline-card">
+                                <div class="timeline-date">Julio 2025</div>
+                                <h4 class="timeline-title">Implementación sistemas básicos</h4>
+                                <div class="timeline-content">
+                                  Sistema básico de pipeline y primera versión del Tech Playbook v0.5.
                                 </div>
-                                
-                                <div class="timeline-item timeline-right">
-                                    <div class="timeline-content">
-                                        <div class="timeline-date">Septiembre 2025</div>
-                                        <h4>Workshop de propósito y valores</h4>
-                                        <p>Definición de valores fundamentales y primera sesión de team building.</p>
-                                        <div class="milestone-meta">
-                                            <span><span class="sub-concept">Responsable:</span> Victor + todo el equipo</span>
-                                        </div>
-                                    </div>
+                                <div class="timeline-responsible">
+                                  Responsable: David M. + Juan C. / Javier C. + Enrique L.
                                 </div>
-                                
-                                <!-- FASE 2 -->
-                                <div class="timeline-item timeline-left">
-                                    <div class="timeline-content">
-                                        <div class="timeline-date">Octubre 2025</div>
-                                        <h4>Inicio: Fase de Optimización</h4>
-                                        <p>Desarrollo de buyer personas, segmentación de mercado e implementación de secuencias de contacto.</p>
-                                        <div class="milestone-meta">
-                                            <span><span class="sub-concept">Responsable:</span> David M. + Juan C.</span>
-                                        </div>
-                                    </div>
+                              </div>
+                            </div>
+                            
+                            <!-- Row 2 -->
+                            <div class="timeline-row">
+                              <!-- Left column -->
+                              <div class="timeline-marker"></div>
+                              <div class="timeline-card">
+                                <div class="timeline-date">Agosto 2025</div>
+                                <h4 class="timeline-title">Tech Playbook v1.0</h4>
+                                <div class="timeline-content">
+                                  Versión completa inicial del Tech Playbook con todas las secciones estructuradas.
                                 </div>
-                                
-                                <div class="timeline-item timeline-right">
-                                    <div class="timeline-content">
-                                        <div class="timeline-date">Noviembre 2025</div>
-                                        <h4>Biblioteca de conocimiento</h4>
-                                        <p>Implementación de biblioteca de conocimiento y sistema de quality assurance.</p>
-                                        <div class="milestone-meta">
-                                            <span><span class="sub-concept">Responsable:</span> Juan C. + Nacho P. / Javier C. + Javier J.</span>
-                                        </div>
-                                    </div>
+                                <div class="timeline-responsible">
+                                  Responsable: Javier C. + Enrique L.
                                 </div>
-                                
-                                <div class="timeline-item timeline-left">
-                                    <div class="timeline-content">
-                                        <div class="timeline-date">Diciembre 2025</div>
-                                        <h4>Desarrollo de planes individuales</h4>
-                                        <p>Implementación de feedback continuo y segunda sesión de team building con retrospectiva.</p>
-                                        <div class="milestone-meta">
-                                            <span><span class="sub-concept">Responsable:</span> Victor + Javier J. / Sergi Q. + Enrique L.</span>
-                                        </div>
-                                    </div>
+                              </div>
+                              
+                              <!-- Right column -->
+                              <div class="timeline-marker"></div>
+                              <div class="timeline-card">
+                                <div class="timeline-date">Septiembre 2025</div>
+                                <h4 class="timeline-title">Workshop de propósito y valores</h4>
+                                <div class="timeline-content">
+                                  Definición de valores fundamentales y primera sesión de team building.
                                 </div>
-                                
-                                <!-- FASE 3 -->
-                                <div class="timeline-item timeline-right">
-                                    <div class="timeline-content">
-                                        <div class="timeline-date">Enero 2026</div>
-                                        <h4>Inicio: Fase de Escalabilidad</h4>
-                                        <p>Desarrollo de estrategia de referenciadores e implementación de dashboard de métricas comerciales.</p>
-                                        <div class="milestone-meta">
-                                            <span><span class="sub-concept">Responsable:</span> David M. + Victor / Juan C. + Nacho P.</span>
-                                        </div>
-                                    </div>
+                                <div class="timeline-responsible">
+                                  Responsable: Victor + todo el equipo
                                 </div>
-                                
-                                <div class="timeline-item timeline-left">
-                                    <div class="timeline-content">
-                                        <div class="timeline-date">Febrero 2026</div>
-                                        <h4>Centro de excelencia valoración tech</h4>
-                                        <p>Implementación de sistema capacity planning y creación del centro de excelencia en valoración tech.</p>
-                                        <div class="milestone-meta">
-                                            <span><span class="sub-concept">Responsable:</span> Enrique L. + Sergi Q. / Javier J. + Javier C.</span>
-                                        </div>
-                                    </div>
+                              </div>
+                            </div>
+                            
+                            <!-- Additional rows following the same pattern -->
+                            <!-- Row 3 -->
+                            <div class="timeline-row">
+                              <!-- Left column -->
+                              <div class="timeline-marker"></div>
+                              <div class="timeline-card">
+                                <div class="timeline-date">Octubre 2025</div>
+                                <h4 class="timeline-title">Inicio: Fase de Optimización</h4>
+                                <div class="timeline-content">
+                                  Desarrollo de buyer personas, segmentación de mercado e implementación de secuencias de contacto.
                                 </div>
-                                
-                                <div class="timeline-item timeline-right">
-                                    <div class="timeline-content">
-                                        <div class="timeline-date">Marzo 2026</div>
-                                        <h4>Sesión estratégica cierre y planificación</h4>
-                                        <p>Revisión integral del plan, optimización de colaboración intergrupos y planificación del siguiente ciclo.</p>
-                                        <div class="milestone-meta">
-                                            <span><span class="sub-concept">Responsable:</span> Victor + todo el equipo</span>
-                                        </div>
-                                    </div>
+                                <div class="timeline-responsible">
+                                  Responsable: David M. + Juan C.
                                 </div>
+                              </div>
+                              
+                              <!-- Right column -->
+                              <div class="timeline-marker"></div>
+                              <div class="timeline-card">
+                                <div class="timeline-date">Noviembre 2025</div>
+                                <h4 class="timeline-title">Biblioteca de conocimiento</h4>
+                                <div class="timeline-content">
+                                  Implementación de biblioteca de conocimiento y sistema de quality assurance.
+                                </div>
+                                <div class="timeline-responsible">
+                                  Responsable: Juan C. + Nacho P. / Javier C. + Javier J.
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <!-- Row 4 -->
+                            <div class="timeline-row">
+                              <!-- Left column -->
+                              <div class="timeline-marker"></div>
+                              <div class="timeline-card">
+                                <div class="timeline-date">Diciembre 2025</div>
+                                <h4 class="timeline-title">Desarrollo de planes individuales</h4>
+                                <div class="timeline-content">
+                                  Implementación de feedback continuo y segunda sesión de team building con retrospectiva.
+                                </div>
+                                <div class="timeline-responsible">
+                                  Responsable: Victor + Javier J. / Sergi Q. + Enrique L.
+                                </div>
+                              </div>
+                              
+                              <!-- Right column -->
+                              <div class="timeline-marker"></div>
+                              <div class="timeline-card">
+                                <div class="timeline-date">Enero 2026</div>
+                                <h4 class="timeline-title">Inicio: Fase de Escalabilidad</h4>
+                                <div class="timeline-content">
+                                  Desarrollo de estrategia de referenciadores e implementación de dashboard de métricas comerciales.
+                                </div>
+                                <div class="timeline-responsible">
+                                  Responsable: David M. + Victor / Juan C. + Nacho P.
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <!-- Row 5 -->
+                            <div class="timeline-row">
+                              <!-- Left column -->
+                              <div class="timeline-marker"></div>
+                              <div class="timeline-card">
+                                <div class="timeline-date">Febrero 2026</div>
+                                <h4 class="timeline-title">Centro de excelencia valoración tech</h4>
+                                <div class="timeline-content">
+                                  Implementación de sistema capacity planning y creación del centro de excelencia en valoración tech.
+                                </div>
+                                <div class="timeline-responsible">
+                                  Responsable: Enrique L. + Sergi Q. / Javier J. + Javier C.
+                                </div>
+                              </div>
+                              
+                              <!-- Right column -->
+                              <div class="timeline-marker"></div>
+                              <div class="timeline-card">
+                                <div class="timeline-date">Marzo 2026</div>
+                                <h4 class="timeline-title">Sesión estratégica cierre y planificación</h4>
+                                <div class="timeline-content">
+                                  Revisión integral del plan, optimización de colaboración intergrupos y planificación del siguiente ciclo.
+                                </div>
+                                <div class="timeline-responsible">
+                                  Responsable: Victor + todo el equipo
+                                </div>
+                              </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
                                 
