@@ -514,6 +514,40 @@
             margin: 0;
             font-size: 18px;
         }
+
+        /* Home button styles */
+        .home-button {
+            background-color: var(--accent);
+            color: var(--primary);
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all var(--transition-speed) var(--transition-timing);
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            background-color: var(--accent-light);
+        }
+
+        .home-button svg {
+            margin-right: 5px;
+        }
+        
+        /* Home tile hover effects */
+            #home a > div:hover {
+                transform: translateY(-7px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            }
+
+
+
+
         /* ========== 4. TAB CONTENT ========== */
         .tab-container {
             margin-bottom: 40px;
@@ -3432,6 +3466,9 @@
             .phase-card {
                 flex: 100%;
             }
+            #home a > div {
+            padding: 20px 15px;
+            }   
         }
 
         /* Small screens (phones) */
@@ -3729,7 +3766,17 @@
             </div>
             
             <!-- Right side: empty space for balance -->
-           
+            <!-- Add this to your header, in the header-right div -->
+            <div class="header-right">
+                <a href="#home" class="home-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    Inicio
+                </a>
+            </div>
+
         </div>
         <div class="header-tabs">
             <div class="tabs">
@@ -3745,7 +3792,69 @@
 
 
     <div class="container">
-        <div class="tab-container">                     
+        <div class="tab-container">   
+            
+            <div id="home" class="tab-content">
+                <h2>Plan Estratégico AZ Tech</h2>
+                <p>Selecciona una sección para explorar en detalle cada aspecto del plan.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px;">
+                    <!-- Vision Button -->
+                    <a href="#vision" onclick="openTab(event, 'vision')" style="text-decoration: none;">
+                        <div style="background: linear-gradient(135deg, #003366 0%, #0066cc 100%); color: white; border-radius: 10px; padding: 25px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; height: 100%;">
+                            <div style="font-size: 32px; margin-bottom: 15px;">🎯</div>
+                            <h3 style="margin: 0 0 10px; color: white; font-size: 18px; font-weight: 600;">Visión General</h3>
+                            <p style="margin: 0; font-size: 14px; opacity: 0.9;">Fundamentos, fases y objetivos estratégicos</p>
+                        </div>
+                    </a>
+                    
+                    <!-- Structure Button -->
+                    <a href="#structure" onclick="openTab(event, 'structure')" style="text-decoration: none;">
+                        <div style="background: linear-gradient(135deg, #003366 0%, #0066cc 100%); color: white; border-radius: 10px; padding: 25px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; height: 100%;">
+                            <div style="font-size: 32px; margin-bottom: 15px;">👥</div>
+                            <h3 style="margin: 0 0 10px; color: white; font-size: 18px; font-weight: 600;">Estructura y Equipo</h3>
+                            <p style="margin: 0; font-size: 14px; opacity: 0.9;">Organización, roles y desarrollo de talento</p>
+                        </div>
+                    </a>
+                    
+                    <!-- Execution Button -->
+                    <a href="#execution" onclick="openTab(event, 'execution')" style="text-decoration: none;">
+                        <div style="background: linear-gradient(135deg, #003366 0%, #0066cc 100%); color: white; border-radius: 10px; padding: 25px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; height: 100%;">
+                            <div style="font-size: 32px; margin-bottom: 15px;">⚙️</div>
+                            <h3 style="margin: 0 0 10px; color: white; font-size: 18px; font-weight: 600;">Ejecución y Procesos</h3>
+                            <p style="margin: 0; font-size: 14px; opacity: 0.9;">Metodologías, sistemas y herramientas</p>
+                        </div>
+                    </a>
+                    
+                    <!-- Commercial Button -->
+                    <a href="#commercial" onclick="openTab(event, 'commercial')" style="text-decoration: none;">
+                        <div style="background: linear-gradient(135deg, #003366 0%, #0066cc 100%); color: white; border-radius: 10px; padding: 25px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; height: 100%;">
+                            <div style="font-size: 32px; margin-bottom: 15px;">📊</div>
+                            <h3 style="margin: 0 0 10px; color: white; font-size: 18px; font-weight: 600;">Estrategia Comercial</h3>
+                            <p style="margin: 0; font-size: 14px; opacity: 0.9;">Segmentación, personas y aproximación</p>
+                        </div>
+                    </a>
+                    
+                    <!-- Timeline Button -->
+                    <a href="#timeline" onclick="openTab(event, 'timeline')" style="text-decoration: none;">
+                        <div style="background: linear-gradient(135deg, #003366 0%, #0066cc 100%); color: white; border-radius: 10px; padding: 25px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; height: 100%;">
+                            <div style="font-size: 32px; margin-bottom: 15px;">📅</div>
+                            <h3 style="margin: 0 0 10px; color: white; font-size: 18px; font-weight: 600;">Calendario e Hitos</h3>
+                            <p style="margin: 0; font-size: 14px; opacity: 0.9;">Línea de tiempo, fases y governance</p>
+                        </div>
+                    </a>
+                    
+                    <!-- KPIs Button -->
+                    <a href="#kpis" onclick="openTab(event, 'kpis')" style="text-decoration: none;">
+                        <div style="background: linear-gradient(135deg, #003366 0%, #0066cc 100%); color: white; border-radius: 10px; padding: 25px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; height: 100%;">
+                            <div style="font-size: 32px; margin-bottom: 15px;">📈</div>
+                            <h3 style="margin: 0 0 10px; color: white; font-size: 18px; font-weight: 600;">KPIs</h3>
+                            <p style="margin: 0; font-size: 14px; opacity: 0.9;">Métricas de seguimiento y evaluación</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
             <div id="vision" class="tab-content active">
                 <h2>Visión General del Plan Estratégico</h2>
                 <p>AZ Tech representa nuestra visión para construir un equipo de alto rendimiento enfocado en el sector tecnológico, ofreciendo servicios de M&A de primer nivel adaptados específicamente a las necesidades de empresas tech en España.</p>
@@ -7254,6 +7363,50 @@
                     visibleModals.forEach(modal => closeLibraryModal(modal));
                 }
             });
+            
+            // Home button handling
+            const homeButton = document.querySelector('.home-button');
+            if (homeButton) {
+                homeButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openTab(e, 'home');
+                });
+            }
+            
+            // Set home tab as default on page load
+            setTimeout(function() {
+                // Set home as current active tab
+                currentActiveTabId = 'home';
+                
+                // Hide all tab contents
+                const allTabContents = document.getElementsByClassName("tab-content");
+                for (let i = 0; i < allTabContents.length; i++) {
+                    allTabContents[i].classList.remove("active");
+                }
+                
+                // Show the home tab
+                const homeTab = document.getElementById("home");
+                if (homeTab) {
+                    homeTab.classList.add("active");
+                }
+                
+                // Update tab button styling
+                const allTabButtons = document.getElementsByClassName("tab");
+                for (let i = 0; i < allTabButtons.length; i++) {
+                    if (allTabButtons[i].getAttribute("onclick") && 
+                        allTabButtons[i].getAttribute("onclick").includes("home")) {
+                        allTabButtons[i].classList.add("active");
+                    } else {
+                        allTabButtons[i].classList.remove("active");
+                    }
+                }
+                
+                // Reset UI elements in the new tab
+                setTimeout(function() {
+                    recalculateCollapsibleHeights();
+                    updateStickyCollapsibles();
+                }, 50);
+            }, 50);
         });
 
         // ==========================================
@@ -7290,6 +7443,10 @@
                 recalculateCollapsibleHeights();
                 updateStickyCollapsibles();
             }, 50);
+
+            if (event) {
+                event.preventDefault(); // Add this to prevent default link behavior
+            }
         }
 
         // ==========================================
