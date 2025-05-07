@@ -81,7 +81,7 @@
             font-weight: 700;
             padding-bottom: 8px;
             border-bottom: 2px solid var(--accent-light);
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         h4 {
@@ -126,6 +126,34 @@
             border-radius: 3px;
         }
 
+        /* Add space between the vertical orange line and blue text */
+        .book-subsection-title,
+        .category-title,
+        [class*="fase-title"],
+        [class*="protocol-title"],
+        .collapsible-content-inner h3 {
+            /* Increase left padding to move text away from vertical line */
+            padding-left: 15px !important; /* Increase from what appears to be minimal padding */
+            margin-left: 5px; /* Add some margin as well for more separation */
+        }
+
+        /* If the element has a specific border-left styling */
+        [style*="border-left"], 
+        .phase, 
+        .collapsible-content-inner h3,
+        .book-subsection-title {
+            /* Ensure border is still visible but text is separated */
+            border-left-width: 5px;
+            padding-left: 15px;
+        }
+
+        /* Specifically for protocol headings with orange vertical lines */
+        .protocol-title,
+        h3.protocol-heading,
+        .collapsible-content-inner ul li:first-child {
+            margin-left: 5px;
+            padding-left: 15px;
+        }
         /* ========== 3. HEADER & NAVIGATION ========== */
         header {
             background: var(--primary);
@@ -282,6 +310,206 @@
             font-weight: bold;
         }
 
+
+                
+            /* Phase Cards Container */
+            .phases-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                padding: 20px 10px;
+                margin-bottom: 30px;
+            }
+
+            /* Individual Phase Card */
+            .phase-card {
+                flex: 1 1 300px;
+                min-width: 280px;
+                background-color: white;
+                border-radius: 12px;
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 15px;
+            }
+
+            /* Phase Headers with Colors - All Blue */
+            .phase-header {
+                padding: 18px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .phase-1 .phase-header {
+                background-color: #0066cc;
+                color: white;
+            }
+
+            .phase-2 .phase-header {
+                background-color: #0088ee;
+                color: white;
+            }
+
+            .phase-3 .phase-header {
+                background-color: #004488;
+                color: white;
+            }
+
+            /* Title Styling */
+            .phase-title-container {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                min-width: 200px;
+            }
+
+            .phase-title {
+                font-size: 18px !important;
+                font-weight: 700 !important;
+                margin: 0 !important;
+                letter-spacing: 0.2px;
+                padding: 0 !important;
+                border-bottom: none !important;
+                line-height: 1.3 !important;
+                color: white !important;
+            }
+
+            /* Phase dates in white */
+            .phase-date {
+                font-size: 14px;
+                color: white !important;
+                margin-top: 8px;
+                align-self: flex-start;
+                white-space: nowrap;
+                font-weight: 500;
+                opacity: 0.95;
+            }
+
+            /* Decorative Lines - Orange for all cards */
+            .orange-line {
+                height: 3px;
+                background-color: #ff9900;
+                margin-top: 10px;
+                width: 70px;
+                border-radius: 1.5px;
+            }
+
+            /* Remove white line */
+            .white-line {
+                height: 3px;
+                background-color: #ff9900;
+                margin-top: 10px;
+                width: 70px;
+                border-radius: 1.5px;
+            }
+
+            /* Content Section */
+            .phase-content {
+                padding: 20px;
+                background-color: white;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .phase-description {
+                margin-bottom: 15px;
+                font-size: 15px;
+                color: #333;
+                line-height: 1.5;
+            }
+
+            /* Tag Styling */
+            .phase-tags {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 15px;
+                margin-bottom: 25px;
+            }
+
+            .phase-tag {
+                background-color: rgba(0, 102, 204, 0.1);
+                color: #0066cc;
+                padding: 8px 15px;
+                border-radius: 20px;
+                font-size: 14px;
+                display: inline-block;
+                width: fit-content;
+                line-height: 1.4;
+            }
+
+            /* Milestone Styling */
+            .milestone {
+                background-color: #f9f9f9;
+                border-left: 4px solid #ff9900;
+                padding: 16px;
+                border-radius: 0 8px 8px 0;
+                margin-top: auto;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            }
+
+            .milestone-header {
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+                margin-bottom: 10px;
+            }
+
+            .milestone-icon {
+                color: #ff9900;
+                font-size: 18px;
+                line-height: 1;
+                flex-shrink: 0;
+            }
+
+            .milestone-title {
+                font-weight: bold;
+                font-size: 15px;
+                color: #333;
+                line-height: 1.4;
+            }
+
+            .milestone-description {
+                font-size: 14px;
+                margin-bottom: 15px;
+                color: #555;
+                line-height: 1.5;
+                padding-left: 28px;
+            }
+
+            .milestone-footer {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                font-size: 13px;
+                color: #666;
+                border-top: 1px solid #eee;
+                padding-top: 12px;
+                margin-top: 8px;
+            }
+
+        /* Header styling */
+        .main-header {
+            background-color: #0066cc;
+            color: white;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 6px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .main-header h2 {
+            margin: 0;
+            font-size: 18px;
+        }
         /* ========== 4. TAB CONTENT ========== */
         .tab-container {
             margin-bottom: 40px;
@@ -302,6 +530,10 @@
             display: block;
         }
 
+
+        
+
+        
         /* ========== 5. COMPONENTS ========== */
         /* 5.1 Collapsible Elements */
         /* Base style for collapsible */
@@ -489,7 +721,7 @@
 
         .phase h3 {
             color: var(--primary);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             font-size: 20px;
             font-weight: 700;
         }
@@ -912,7 +1144,7 @@
         .kpi-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 25px;
+            margin-top: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             overflow: hidden;
@@ -920,7 +1152,7 @@
 
         .kpi-table th, .kpi-table td {
             border: 1px solid #e0e0e0;
-            padding: 15px;
+            padding: 10px 15px;
             text-align: left;
         }
 
@@ -939,6 +1171,58 @@
             background-color: rgba(0, 102, 204, 0.1);
         }
 
+        /* Additional spacing for phase sections */
+        .collapsible-content-inner h3 {
+            /* Add more vertical space around phase headings */
+            margin-top: 30px;
+            margin-bottom: 20px;
+            /* Make the heading more visible */
+            padding: 10px 0;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        /* Increase the max-height multiplier for collapsible sections with tables */
+        .collapsible-content-inner h3 + table.kpi-table {
+            /* Ensure tables get proper spacing */
+            margin-bottom: 10px;
+        }
+
+        /* Special handling for Fase 2 and Fase 3 */
+        h3:contains("Fase 2"), 
+        h3:contains("Fase 3") {
+            /* Make these sections more prominent */
+            background-color: rgba(0, 102, 204, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        /* Increase the max-height for specific collapsible sections */
+        .collapsible.active + .collapsible-content {
+            /* Set a much larger max-height for active sections */
+            max-height: 5000px !important; /* Using !important to override inline styles */
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Specific targeting for the timeline section */
+        .collapsible:contains("Desglose Detallado").active + .collapsible-content {
+            max-height: 8000px !important; /* Even larger height for the detailed breakdown */
+        }
+
+        /* Phase tables should have proper spacing */
+        .kpi-table {
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        /* Ensure table rows and cells have enough height */
+        .kpi-table tr {
+            min-height: 50px;
+        }
+
+        .kpi-table td {
+            padding: 12px 15px;
+            vertical-align: top;
+        }
         /* 5.7 Status badges */
         .status-badge {
             display: inline-block;
@@ -1301,7 +1585,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             position: relative;
             z-index: 1;
         }
@@ -1348,7 +1632,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            margin-top: 20px;
+            margin-top: 10px;
             position: relative;
             z-index: 1;
         }
@@ -1395,7 +1679,7 @@
             font-size: 22px;
             font-weight: 700;
             color: var(--primary);
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             padding-left: 15px;
             border-left: 4px solid var(--accent);
             background-color: rgba(0, 102, 204, 0.05);
@@ -1421,7 +1705,7 @@
             max-width: 250px;
             height: 280px;
             position: relative;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -2866,6 +3150,9 @@
             .governance-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .phase-card {
+                min-width: 250px;
+            }
         }
         
 
@@ -3134,6 +3421,12 @@
             
             .timeline-content-compact {
                 font-size: 13px;
+            }
+            .milestone-card {
+                flex: 1 1 100%;
+            }
+            .phase-card {
+                flex: 100%;
             }
         }
 
@@ -3455,8 +3748,7 @@
                 <button class="collapsible">Fundamentos del Plan</button>
                 <div class="collapsible-content">
                     <div class="collapsible-content-inner">              
-                        <div class="hexagon-container">
-                            
+                        <div class="hexagon-container">                           
                             <div class="hexagon-grid">
                                 <div class="hexagon-item">
                                     <div class="hexagon">
@@ -3525,93 +3817,103 @@
                 <button class="collapsible">Fases de Implementación</button>
                 <div class="collapsible-content">
                     <div class="collapsible-content-inner">                       
-                        <div class="implementation-phases">    
-                            <div class="timeline-container">
-                                <!-- Phase 1 -->
-                                <div class="timeline-phase">
-                                    <div class="phase-header">
-                                        <div class="phase-dot phase-1"></div>
-                                        <h4>Fase 1: Fundamentos <span class="phase-date">Junio - Septiembre 2025</span></h4>
+                        <div class="phases-container">
+                            <!-- Fase 1 -->
+                            <div class="phase-card phase-1">
+                                <div class="phase-header">
+                                    <div class="phase-title-container">
+                                        <h3 class="phase-title">Fase 1: Fundamentos</h3>
+                                        <div class="orange-line"></div>
                                     </div>
-                                    <div class="phase-content">
-                                        <p>Enfocada en establecer las bases sólidas para la transformación:</p>
-                                        <div class="phase-items">
-                                            <span class="phase-item">Definición de roles y estructura</span>
-                                            <span class="phase-item">Implementación de sistemas básicos</span>
-                                            <span class="phase-item">Desarrollo de protocolos fundamentales</span>
-                                            <span class="phase-item">Alineamiento en valores y propósito</span>
-                                        </div>
-                                        <div class="milestone">
-                                            <div class="milestone-header">
-                                                <i class="milestone-icon">★</i>
-                                                <h5>Milestone clave: "Tech Playbook" v1.0</h5>
-                                            </div>
-                                            <p>Documento central que detalla procesos de originación, ejecución y estándares de calidad.</p>
-                                            <div class="milestone-footer">
-                                                <span>Responsable: Equipo Core</span>
-                                                <span>Fecha límite: 31 Agosto 2025</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <span class="phase-date">Junio - Septiembre 2025</span>
                                 </div>
-                                
-                                <!-- Phase 2 -->
-                                <div class="timeline-phase">
-                                    <div class="phase-header">
-                                        <div class="phase-dot phase-2"></div>
-                                        <h4>Fase 2: Optimización <span class="phase-date">Octubre - Diciembre 2025</span></h4>
+                                <div class="phase-content">
+                                    <p class="phase-description">Enfocada en establecer las bases sólidas para la transformación:</p>
+                                    <div class="phase-tags">
+                                        <span class="phase-tag">Definición de roles y estructura</span>
+                                        <span class="phase-tag">Implementación de sistemas básicos</span>
+                                        <span class="phase-tag">Desarrollo de protocolos fundamentales</span>
+                                        <span class="phase-tag">Alineamiento en valores y propósito</span>
                                     </div>
-                                    <div class="phase-content">
-                                        <p>Centrada en mejorar la eficiencia y calidad:</p>
-                                        <div class="phase-items">
-                                            <span class="phase-item">Implementación de procesos avanzados</span>
-                                            <span class="phase-item">Desarrollo de biblioteca de conocimiento</span>
-                                            <span class="phase-item">Refinamiento de propuestas de valor</span>
-                                            <span class="phase-item">Implementación sistema feedback continuo</span>
+                                    
+                                    <div class="milestone">
+                                        <div class="milestone-header">
+                                            <span class="milestone-icon">★</span>
+                                            <div class="milestone-title">Milestone clave: "Tech Playbook" v1.0</div>
                                         </div>
-                                        <div class="milestone">
-                                            <div class="milestone-header">
-                                                <i class="milestone-icon">★</i>
-                                                <h5>Milestone clave: Biblioteca de Conocimiento Operativa</h5>
-                                            </div>
-                                            <p>Repositorio centralizado de análisis sectoriales, precedentes y mejores prácticas.</p>
-                                            <div class="milestone-footer">
-                                                <span>Responsable: Juan C. + Nacho P.</span>
-                                                <span>Fecha límite: 30 Noviembre 2025</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Phase 3 -->
-                                <div class="timeline-phase">
-                                    <div class="phase-header">
-                                        <div class="phase-dot phase-3"></div>
-                                        <h4>Fase 3: Escalabilidad <span class="phase-date">Enero - Marzo 2026</span></h4>
-                                    </div>
-                                    <div class="phase-content">
-                                        <p>Orientada a la sostenibilidad y crecimiento:</p>
-                                        <div class="phase-items">
-                                            <span class="phase-item">Sistemas avanzados de medición</span>
-                                            <span class="phase-item">Propuestas de valor integradas</span>
-                                            <span class="phase-item">Centro de excelencia en valoración</span>
-                                            <span class="phase-item">Optimización colaboración intergrupos</span>
-                                        </div>
-                                        <div class="milestone">
-                                            <div class="milestone-header">
-                                                <i class="milestone-icon">★</i>
-                                                <h5>Milestone clave: Centro de Excelencia en Valoración Tech</h5>
-                                            </div>
-                                            <p>Metodologías específicas para valoración de empresas tech por subvertical.</p>
-                                            <div class="milestone-footer">
-                                                <span>Responsable: Javier J. + Javier C.</span>
-                                                <span>Fecha límite: 28 Febrero 2026</span>
-                                            </div>
+                                        <div class="milestone-description">Documento central que detalla procesos de originación, ejecución y estándares de calidad.</div>
+                                        <div class="milestone-footer">
+                                            <span>Responsable: Equipo Core</span>
+                                            <span>Fecha límite: 31 Agosto 2025</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>               
+                            
+                            <!-- Fase 2 -->
+                            <div class="phase-card phase-2">
+                                <div class="phase-header">
+                                    <div class="phase-title-container">
+                                        <h3 class="phase-title">Fase 2: Optimización</h3>
+                                        <div class="white-line"></div>
+                                    </div>
+                                    <span class="phase-date">Octubre - Diciembre 2025</span>
+                                </div>
+                                <div class="phase-content">
+                                    <p class="phase-description">Centrada en mejorar la eficiencia y calidad:</p>
+                                    <div class="phase-tags">
+                                        <span class="phase-tag">Implementación de procesos avanzados</span>
+                                        <span class="phase-tag">Desarrollo de biblioteca de conocimiento</span>
+                                        <span class="phase-tag">Refinamiento de propuestas de valor</span>
+                                        <span class="phase-tag">Implementación sistema feedback continuo</span>
+                                    </div>
+                                    
+                                    <div class="milestone">
+                                        <div class="milestone-header">
+                                            <span class="milestone-icon">★</span>
+                                            <div class="milestone-title">Milestone clave: Biblioteca de Conocimiento Operativa</div>
+                                        </div>
+                                        <div class="milestone-description">Repositorio centralizado de análisis sectoriales, precedentes y mejores prácticas.</div>
+                                        <div class="milestone-footer">
+                                            <span>Responsable: Juan C. + Nacho P.</span>
+                                            <span>Fecha límite: 30 Noviembre 2025</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Fase 3 -->
+                            <div class="phase-card phase-3">
+                                <div class="phase-header">
+                                    <div class="phase-title-container">
+                                        <h3 class="phase-title">Fase 3: Escalabilidad</h3>
+                                        <div class="orange-line"></div>
+                                    </div>
+                                    <span class="phase-date">Enero - Marzo 2026</span>
+                                </div>
+                                <div class="phase-content">
+                                    <p class="phase-description">Orientada a la sostenibilidad y crecimiento:</p>
+                                    <div class="phase-tags">
+                                        <span class="phase-tag">Sistemas avanzados de medición</span>
+                                        <span class="phase-tag">Propuestas de valor integradas</span>
+                                        <span class="phase-tag">Centro de excelencia en valoración</span>
+                                        <span class="phase-tag">Optimización colaboración intergrupos</span>
+                                    </div>
+                                    
+                                    <div class="milestone">
+                                        <div class="milestone-header">
+                                            <span class="milestone-icon">★</span>
+                                            <div class="milestone-title">Milestone clave: Centro de Excelencia en Valoración Tech</div>
+                                        </div>
+                                        <div class="milestone-description">Metodologías específicas para valoración de empresas tech por subvertical.</div>
+                                        <div class="milestone-footer">
+                                            <span>Responsable: Javier J. + Javier C.</span>
+                                            <span>Fecha límite: 28 Febrero 2026</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -7071,11 +7373,17 @@
                         // Only proceed if the content inner exists
                         if (contentInner) {
                             // Calculate height before applying it
-                            const contentHeight = contentInner.offsetHeight;
+                            // Use scrollHeight instead of offsetHeight to get full content height
+                            const contentHeight = contentInner.scrollHeight;
                             
-                            // Apply height with a small margin to prevent scrollbars
+                            // For timeline sections, add more margin
+                            const extraMargin = 
+                                collapsible.textContent.includes('Línea de Tiempo') || 
+                                collapsible.textContent.includes('Desglose') ? 80 : 20;
+                            
+                            // Apply height with appropriate margin
                             setTimeout(() => {
-                                content.style.maxHeight = (contentHeight + 5) + 'px';
+                                content.style.maxHeight = (contentHeight + extraMargin) + 'px';
                             }, 5);
                         }
                     }
@@ -7661,6 +7969,8 @@
             setTimeout(recalculateCollapsibleHeights, 100);
         }
 
+
+        
     </script>
 
 </body>
