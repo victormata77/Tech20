@@ -3202,6 +3202,12 @@
             }
             
             /* Header adjustments */
+            header {
+                position: fixed !important;
+                transform: none !important;
+                transition: height var(--transition-speed) var(--transition-timing) !important;
+            }
+            
             .header-tabs {
                 height: 50px;
                 min-height: 50px;
@@ -3230,6 +3236,8 @@
                 padding: 5px 10px;
                 height: calc(var(--header-height) - 50px);
                 margin-bottom: 0;
+                transition: height var(--transition-speed) var(--transition-timing) !important;
+                transform: none !important;
             }
             
             .logo-brand-container {
@@ -3469,6 +3477,34 @@
             #home a > div {
             padding: 20px 15px;
             }   
+            .home-button {
+                padding: 5px 10px;
+                font-size: 12px;
+                min-width: 80px;
+                max-width: 80px;
+            }
+            
+            .home-button svg {
+                width: 12px;
+                height: 12px;
+                margin-right: 3px;
+            }
+            
+            /* Fix alignment in header */
+            .header-right {
+                width: auto;
+                display: flex;
+                justify-content: flex-end;
+                padding-right: 5px;
+                margin-left: auto;
+            }
+            
+            /* Adjust header layout */
+            .header-top {
+                justify-content: space-between;
+                padding: 0 5px;
+            } 
+            
         }
 
         /* Small screens (phones) */
@@ -3693,7 +3729,18 @@
             .team-grid {
                 grid-template-columns: 1fr !important;
             }
+            .home-button {
+                padding: 4px 8px;
+                font-size: 11px;
+                min-width: 70px;
+                max-width: 70px;
+            }
             
+            .home-button svg {
+                width: 10px;
+                height: 10px;
+                margin-right: 2px;
+            }
 
         }
         /* Very small screens */
