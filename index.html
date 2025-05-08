@@ -1237,7 +1237,7 @@
         /* Increase the max-height for specific collapsible sections */
         .collapsible.active + .collapsible-content {
             /* Set a much larger max-height for active sections */
-            max-height: 5000px !important; /* Using !important to override inline styles */
+            max-height: 8000px !important; /* Using !important to override inline styles */
             transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -1401,6 +1401,40 @@
 
         /* ========== SPECIALIZED COMPONENTS ========== */
 
+        /* Add these CSS rules to fix the title colors in the Approach Process section */
+
+        /* Make the main approach title blue */
+        .approach-title {
+            color: #0066cc !important; /* Blue color */
+        }
+
+        /* Make the phase titles blue */
+        .approach-phase .phase-title {
+            color: #0066cc !important; /* Blue color */
+            font-weight: 600 !important; /* Make it bold */
+        }
+
+        /* Add more contrast to the phase numbers */
+        .approach-phase .phase-number {
+            background-color: #0066cc !important; /* Blue background */
+            color: white !important; /* White text */
+            box-shadow: 0 2px 5px rgba(0, 102, 204, 0.3); /* Subtle shadow for depth */
+        }
+
+        /* Make list text dark for better readability */
+        .approach-phase .phase-description ul li {
+            color: #333333 !important; /* Dark text */
+        }
+
+        /* Improve the section intro paragraph */
+        .section-intro {
+            color: #333333 !important; /* Dark text */
+        }
+
+        /* Fix channel title color if needed */
+        .channels-title {
+            color: #0066cc !important; /* Blue color */
+        }
         /* Book Styles */
         .book-container {
             width: 100%;
@@ -3194,326 +3228,331 @@
         }
         
 
+        /* Medium screens (tablets) */
         @media (max-width: 768px) {
-        :root {
-            --header-height: 110px;
-            --header-height-scrolled: 100px;
-        }
-        
-        /* Header adjustments */
-        header {
-            position: fixed !important;
-            transform: none !important;
-            transition: height var(--transition-speed) var(--transition-timing) !important;
-        }
-        
-        .header-tabs {
-            height: 50px;
-            min-height: 50px;
-            padding: 2px 0;
-        }
-        
-        .tabs {
-            flex-wrap: wrap;
-            justify-content: center;
-            height: auto;
-        }
-        
-        .tab {
-            flex: 0 0 33.33%;
-            min-width: unset;
-            max-width: unset;
-            height: 23px;
-            font-size: 12px;
-            padding: 0 2px;
-        }
-        
-        /* Better distribute header space - using grid for improved centering */
-        .header-top {
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            align-items: center;
-            padding: 0 5px;
-            height: calc(var(--header-height) - 50px);
-            margin-bottom: 0;
-            transition: height var(--transition-speed) var(--transition-timing) !important;
-            transform: none !important;
-        }
-        
-        /* Left logo container */
-        .logo-brand-container {
-            grid-column: 1;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            width: 100%;
-        }
-        
-        .logo-image {
-            height: 25px;
-            margin-right: 2px;
-        }
-        
-        header.header-scrolled .logo-image {
-            height: 22px;
-        }
-        
-        .logo-text {
-            font-size: 18px;
-            margin-left: 2px;
-        }
-        
-        header.header-scrolled .logo-text {
-            font-size: 16px;
-        }
-        
-        /* Middle title container */
-        .header-center {
-            grid-column: 2;
-            position: relative;
-            width: 100%;
-            text-align: center;
-            flex-grow: 1;
-            transition: none !important;
-        }
-        
-        .subtitle {
-            text-align: center;
-            font-size: 12px !important;
-            transition: none !important;
-            line-height: 1.2;
-            white-space: nowrap;
-        }
-        
-        /* Prevent header center subtitle from changing size */
-        header.header-scrolled .subtitle {
-            font-size: 12px !important;
-        }
-        
-        /* Right button container */
-        .header-right {
-            grid-column: 3;
-            width: 100%;
-            display: flex;
-            justify-content: flex-end;
-            padding-right: 5px;
-            margin-left: auto;
-        }
-        
-        /* Timeline adjustments */
-        .timeline-item {
-            width: 100%;
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-        
-        .timeline-right, .timeline-left {
-            left: 0;
-        }
-        
-        .timeline::after {
-            left: 10px;
-        }
-        
-        .timeline-left::after, .timeline-right::after {
-            left: -2px;
-        }
-        
-        /* Table scrolling */
-        .kpi-table,
-        .collapsible-content-inner {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        /* Component adjustments */
-        .hexagon-grid,
-        .objective-cards {
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .tandem-container {
-            flex-direction: column;
-        }
-        
-        .tandem-side {
-            margin-bottom: 15px;
-        }
-        .book-navigation {
-            padding: 10px;
-        }
-        
-        .page-btn {
-            min-width: 80px;
-            padding: 8px 15px;
-            font-size: 14px;
-        }
-        .library-modal {
-            padding-top: 110px; /* More space on mobile for header */
-        }
-        
-        .modal-content {
-            width: 90%;
-            padding: 20px;
-            margin: 0 auto; /* Center horizontally */
-            max-height: 85vh; /* Give more height on mobile */
-        }
-        
-        .modal-header {
-            flex-wrap: wrap;
-        }
-        
-        .modal-icon {
-            width: 40px;
-            height: 40px;
-            font-size: 20px;
-        }
-        
-        .modal-title {
-            font-size: 20px;
-        }
-        
-        .modal-close {
-            width: 30px;
-            height: 30px;
-            font-size: 16px;
-        }
-        
-        .modal-details {
-            padding: 15px;
-        }
-        
-        .modal-detail-label,
-        .modal-detail-content {
-            font-size: 14px;
-        }
-        
-        .modal-btn {
-            padding: 8px 16px;
-            font-size: 14px;
-        }
-        .books-container {
-            grid-template-columns: repeat(2, 1fr) !important;
-        }
-        
-        /* Restablecer el ancho de las últimas dos tarjetas */
-        .books-container .book-item:nth-child(4),
-        .books-container .book-item:nth-child(5) {
-            grid-column: span 1;
-        }
-        .team-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-        }
-        
-        .team-grid > div:nth-child(4),
-        .team-grid > div:nth-child(5) {
-            grid-column: span 1;
-        }
-        .talent-grid {
-            grid-template-columns: repeat(1, 1fr);
-        }
-        .collapsible {
-            top: 100px !important;
-            padding: 9px 15px !important;
-            line-height: 1.3 !important;
-            transition: all 0.25s ease-in-out;
-        }
-        
-        .collapsible:not(.collapsible-sticky) {
-            min-height: 36px !important;
-            padding: 9px 15px !important;
-            font-size: 13px !important;
-        }
-        
-        .collapsible-sticky {
-            padding: 7px 15px !important;
-            top: 100px !important;
-            font-size: 13px !important;
-            /* Ensure consistent light blue on all devices */
-            background: linear-gradient(90deg, #00a0ff 0%, #0091ea 100%) !important;
-            min-height: 32px !important;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2) !important;
-            /* Smoother transition for mobile */
-            transition: background 0.2s ease-in-out,
-                        box-shadow 0.2s ease-in-out,
-                        color 0.2s ease-in-out,
-                        border-radius 0.2s ease-in-out;
-        }
-        .approach-phases::before {
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            height: auto;
-            transform: translateX(-50%);
-        }
-        .approach-phase {
-            width: 100%;
-            padding: 15px 0 15px 60px;
-            text-align: left;
-            margin-bottom: 25px;
-        }
-        
-        .phase-number {
-            position: absolute;
-            left: 0;
-            top: 15px;
-            margin: 0;
-            width: 50px;
-            height: 50px;
-            font-size: 20px;
-        }
-        
-        .personas-grid {
-            grid-template-columns: 1fr;
-        }
-        
-        .channels-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-        .governance-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-        .timeline-item-compact {
-            padding: 12px 12px 12px 45px;
-            margin-bottom: 15px;
-        }
-        
-        .timeline-date-compact {
-            font-size: 12px;
-            padding: 3px 10px;
-        }
-        
-        .timeline-title-compact {
-            font-size: 15px;
-        }
-        
-        .timeline-content-compact {
-            font-size: 13px;
-        }
-        .milestone-card {
-            flex: 1 1 100%;
-        }
-        .phase-card {
-            flex: 100%;
-        }
-        #home a > div {
+            :root {
+                --header-height: 110px;
+                --header-height-scrolled: 100px;
+            }
+            
+            /* Header adjustments */
+            header {
+                position: fixed !important;
+                transform: none !important;
+                transition: height var(--transition-speed) var(--transition-timing) !important;
+            }
+            
+            .header-tabs {
+                height: 50px;
+                min-height: 50px;
+                padding: 2px 0;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+                justify-content: center;
+                height: auto;
+            }
+            
+            .tab {
+                flex: 0 0 33.33%;
+                min-width: unset;
+                max-width: unset;
+                height: 23px;
+                font-size: 12px;
+                padding: 0 2px;
+            }
+            
+            .header-top {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 5px 10px;
+                height: calc(var(--header-height) - 50px);
+                margin-bottom: 0;
+                transition: height var(--transition-speed) var(--transition-timing) !important;
+                transform: none !important;
+            }
+            
+            .logo-brand-container {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                width: auto;
+            }
+            
+            .logo-image {
+                height: 25px;
+                margin-right: 2px;
+            }
+            
+            header.header-scrolled .logo-image {
+                height: 22px;
+            }
+            
+            .logo-text {
+                font-size: 18px;
+                margin-left: 2px;
+            }
+            
+            header.header-scrolled .logo-text {
+                font-size: 16px;
+            }
+            
+            .header-center {
+                position: relative;
+                width: auto;
+            }
+            
+            .subtitle {
+                text-align: center;
+                font-size: 12px !important;
+                transition: none !important;
+                line-height: 1.2;
+            }
+            /* Prevent header center subtitle from changing size */
+            header.header-scrolled .subtitle {
+                font-size: 12px !important;
+            }
+            
+            /* Ensure header center maintains position */
+            .header-center {
+                flex-grow: 1;
+                text-align: center;
+                position: relative;
+                transition: none !important;
+            }
+            
+            /* Timeline adjustments */
+            .timeline-item {
+                width: 100%;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            .timeline-right, .timeline-left {
+                left: 0;
+            }
+            
+            .timeline::after {
+                left: 10px;
+            }
+            
+            .timeline-left::after, .timeline-right::after {
+                left: -2px;
+            }
+            
+            /* Table scrolling */
+            .kpi-table,
+            .collapsible-content-inner {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            /* Component adjustments */
+            .hexagon-grid,
+            .objective-cards {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .tandem-container {
+                flex-direction: column;
+            }
+            
+            .tandem-side {
+                margin-bottom: 15px;
+            }
+            .book-navigation {
+                padding: 10px;
+            }
+            
+            .page-btn {
+                min-width: 80px;
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            .library-modal {
+                padding-top: 110px; /* More space on mobile for header */
+            }
+            
+            .modal-content {
+                width: 90%;
+                padding: 20px;
+                margin: 0 auto; /* Center horizontally */
+                max-height: 85vh; /* Give more height on mobile */
+            }
+            
+            .modal-header {
+                flex-wrap: wrap;
+            }
+            
+            .modal-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .modal-title {
+                font-size: 20px;
+            }
+            
+            .modal-close {
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+            }
+            
+            .modal-details {
+                padding: 15px;
+            }
+            
+            .modal-detail-label,
+            .modal-detail-content {
+                font-size: 14px;
+            }
+            
+            .modal-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            .books-container {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
+            /* Restablecer el ancho de las últimas dos tarjetas */
+            .books-container .book-item:nth-child(4),
+            .books-container .book-item:nth-child(5) {
+                grid-column: span 1;
+            }
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
+            .team-grid > div:nth-child(4),
+            .team-grid > div:nth-child(5) {
+                grid-column: span 1;
+            }
+            .talent-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            .collapsible {
+                top: 100px !important;
+                padding: 9px 15px !important;
+                line-height: 1.3 !important;
+                transition: all 0.25s ease-in-out;
+            }
+            
+            .collapsible:not(.collapsible-sticky) {
+                min-height: 36px !important;
+                padding: 9px 15px !important;
+                font-size: 13px !important;
+            }
+            
+            .collapsible-sticky {
+                padding: 7px 15px !important;
+                top: 100px !important;
+                font-size: 13px !important;
+                /* Ensure consistent light blue on all devices */
+                background: linear-gradient(90deg, #00a0ff 0%, #0091ea 100%) !important;
+                min-height: 32px !important;
+                box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2) !important;
+                /* Smoother transition for mobile */
+                transition: background 0.2s ease-in-out,
+                            box-shadow 0.2s ease-in-out,
+                            color 0.2s ease-in-out,
+                            border-radius 0.2s ease-in-out;
+            }
+            .approach-phases::before {
+                left: 50%;
+                top: 0;
+                bottom: 0;
+                width: 4px;
+                height: auto;
+                transform: translateX(-50%);
+            }
+            .approach-phase {
+                width: 100%;
+                padding: 15px 0 15px 60px;
+                text-align: left;
+                margin-bottom: 25px;
+            }
+            
+            .phase-number {
+                position: absolute;
+                left: 0;
+                top: 15px;
+                margin: 0;
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .personas-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .channels-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .governance-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .timeline-item-compact {
+                padding: 12px 12px 12px 45px;
+                margin-bottom: 15px;
+            }
+            
+            .timeline-date-compact {
+                font-size: 12px;
+                padding: 3px 10px;
+            }
+            
+            .timeline-title-compact {
+                font-size: 15px;
+            }
+            
+            .timeline-content-compact {
+                font-size: 13px;
+            }
+            .milestone-card {
+                flex: 1 1 100%;
+            }
+            .phase-card {
+                flex: 100%;
+            }
+            #home a > div {
             padding: 20px 15px;
-        }   
-        .home-button {
-            padding: 5px 10px;
-            font-size: 12px;
-            min-width: 80px;
-            max-width: 80px;
+            }   
+            .home-button {
+                padding: 5px 10px;
+                font-size: 12px;
+                min-width: 80px;
+                max-width: 80px;
+            }
+            
+            .home-button svg {
+                width: 12px;
+                height: 12px;
+                margin-right: 3px;
+            }
+            
+            /* Fix alignment in header */
+            .header-right {
+                width: auto;
+                display: flex;
+                justify-content: flex-end;
+                padding-right: 5px;
+                margin-left: auto;
+            }
+            
+            /* Adjust header layout */
+            .header-top {
+                justify-content: space-between;
+                padding: 0 5px;
+            } 
+            
         }
-        
-        .home-button svg {
-            width: 12px;
-            height: 12px;
-            margin-right: 3px;
-        }
-    }
 
         /* Small screens (phones) */
         @media (max-width: 576px) {
@@ -8186,7 +8225,90 @@
             setTimeout(recalculateCollapsibleHeights, 100);
         }
 
+        // This function will modify the openTab function to automatically close all collapsible elements
+        // when changing tabs/slides
 
+        // Wait for DOM to be fully loaded
+        document.addEventListener("DOMContentLoaded", function() {
+        // Store reference to the original openTab function
+        const originalOpenTab = window.openTab;
+        
+        // Override the openTab function with our enhanced version
+        window.openTab = function(event, tabId) {
+            // First, close all active collapsibles
+            closeAllCollapsibles();
+            
+            // Then call the original function to change tabs
+            originalOpenTab(event, tabId);
+        };
+        
+        // Function to close all active collapsibles
+        function closeAllCollapsibles() {
+            const activeCollapsibles = document.querySelectorAll('.collapsible.active');
+            
+            activeCollapsibles.forEach(function(collapsible) {
+            // Get the content section
+            const content = collapsible.nextElementSibling;
+            
+            // Remove active class
+            collapsible.classList.remove('active');
+            
+            // Reset max-height to collapse the section
+            if (content && content.classList.contains('collapsible-content')) {
+                content.style.maxHeight = null;
+            }
+            });
+        }
+        
+        // If the original openTab function isn't available yet, define our own version
+        if (typeof window.openTab !== 'function') {
+            console.log("Creating a new openTab function");
+            window.openTab = function(event, tabId) {
+            // First, close all active collapsibles
+            closeAllCollapsibles();
+            
+            // Hide all tab contents
+            const allTabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < allTabContents.length; i++) {
+                allTabContents[i].classList.remove("active");
+            }
+            
+            // Show the selected tab
+            const targetTab = document.getElementById(tabId);
+            if (targetTab) {
+                targetTab.classList.add("active");
+            }
+            
+            // Update tab button styling
+            const allTabButtons = document.getElementsByClassName("tab");
+            for (let i = 0; i < allTabButtons.length; i++) {
+                if (allTabButtons[i].getAttribute("onclick") && 
+                    allTabButtons[i].getAttribute("onclick").includes(tabId)) {
+                allTabButtons[i].classList.add("active");
+                } else {
+                allTabButtons[i].classList.remove("active");
+                }
+            }
+            
+            // Update active tab id
+            window.currentActiveTabId = tabId;
+            
+            // Reset UI elements in the new tab
+            setTimeout(function() {
+                if (typeof recalculateCollapsibleHeights === 'function') {
+                recalculateCollapsibleHeights();
+                }
+                if (typeof updateStickyCollapsibles === 'function') {
+                updateStickyCollapsibles();
+                }
+            }, 50);
+
+            if (event) {
+                event.preventDefault();
+            }
+            };
+        }
+        });
         
     </script>
 
